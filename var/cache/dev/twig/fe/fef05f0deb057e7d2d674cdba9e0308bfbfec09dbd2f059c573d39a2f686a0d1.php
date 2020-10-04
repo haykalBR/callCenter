@@ -45,7 +45,7 @@ class __TwigTemplate_28bc2b98bff48c2eb61ebf75a35a5b837dc46e0f26796eeeacbaf0c1b5e
 <head>
   <meta charset=\"utf-8\">
   <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>CallCenter | Dashboard</title>
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 ";
         
@@ -73,7 +73,7 @@ class __TwigTemplate_28bc2b98bff48c2eb61ebf75a35a5b837dc46e0f26796eeeacbaf0c1b5e
 <head>
   <meta charset=\"utf-8\">
   <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>CallCenter | Dashboard</title>
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 ", "_layout/head.html.twig", "/var/www/application/templates/_layout/head.html.twig");
     }

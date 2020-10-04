@@ -78,17 +78,12 @@ class __TwigTemplate_10f871f81e13664b148e5738bf5bd26ca95f7cfa0cb31a61e574ece268b
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-
-    <!-- Main content -->
     <section class=\"content\">
-
-      <!-- Default box -->
       <div class=\"card\">
         <div class=\"card-header\">
           <h3 class=\"card-title\">Title</h3>
-
           <div class=\"card-tools\">
             <button type=\"button\" class=\"btn btn-tool\" data-card-widget=\"collapse\" data-toggle=\"tooltip\" title=\"Collapse\">
               <i class=\"fas fa-minus\"></i></button>
@@ -99,17 +94,12 @@ class __TwigTemplate_10f871f81e13664b148e5738bf5bd26ca95f7cfa0cb31a61e574ece268b
         <div class=\"card-body\">
           Start creating your amazing application!
         </div>
-        <!-- /.card-body -->
         <div class=\"card-footer\">
           Footer
         </div>
-        <!-- /.card-footer-->
       </div>
-      <!-- /.card -->
 
     </section>
-
-
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -151,17 +141,12 @@ class __TwigTemplate_10f871f81e13664b148e5738bf5bd26ca95f7cfa0cb31a61e574ece268b
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-
-    <!-- Main content -->
     <section class=\"content\">
-
-      <!-- Default box -->
       <div class=\"card\">
         <div class=\"card-header\">
           <h3 class=\"card-title\">Title</h3>
-
           <div class=\"card-tools\">
             <button type=\"button\" class=\"btn btn-tool\" data-card-widget=\"collapse\" data-toggle=\"tooltip\" title=\"Collapse\">
               <i class=\"fas fa-minus\"></i></button>
@@ -172,17 +157,12 @@ class __TwigTemplate_10f871f81e13664b148e5738bf5bd26ca95f7cfa0cb31a61e574ece268b
         <div class=\"card-body\">
           Start creating your amazing application!
         </div>
-        <!-- /.card-body -->
         <div class=\"card-footer\">
           Footer
         </div>
-        <!-- /.card-footer-->
       </div>
-      <!-- /.card -->
 
     </section>
-
-
 {% endblock %}
 ", "admin/default/index.html.twig", "/var/www/application/templates/admin/default/index.html.twig");
     }
