@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% include "_layout/head.html.twig" %}
+{% include "_layout/head-end.html.twig" %}
+{{ Navbar_build() }}
+{{ Menu_build() }}
+ <div class="content-wrapper">
+   {{  block('content') }}
+ </div>
+{% include "_layout/footer.html.twig" %}
+{% include "_layout/foot.html.twig" %}
+
