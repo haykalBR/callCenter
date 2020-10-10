@@ -2,9 +2,12 @@
 {% include "_layout/head-end.html.twig" %}
 {{ Navbar_build() }}
 {{ Menu_build() }}
+<body class="hold-transition sidebar-mini">
  <div class="content-wrapper">
    {{  block('content') }}
  </div>
+
 {% include "_layout/footer.html.twig" %}
 {% include "_layout/foot.html.twig" %}
+
 
