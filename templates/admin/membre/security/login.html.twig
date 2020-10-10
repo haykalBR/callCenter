@@ -49,6 +49,8 @@
                                name="_csrf_token"
                                value="{{ csrf_token('authenticate') }}">
                     </div>
+                    <div class="g-recaptcha" data-sitekey={{ captchakey }}></div><br>
+
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
@@ -74,4 +76,8 @@
             </div>
         </div>
     </div>
+    {% block javascripts %}
+        <script src='//www.google.com/recaptcha/api.js?hl=fr'></script>
+    {% endblock %}
 {% endblock %}
+
