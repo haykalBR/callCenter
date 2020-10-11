@@ -39,10 +39,8 @@ class ProfileController extends  AbstractController
      * @Route("/profile", name="profile")
      */
     public function profile(){
-        $code=$this->getUser()->getGoogleAuthenticatorSecret() !=''? $this->getUser()->getGoogleAuthenticatorSecret():$this->googleAuthenticatorService->generateSecret();
-        $this->session->set(self::CODE,$code);
         return $this->render('admin/membre/profile/profile.html.twig',
-            ['user'=>$this->getUser(),'code'=>$code]);
+            ['user'=>$this->getUser()]);
     }
     /**
      * @Route("/otp", name="otp",  methods={"GET","POST"})
