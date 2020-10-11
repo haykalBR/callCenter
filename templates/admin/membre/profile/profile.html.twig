@@ -13,35 +13,27 @@
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
-
-                    <!-- Profile Image -->
-                    <form action="{{ path('admin_otp') }}" method="post">
+                    <form action="{{ path('admin_otp') }}">
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
-                               {{ 'qrCode'|qrCode }}
+                               {{ qrCode(code) }}
                             </div>
                             <h3 class="profile-username text-center">{{ app.user.username }}</h3>
                             <ul class="list-group list-group-unbordered mb-3">
-                                <li class="list-group-item">
-                                    <input type="text" class="form-control" id="qrocde">
-                                </li>
+                                <input  {% if user.googleAuthenticatorSecret %}checked{% endif %} id="chkSwitch" type="checkbox" data-toggle="switchbutton" data-size="sm" data-onlabel="Enabled" data-offlabel="Disabled">
                             </ul>
-                            <button type="submit" id="qrocde-otp" class="btn btn-primary btn-block"><b>Activate TOTP</b></button>
                         </div>
-                    </form>
                     </div>
-
+                    </form>
                 </div>
-
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 {% endblock %}

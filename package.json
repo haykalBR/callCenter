@@ -2,7 +2,9 @@
     "devDependencies": {
         "@symfony/webpack-encore": "^0.30.0",
         "core-js": "^3.0.0",
+        "node-sass": "^4.14.1",
         "regenerator-runtime": "^0.13.2",
+        "sass-loader": "^8.0.0",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -15,6 +17,8 @@
     },
     "dependencies": {
         "axios": "^0.20.0",
-        "jquery": "^3.5.1"
+        "bootstrap-switch-button": "^1.1.0",
+        "jquery": "^3.5.1",
+        "toastr": "^2.1.4"
     }
 }

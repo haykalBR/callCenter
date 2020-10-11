@@ -2,35 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/Domain/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/Domain/membre/ProfileController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/personelProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/personelProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Domain/membre/ProfileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Domain/membre/ProfileController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201010181626.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20201010181626.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Security/LoginAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Security/LoginAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/membre/security/2fa.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/security/2fa.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_layout/foot.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/foot.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_layout/head-end.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/head-end.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +206,7 @@
       <updated>1601840878541</updated>
       <workItem from="1601840879588" duration="83000" />
       <workItem from="1601840971964" duration="2920000" />
-      <workItem from="1602335560659" duration="28236000" />
+      <workItem from="1602335560659" duration="39924000" />
     </task>
     <servers />
   </component>
@@ -245,6 +230,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2495" y="27" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1601841065115" />
+    <state x="2605" y="137" width="803" height="831" key="find.popup" timestamp="1602418921513">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2605" y="137" width="803" height="831" key="find.popup/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602418921513" />
     <state x="2577" y="253" key="run.anything.popup" timestamp="1602335921152">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

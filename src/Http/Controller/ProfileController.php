@@ -1,28 +1,37 @@
 <?php
 namespace App\Http\Controller;
+use App\Domain\Membre\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ProfileController extends  AbstractController
 {
+
+    const CODE ="code";
     /**
      * @var GoogleAuthenticatorInterface
      */
     private $googleAuthenticatorService;
     /**
-     * @var TokenStorageInterface
+     * @var EntityManagerInterface
      */
-    private $token;
+    private $entityManager;
+    /**
+     * @var SessionInterface
+     */
+    private $session;
 
 
-    public function __construct(GoogleAuthenticatorInterface $googleAuthenticatorService, TokenStorageInterface $token)
+    public function __construct(GoogleAuthenticatorInterface $googleAuthenticatorService, EntityManagerInterface $entityManager,SessionInterface $session)
     {
 
         $this->googleAuthenticatorService = $googleAuthenticatorService;
-        $this->token = $token;
+        $this->entityManager = $entityManager;
+        $this->session = $session;
     }
 
     /**
@@ -30,16 +39,31 @@ class ProfileController extends  AbstractController
      * @Route("/profile", name="profile")
      */
     public function profile(){
-        return $this->render('admin/membre/profile/profile.html.twig');
+        $code=$this->googleAuthenticatorService->generateSecret();
+        $this->session->set(self::CODE,$code);
+        return $this->render('admin/membre/profile/profile.html.twig',
+            ['user'=>$this->getUser(),'code'=>$code]);
     }
 
     /**
      * @Route("/otp", name="otp",  methods={"GET","POST"})
      */
     public function otp(Request $request){
-        if($request->isXmlHttpRequest()) {
-            $result = json_decode($request->getContent(), true);
-            //TODO CHeck hwo to valide Qrcode Is Vrai or not
+            $state = json_decode($request->getContent(), true)['state'];
+            /**
+             * @var $user User
+             */
+            $user= $this->getUser();
+            if ($request->isXmlHttpRequest()){
+                if($state){
+                    $user->setGoogleAuthenticatorSecret($this->session->get(self::CODE));
+                    $message="Your account has been updated to two-factor authentication";
+                }else{
+                    $user->setGoogleAuthenticatorSecret(null);
+                    $message="Your account has been updated to Simple  authentication";
+                }
+                $this->entityManager->flush();
+                return $this->json($message,200);
             }
             return $this->redirectToRoute("admin_profile");
     }

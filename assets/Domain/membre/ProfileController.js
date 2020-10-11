@@ -1,20 +1,46 @@
 const axios = require('axios');
+import 'bootstrap-switch-button';
+import 'bootstrap-switch-button/css/bootstrap-switch-button.css';
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+import * as toastr from 'toastr';
+import 'toastr/build/toastr.css';
 $( document ).ready(function() {
-   $('#qrocde-otp').click(function (event){
-       event.preventDefault();
-       const url = $(this).closest('form')[0].action;
-           axios({
-               method: 'post',
-               url: url,
-               data: {
-                   qrcode: $('#qrocde').val()
-               }
-           })
-           .then((response) => {
-                   console.log(response);
-            }, (error) => {
-                   console.log(error);
-            });
+    toastr.options = {
+        "closeButton": true,
+        "debug": true,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 
-   })
+    /**
+     *  Function to Enabled and Disabled OTP
+     */
+    $('#chkSwitch').on('change', function (event) {
+        event.preventDefault();
+        const url = $(this).closest('form')[0].action;
+        axios({
+            method: 'post',
+            url: url,
+            data: {
+                state: event.target.checked
+            }
+         }).then((response) => {
+            toastr.info(response.data)
+        }, (error) => {
+            });
+    });
+
+
+
 });

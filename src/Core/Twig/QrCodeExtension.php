@@ -8,6 +8,7 @@ use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticator
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class QrCodeExtension extends AbstractExtension
 {
@@ -27,14 +28,15 @@ class QrCodeExtension extends AbstractExtension
         $this->googleAuthenticatorService = $googleAuthenticatorService;
         $this->token = $token;
     }
-    public function getFilters()
+    public function getFunctions()
     {
         return[
-            new TwigFilter('qrCode',[$this,'qrCode'],[ 'is_safe' => ['html']])
+            new TwigFunction('qrCode',[$this,'qrCode'],[ 'is_safe' => ['html']])
         ];
     }
-    public function qrCode($content, $options = []){
-        $qrcode="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl={$this->googleAuthenticatorService->getQRContent($this->token->getToken()->getUser())}";
-        return "<img id='imageQRcode'  src={$qrcode} alt='QR Code' name='imageQRcode'/>";
+    public function qrCode($code){
+        $url="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=";
+        $url.=$this->googleAuthenticatorService->getQRContent($this->token->getToken()->getUser())."".$code;
+        return "<img id='imageQRcode' src={$url} alt='QR Code' name='imageQRcode' />";
     }
 }
