@@ -42,9 +42,14 @@ class QrCodeExtension extends AbstractExtension
     }
     public function qrCode(){
         $url="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=";
-        $url.=$this->googleAuthenticatorService->getQRContent($this->token->getToken()->getUser());
-        $var = explode('secret=', $url);
-        $this->session->set(ProfileController::CODE,$var[1]);
+        if ($this->token->getToken()->getUser()->getGoogleAuthenticatorSecret() ==""){
+         $code=$this->googleAuthenticatorService->generateSecret();
+         $url.=$this->googleAuthenticatorService->getQRContent($this->token->getToken()->getUser())."".$code;
+        }else{
+            $url.=$this->googleAuthenticatorService->getQRContent($this->token->getToken()->getUser());
+            $code = explode('secret=', $url)[1];
+        }
+        $this->session->set(ProfileController::CODE,$code);
         return "<img id='imageQRcode' src={$url} alt='QR Code' name='imageQRcode' />";
     }
 }

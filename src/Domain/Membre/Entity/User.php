@@ -45,6 +45,11 @@ class User implements UserInterface, TwoFactorInterface
      */
     private $googleAuthenticatorSecret;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Profile::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $profile;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -166,4 +171,22 @@ class User implements UserInterface, TwoFactorInterface
      * Return the configuration for TOTP authentication.
      */
     public function getTotpAuthenticationConfiguration(){}
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(?Profile $profile): self
+    {
+        $this->profile = $profile;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUsers = null === $profile ? null : $this;
+        if ($profile->getUsers() !== $newUsers) {
+            $profile->setUsers($newUsers);
+        }
+
+        return $this;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Domain\Membre\Entity\Profile;
 use App\Domain\Membre\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -28,7 +29,7 @@ class AppFixtures extends Fixture
     {
       for ($i=0;$i<10;$i++){
           /**
-           * @var User
+           * @var $user User
            */
           $user = new User();
           $user->setEmail("haikelbrinis{$i}@gmail.com");
@@ -38,6 +39,17 @@ class AppFixtures extends Fixture
           );
           $user->setGoogleAuthenticatorSecret($this->googleAuthenticator->generateSecret());
           $manager->persist($user);
+          /**
+           * @var $profile Profile-
+           */
+          $profile= new Profile();
+          $profile->setAddress("addres{$i}");
+          $profile->setFirstName("haikel{$i}");
+          $profile->setLastName("brinis{$i}");
+          $profile->setGender(1);
+          $profile->setBirthday(new \DateTime());
+          $profile->setUser($user);
+          $manager->persist($profile);
       }
           $manager->flush();
     }

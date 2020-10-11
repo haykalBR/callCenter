@@ -56,7 +56,7 @@ class ProfileController extends  AbstractController
                     $user->setGoogleAuthenticatorSecret($this->session->get(self::CODE));
                     $message="Your account has been updated to two-factor authentication";
                 }else{
-                    $user->setGoogleAuthenticatorSecret(null);
+                    $user->setGoogleAuthenticatorSecret("");
                     $message="Your account has been updated to Simple  authentication";
                 }
                 $this->entityManager->flush();
