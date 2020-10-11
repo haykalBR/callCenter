@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/packages/dev/maker.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
