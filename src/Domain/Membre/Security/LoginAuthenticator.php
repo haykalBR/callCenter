@@ -73,10 +73,9 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
-        if(!$this->captchaValidator->validateCaptcha($credentials['g-recaptcha-response'])){
+      /*  if(!$this->captchaValidator->validateCaptcha($credentials['g-recaptcha-response'])){
             throw new RecaptchaException();
-
-        }
+        }*/
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
 

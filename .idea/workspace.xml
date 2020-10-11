@@ -2,24 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/admin/membre/security/2fa.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/Domain/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/Domain/membre/ProfileController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/personelProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/personelProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/google_recaptcha.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/google_recaptcha.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201010135736.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201010181626.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20201010181626.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Exception/RecaptchaException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Exception/RecaptchaException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Services/CaptchaValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Services/CaptchaValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Security/LoginAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Security/LoginAuthenticator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Http/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/SecurityController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/membre/security/2fa.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/security/2fa.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
@@ -28,6 +30,7 @@
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +158,13 @@
       <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
       <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
       <path value="$PROJECT_DIR$/vendor/scheb/two-factor-bundle" />
+      <path value="$PROJECT_DIR$/vendor/endroid/qr-code-bundle" />
+      <path value="$PROJECT_DIR$/vendor/endroid/installer" />
+      <path value="$PROJECT_DIR$/vendor/endroid/qr-code" />
+      <path value="$PROJECT_DIR$/vendor/khanamiryan/qrcode-detector-decoder" />
+      <path value="$PROJECT_DIR$/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
     </include_path>
   </component>
   <component name="ProjectId" id="1iQXdkflBZqXOr44Sf8yIYbjC31" />
@@ -211,7 +221,7 @@
       <updated>1601840878541</updated>
       <workItem from="1601840879588" duration="83000" />
       <workItem from="1601840971964" duration="2920000" />
-      <workItem from="1602335560659" duration="17363000" />
+      <workItem from="1602335560659" duration="28236000" />
     </task>
     <servers />
   </component>
@@ -219,18 +229,18 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2699" y="224" width="419" height="657" key="#com.intellij.ide.util.MemberChooser" timestamp="1602354503071">
+    <state x="2699" y="224" width="419" height="657" key="#com.intellij.ide.util.MemberChooser" timestamp="1602359193977">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2699" y="224" width="419" height="657" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602354503071" />
-    <state x="2646" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602354679490">
+    <state x="2699" y="224" width="419" height="657" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602359193977" />
+    <state x="2646" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602371035444">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2646" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602354679490" />
-    <state x="2649" y="256" width="527" height="593" key="NewPhpClassDialog" timestamp="1602350431091">
+    <state x="2646" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602371035444" />
+    <state x="2649" y="256" width="535" height="593" key="NewPhpClassDialog" timestamp="1602370688702">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2649" y="256" width="527" height="593" key="NewPhpClassDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602350431091" />
+    <state x="2649" y="256" width="535" height="593" key="NewPhpClassDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602370688702" />
     <state x="2495" y="27" key="SettingsEditor" timestamp="1601841065115">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -243,9 +253,9 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2576" y="257" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602343475216" />
-    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602353238308">
+    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602360328293">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602353238308" />
+    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602360328293" />
   </component>
 </project>
