@@ -3,19 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Domain/membre/ProfileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Domain/membre/ProfileController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_layout/foot.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/foot.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_layout/head-end.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/head-end.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/membre/auth.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/auth.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +197,7 @@
       <updated>1601840878541</updated>
       <workItem from="1601840879588" duration="83000" />
       <workItem from="1601840971964" duration="2920000" />
-      <workItem from="1602335560659" duration="39924000" />
+      <workItem from="1602335560659" duration="42024000" />
     </task>
     <servers />
   </component>
