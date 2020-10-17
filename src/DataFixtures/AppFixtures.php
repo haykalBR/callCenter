@@ -34,6 +34,7 @@ class AppFixtures extends Fixture
           $user = new User();
           $user->setEmail("haikelbrinis{$i}@gmail.com");
           $user->setUsername("haikel{$i}");
+          $user->setEnabled(true);
           $user->setPassword(
               $this->userPasswordEncoder->encodePassword($user, 'haikel')
           );

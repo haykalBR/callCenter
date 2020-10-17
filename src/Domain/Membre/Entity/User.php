@@ -3,6 +3,8 @@
 namespace App\Domain\Membre\Entity;
 
 use App\Domain\Membre\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Scheb\TwoFactorBundle\Model\Totp\TotpConfigurationInterface;
@@ -29,6 +31,10 @@ class User implements UserInterface, TwoFactorInterface
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $username;
+    /**
+     * @ORM\Column(type="boolean",options={"default":true})
+     */
+    private $enabled;
 
     /**
      * @ORM\Column(type="json")
@@ -49,6 +55,16 @@ class User implements UserInterface, TwoFactorInterface
      * @ORM\OneToOne(targetEntity=Profile::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $profile;
+
+    /**
+     * @ORM\OneToMany(targetEntity=LoginAttempt::class, mappedBy="user")
+     */
+    private $loginAttempts;
+
+    public function __construct()
+    {
+        $this->loginAttempts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,7 +90,7 @@ class User implements UserInterface, TwoFactorInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
     public function setUsername(string $username): self
     {
@@ -183,10 +199,58 @@ class User implements UserInterface, TwoFactorInterface
 
         // set (or unset) the owning side of the relation if necessary
         $newUsers = null === $profile ? null : $this;
-        if ($profile->getUsers() !== $newUsers) {
-            $profile->setUsers($newUsers);
+        if ($profile->getUser() !== $newUsers) {
+            $profile->setUser($newUsers);
         }
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param mixed $enabled
+     */
+    public function setEnabled($enabled): void
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return Collection|LoginAttempt[]
+     */
+    public function getLoginAttempts(): Collection
+    {
+        return $this->loginAttempts;
+    }
+
+    public function addLoginAttempt(LoginAttempt $loginAttempt): self
+    {
+        if (!$this->loginAttempts->contains($loginAttempt)) {
+            $this->loginAttempts[] = $loginAttempt;
+            $loginAttempt->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoginAttempt(LoginAttempt $loginAttempt): self
+    {
+        if ($this->loginAttempts->contains($loginAttempt)) {
+            $this->loginAttempts->removeElement($loginAttempt);
+            // set the owning side to null (unless already changed)
+            if ($loginAttempt->getUsers() === $this) {
+                $loginAttempt->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

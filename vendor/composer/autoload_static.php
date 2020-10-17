@@ -4,23 +4,21 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
+class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
-        '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
+        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
-        'a9ed0d27b5a698798a89181429f162c5' => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib/Common/customFunctions.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
+        '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
         '51fcf4e06c07cc00c920b44bcd900e7a' => __DIR__ . '/..' . '/thecodingmachine/safe/deprecated/apc.php',
         '47f619d9197b36cf5ab70738d7743fe2' => __DIR__ . '/..' . '/thecodingmachine/safe/deprecated/libevent.php',
         'ea6bb8a12ef9b68f6ada99058e530760' => __DIR__ . '/..' . '/thecodingmachine/safe/deprecated/mssql.php',
@@ -110,6 +108,8 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
         '4af1dca6db8c527c6eed27bff85ff0e5' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/yaz.php',
         'fe43ca06499ac37bc2dedd823af71eb5' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/zip.php',
         '356736db98a6834f0a886b8d509b0ecd' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/zlib.php',
+        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
+        'a9ed0d27b5a698798a89181429f162c5' => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib/Common/customFunctions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -166,6 +166,7 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\Notifier\\' => 27,
             'Symfony\\Component\\Mime\\' => 23,
+            'Symfony\\Component\\Mailer\\Bridge\\Google\\' => 39,
             'Symfony\\Component\\Mailer\\' => 25,
             'Symfony\\Component\\Intl\\' => 23,
             'Symfony\\Component\\HttpKernel\\' => 29,
@@ -197,6 +198,7 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
             'Symfony\\Bridge\\PhpUnit\\' => 23,
             'Symfony\\Bridge\\Monolog\\' => 23,
             'Symfony\\Bridge\\Doctrine\\' => 24,
+            'SymfonyCasts\\Bundle\\ResetPassword\\' => 34,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Scheb\\TwoFactorBundle\\' => 22,
             'Safe\\' => 5,
@@ -277,8 +279,8 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Zxing\\' => 
         array (
@@ -432,6 +434,10 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
         array (
             0 => __DIR__ . '/..' . '/symfony/mime',
         ),
+        'Symfony\\Component\\Mailer\\Bridge\\Google\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/google-mailer',
+        ),
         'Symfony\\Component\\Mailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/mailer',
@@ -555,6 +561,10 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
         'Symfony\\Bridge\\Doctrine\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/doctrine-bridge',
+        ),
+        'SymfonyCasts\\Bundle\\ResetPassword\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src',
         ),
         'Sensio\\Bundle\\FrameworkExtraBundle\\' => 
         array (
@@ -708,10 +718,10 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            0 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
             1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
             2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
-            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
+            3 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
         'Doctrine\\Bundle\\MigrationsBundle\\' => 
         array (
@@ -749,15 +759,35 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
 
     public static $classMap = array (
         'App\\Controller\\DefaultController' => __DIR__ . '/../..' . '/src/Controller/DefaultController.php',
+        'App\\Core\\Enum\\GenreEnum' => __DIR__ . '/../..' . '/src/Core/Enum/GenreEnum.php',
         'App\\Core\\Exception\\RecaptchaException' => __DIR__ . '/../..' . '/src/Core/Exception/RecaptchaException.php',
+        'App\\Core\\Exception\\TooManyBadCredentialsException' => __DIR__ . '/../..' . '/src/Core/Exception/TooManyBadCredentialsException.php',
+        'App\\Core\\Exception\\UserBannedException' => __DIR__ . '/../..' . '/src/Core/Exception/UserBannedException.php',
+        'App\\Core\\Helper\\TimestampableTrait' => __DIR__ . '/../..' . '/src/Core/Helper/TimestampableTrait.php',
         'App\\Core\\Services\\CaptchaValidator' => __DIR__ . '/../..' . '/src/Core/Services/CaptchaValidator.php',
         'App\\Core\\Twig\\MenuExtension' => __DIR__ . '/../..' . '/src/Core/Twig/MenuExtension.php',
         'App\\Core\\Twig\\QrCodeExtension' => __DIR__ . '/../..' . '/src/Core/Twig/QrCodeExtension.php',
         'App\\DataFixtures\\AppFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/AppFixtures.php',
+        'App\\Domain\\Membre\\Entity\\LoginAttempt' => __DIR__ . '/../..' . '/src/Domain/Membre/Entity/LoginAttempt.php',
+        'App\\Domain\\Membre\\Entity\\Profile' => __DIR__ . '/../..' . '/src/Domain/Membre/Entity/Profile.php',
+        'App\\Domain\\Membre\\Entity\\ResetPasswordRequest' => __DIR__ . '/../..' . '/src/Domain/Membre/Entity/ResetPasswordRequest.php',
         'App\\Domain\\Membre\\Entity\\User' => __DIR__ . '/../..' . '/src/Domain/Membre/Entity/User.php',
+        'App\\Domain\\Membre\\Event\\BadPasswordLoginEvent' => __DIR__ . '/../..' . '/src/Domain/Membre/Event/BadPasswordLoginEvent.php',
+        'App\\Domain\\Membre\\Form\\ChangePasswordFormType' => __DIR__ . '/../..' . '/src/Domain/Membre/Form/ChangePasswordFormType.php',
+        'App\\Domain\\Membre\\Form\\Profile1Type' => __DIR__ . '/../..' . '/src/Domain/Membre/Form/Profile1Type.php',
+        'App\\Domain\\Membre\\Form\\ProfileType' => __DIR__ . '/../..' . '/src/Domain/Membre/Form/ProfileType.php',
+        'App\\Domain\\Membre\\Form\\ResetPasswordRequestFormType' => __DIR__ . '/../..' . '/src/Domain/Membre/Form/ResetPasswordRequestFormType.php',
+        'App\\Domain\\Membre\\Form\\UserType' => __DIR__ . '/../..' . '/src/Domain/Membre/Form/UserType.php',
+        'App\\Domain\\Membre\\Repository\\LoginAttemptRepository' => __DIR__ . '/../..' . '/src/Domain/Membre/Repository/LoginAttemptRepository.php',
+        'App\\Domain\\Membre\\Repository\\ProfileRepository' => __DIR__ . '/../..' . '/src/Domain/Membre/Repository/ProfileRepository.php',
+        'App\\Domain\\Membre\\Repository\\ResetPasswordRequestRepository' => __DIR__ . '/../..' . '/src/Domain/Membre/Repository/ResetPasswordRequestRepository.php',
         'App\\Domain\\Membre\\Repository\\UserRepository' => __DIR__ . '/../..' . '/src/Domain/Membre/Repository/UserRepository.php',
         'App\\Domain\\Membre\\Security\\LoginAuthenticator' => __DIR__ . '/../..' . '/src/Domain/Membre/Security/LoginAuthenticator.php',
+        'App\\Domain\\Membre\\Security\\UserChecker' => __DIR__ . '/../..' . '/src/Domain/Membre/Security/UserChecker.php',
+        'App\\Domain\\Membre\\Service\\LoginAttemptService' => __DIR__ . '/../..' . '/src/Domain/Membre/Service/LoginAttemptService.php',
+        'App\\Domain\\Membre\\Subscriber\\LoginAttemptSubscriber' => __DIR__ . '/../..' . '/src/Domain/Membre/Subscriber/LoginAttemptSubscriber.php',
         'App\\Http\\Controller\\ProfileController' => __DIR__ . '/../..' . '/src/Http/Controller/ProfileController.php',
+        'App\\Http\\Controller\\ResetPasswordController' => __DIR__ . '/../..' . '/src/Http/Controller/ResetPasswordController.php',
         'App\\Http\\Controller\\SecurityController' => __DIR__ . '/../..' . '/src/Http/Controller/SecurityController.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
         'Assert\\Assert' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/Assert.php',
@@ -2954,6 +2984,28 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
         'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle' => __DIR__ . '/..' . '/sensio/framework-extra-bundle/src/SensioFrameworkExtraBundle.php',
         'Sensio\\Bundle\\FrameworkExtraBundle\\Templating\\TemplateGuesser' => __DIR__ . '/..' . '/sensio/framework-extra-bundle/src/Templating/TemplateGuesser.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Command\\ResetPasswordRemoveExpiredCommand' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Command/ResetPasswordRemoveExpiredCommand.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Controller\\ResetPasswordControllerTrait' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Controller/ResetPasswordControllerTrait.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/DependencyInjection/Configuration.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\DependencyInjection\\SymfonyCastsResetPasswordExtension' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/DependencyInjection/SymfonyCastsResetPasswordExtension.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Exception\\ExpiredResetPasswordTokenException' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Exception/ExpiredResetPasswordTokenException.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Exception\\FakeRepositoryException' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Exception/FakeRepositoryException.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Exception\\InvalidResetPasswordTokenException' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Exception/InvalidResetPasswordTokenException.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Exception\\ResetPasswordExceptionInterface' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Exception/ResetPasswordExceptionInterface.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Exception\\TooManyPasswordRequestsException' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Exception/TooManyPasswordRequestsException.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Generator\\ResetPasswordRandomGenerator' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Generator/ResetPasswordRandomGenerator.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Generator\\ResetPasswordTokenGenerator' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Generator/ResetPasswordTokenGenerator.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Model\\ResetPasswordRequestInterface' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Model/ResetPasswordRequestInterface.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Model\\ResetPasswordRequestTrait' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Model/ResetPasswordRequestTrait.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Model\\ResetPasswordToken' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Model/ResetPasswordToken.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Model\\ResetPasswordTokenComponents' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Model/ResetPasswordTokenComponents.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Persistence\\Fake\\FakeResetPasswordInternalRepository' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Persistence/Fake/FakeResetPasswordInternalRepository.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Persistence\\Repository\\ResetPasswordRequestRepositoryTrait' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Persistence/Repository/ResetPasswordRequestRepositoryTrait.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Persistence\\ResetPasswordRequestRepositoryInterface' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Persistence/ResetPasswordRequestRepositoryInterface.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\ResetPasswordHelper' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/ResetPasswordHelper.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\ResetPasswordHelperInterface' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/ResetPasswordHelperInterface.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\SymfonyCastsResetPasswordBundle' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/SymfonyCastsResetPasswordBundle.php',
+        'SymfonyCasts\\Bundle\\ResetPassword\\Util\\ResetPasswordCleaner' => __DIR__ . '/..' . '/symfonycasts/reset-password-bundle/src/Util/ResetPasswordCleaner.php',
         'Symfony\\Bridge\\Doctrine\\CacheWarmer\\ProxyCacheWarmer' => __DIR__ . '/..' . '/symfony/doctrine-bridge/CacheWarmer/ProxyCacheWarmer.php',
         'Symfony\\Bridge\\Doctrine\\ContainerAwareEventManager' => __DIR__ . '/..' . '/symfony/doctrine-bridge/ContainerAwareEventManager.php',
         'Symfony\\Bridge\\Doctrine\\DataCollector\\DoctrineDataCollector' => __DIR__ . '/..' . '/symfony/doctrine-bridge/DataCollector/DoctrineDataCollector.php',
@@ -4448,6 +4500,8 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
         'Symfony\\Component\\Intl\\Util\\IcuVersion' => __DIR__ . '/..' . '/symfony/intl/Util/IcuVersion.php',
         'Symfony\\Component\\Intl\\Util\\IntlTestHelper' => __DIR__ . '/..' . '/symfony/intl/Util/IntlTestHelper.php',
         'Symfony\\Component\\Intl\\Util\\Version' => __DIR__ . '/..' . '/symfony/intl/Util/Version.php',
+        'Symfony\\Component\\Mailer\\Bridge\\Google\\Transport\\GmailSmtpTransport' => __DIR__ . '/..' . '/symfony/google-mailer/Transport/GmailSmtpTransport.php',
+        'Symfony\\Component\\Mailer\\Bridge\\Google\\Transport\\GmailTransportFactory' => __DIR__ . '/..' . '/symfony/google-mailer/Transport/GmailTransportFactory.php',
         'Symfony\\Component\\Mailer\\DataCollector\\MessageDataCollector' => __DIR__ . '/..' . '/symfony/mailer/DataCollector/MessageDataCollector.php',
         'Symfony\\Component\\Mailer\\DelayedEnvelope' => __DIR__ . '/..' . '/symfony/mailer/DelayedEnvelope.php',
         'Symfony\\Component\\Mailer\\Envelope' => __DIR__ . '/..' . '/symfony/mailer/Envelope.php',
@@ -5852,9 +5906,9 @@ class ComposerStaticInit9de477f4bd7265843d86d438a4bd7922
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9de477f4bd7265843d86d438a4bd7922::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9de477f4bd7265843d86d438a4bd7922::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit9de477f4bd7265843d86d438a4bd7922::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc::$classMap;
 
         }, null, ClassLoader::class);
     }

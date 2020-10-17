@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
+    'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/type-resolver/src', $vendorDir . '/phpdocumentor/reflection-docblock/src'),
     'Zxing\\' => array($vendorDir . '/khanamiryan/qrcode-detector-decoder/lib'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Webimpress\\SafeWriter\\' => array($vendorDir . '/webimpress/safe-writer/src'),
@@ -45,6 +45,7 @@ return array(
     'Symfony\\Component\\OptionsResolver\\' => array($vendorDir . '/symfony/options-resolver'),
     'Symfony\\Component\\Notifier\\' => array($vendorDir . '/symfony/notifier'),
     'Symfony\\Component\\Mime\\' => array($vendorDir . '/symfony/mime'),
+    'Symfony\\Component\\Mailer\\Bridge\\Google\\' => array($vendorDir . '/symfony/google-mailer'),
     'Symfony\\Component\\Mailer\\' => array($vendorDir . '/symfony/mailer'),
     'Symfony\\Component\\Intl\\' => array($vendorDir . '/symfony/intl'),
     'Symfony\\Component\\HttpKernel\\' => array($vendorDir . '/symfony/http-kernel'),
@@ -76,6 +77,7 @@ return array(
     'Symfony\\Bridge\\PhpUnit\\' => array($vendorDir . '/symfony/phpunit-bridge'),
     'Symfony\\Bridge\\Monolog\\' => array($vendorDir . '/symfony/monolog-bridge'),
     'Symfony\\Bridge\\Doctrine\\' => array($vendorDir . '/symfony/doctrine-bridge'),
+    'SymfonyCasts\\Bundle\\ResetPassword\\' => array($vendorDir . '/symfonycasts/reset-password-bundle/src'),
     'Sensio\\Bundle\\FrameworkExtraBundle\\' => array($vendorDir . '/sensio/framework-extra-bundle/src'),
     'Scheb\\TwoFactorBundle\\' => array($vendorDir . '/scheb/two-factor-bundle'),
     'Safe\\' => array($vendorDir . '/thecodingmachine/safe/lib', $vendorDir . '/thecodingmachine/safe/deprecated', $vendorDir . '/thecodingmachine/safe/generated'),
@@ -113,7 +115,7 @@ return array(
     'Doctrine\\Common\\Collections\\' => array($vendorDir . '/doctrine/collections/lib/Doctrine/Common/Collections'),
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
     'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib/Doctrine/Common/Annotations'),
-    'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common', $vendorDir . '/doctrine/event-manager/lib/Doctrine/Common', $vendorDir . '/doctrine/persistence/lib/Doctrine/Common', $vendorDir . '/doctrine/reflection/lib/Doctrine/Common'),
+    'Doctrine\\Common\\' => array($vendorDir . '/doctrine/reflection/lib/Doctrine/Common', $vendorDir . '/doctrine/event-manager/lib/Doctrine/Common', $vendorDir . '/doctrine/persistence/lib/Doctrine/Common', $vendorDir . '/doctrine/common/lib/Doctrine/Common'),
     'Doctrine\\Bundle\\MigrationsBundle\\' => array($vendorDir . '/doctrine/doctrine-migrations-bundle'),
     'Doctrine\\Bundle\\FixturesBundle\\' => array($vendorDir . '/doctrine/doctrine-fixtures-bundle'),
     'Doctrine\\Bundle\\DoctrineBundle\\' => array($vendorDir . '/doctrine/doctrine-bundle'),

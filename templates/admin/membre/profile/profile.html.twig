@@ -19,19 +19,66 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
-                    <form action="{{ path('admin_otp') }}">
+                    {{ form_start(form, {'action': path('admin_otp'), 'method': 'POST'}) }}
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
                                {{ qrCode() }}
                             </div>
-                            <h3 class="profile-username text-center">{{ app.user.username }}</h3>
-                            <ul class="list-group list-group-unbordered mb-3">
-                                <input  {% if user.googleAuthenticatorSecret %}checked{% endif %} id="chkSwitch" type="checkbox" data-toggle="switchbutton" data-size="sm" data-onlabel="Enabled" data-offlabel="Disabled">
+                            <ul class="list-group list-group-unbordered mb-3 align-items-center">
+                                {{ form_widget(form.state, {'attr': {'class': 'form-control','data-toggle':'switchbutton','data-size':'sm','data-onlabel':'Enabled','data-offlabel':'Disabled'}}) }}
                             </ul>
                         </div>
                     </div>
-                    </form>
+                    {{ form_end(form) }}
+                </div>
+                <div class="col-md-9">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle" src="data:image/jpeg;base64,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" alt="User profile picture">
+                            </div>
+                            <h3 class="profile-username text-center">{{ not user.profile ? '' : user.profile.firstName}} {{ not user.profile ? '' : user.profile.lastName}}</h3>
+                            <p class="text-muted text-center">ROLE ENCORE </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b>gender</b>
+                                            <a class="float-right">
+                                                 {{ not user.profile ? '' :user.profile.gender }}
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>birthday</b> <a class="float-right">
+                                                {{ not user.profile ? '' :user.profile.birthday|date("m-d-Y") }}
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>address</b> <a class="float-right">  {{ not user.profile ? '' :user.profile.address }}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>codePostal</b> <a class="float-right">{{ not user.profile ? '' :user.profile.codePostal }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b>mobile</b> <a class="float-right">{{ not user.profile ? '' :user.profile.mobile }}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>telephone</b> <a class="float-right">{{ not user.profile ? '' :user.profile.telephone }}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>relationShipStatus</b> <a class="float-right">{{ not user.profile ? '' :user.profile.relationShipS }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

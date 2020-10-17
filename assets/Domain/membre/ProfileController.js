@@ -22,23 +22,23 @@ $( document ).ready(function() {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-
     /**
      *  Function to Enabled and Disabled OTP
      */
-    $('#chkSwitch').on('change', function (event) {
+    $('#google_authentication_form_state').on('change', function (event) {
         event.preventDefault();
         const url = $(this).closest('form')[0].action;
         axios({
             method: 'post',
             url: url,
             data: {
-                state: event.target.checked
+                state: event.target.checked,
+                _token: $('#google_authentication_form__token').val(),
             }
          }).then((response) => {
-            toastr.info(response.data)
+         //   toastr.info(response.data)
         }, (error) => {
-            });
+         });
     });
 
 

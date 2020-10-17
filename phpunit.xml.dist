@@ -20,6 +20,11 @@
         <env name="GOOGLE_RECAPTCHA_SITE_KEY" value=""/>
         <env name="GOOGLE_RECAPTCHA_SECRET" value=""/>
         <!-- ###- google/recaptcha ### -->
+
+        <!-- ###+ symfony/google-mailer ### -->
+        <!-- Gmail SHOULD NOT be used on production, use it in development only. -->
+        <!-- MAILER_DSN=gmail://USERNAME:PASSWORD@default -->
+        <!-- ###- symfony/google-mailer ### -->
     </php>
 
     <testsuites>

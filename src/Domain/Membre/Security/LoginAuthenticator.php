@@ -5,12 +5,16 @@ namespace App\Domain\Membre\Security;
 use App\Core\Exception\RecaptchaException;
 use App\Core\Services\CaptchaValidator;
 use App\Domain\Membre\Entity\User;
+use App\Domain\Membre\Event\BadPasswordLoginEvent;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Security;
@@ -28,16 +32,16 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'admin_app_login';
-
+    private $user = null;
     private $entityManager;
     private $urlGenerator;
     private $csrfTokenManager;
     private $passwordEncoder;
     private $captchaValidator;
-
+    private $eventDispatcher;
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator,
                                 CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder,
-                                CaptchaValidator $captchaValidator
+                                CaptchaValidator $captchaValidator,EventDispatcherInterface $eventDispatcher
     )
     {
         $this->entityManager = $entityManager;
@@ -45,6 +49,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
         $this->captchaValidator=$captchaValidator;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function supports(Request $request)
@@ -69,6 +74,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
     }
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
@@ -89,6 +95,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
 
     public function checkCredentials($credentials, UserInterface $user)
     {
+        $this->user = $user;
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
@@ -106,6 +113,16 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
             return new RedirectResponse($targetPath);
         }
         return new RedirectResponse($this->urlGenerator->generate('default'));
+    }
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
+    {
+        if ($this->user instanceof User
+          && $exception instanceof BadCredentialsException
+        ) {
+            $this->eventDispatcher->dispatch(new BadPasswordLoginEvent($this->user));
+        }
+
+        return parent::onAuthenticationFailure($request, $exception);
     }
 
     protected function getLoginUrl()

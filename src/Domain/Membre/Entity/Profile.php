@@ -2,14 +2,19 @@
 
 namespace App\Domain\Membre\Entity;
 
+use App\Core\Enum\GenreEnum;
+use App\Core\Enum\RelationShipEnum;
+use App\Core\Helper\TimestampableTrait;
 use App\Domain\Membre\Repository\ProfileRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProfileRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Profile
 {
+    use TimestampableTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -18,7 +23,7 @@ class Profile
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $firstName;
 
@@ -207,5 +212,29 @@ class Profile
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * Render gender value
+     * @return string
+     */
+    public function gender()
+    {
+        switch ($this->gender){
+            case 0:
+                return GenreEnum::getTypeName( GenreEnum::GENRE_MR);
+            case 1:
+                return GenreEnum::getTypeName( GenreEnum::GENRE_MME);
+            default:
+                return GenreEnum::getTypeName( GenreEnum::GENRE_MLLE);
+        }
+    }
+    public function relationShipS(){
+        switch ($this->relationShipStatus){
+            case 0:
+                return RelationShipEnum::getTypeName( RelationShipEnum::Single);
+            default:
+                return RelationShipEnum::getTypeName( RelationShipEnum::Married);
+        }
     }
 }
