@@ -10,8 +10,8 @@
 namespace App\Domain\Membre\Repository;
 
 use App\Domain\Membre\Entity\Photo;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Photo|null find($id, $lockMode = null, $lockVersion = null)

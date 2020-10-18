@@ -9,23 +9,24 @@
 
 namespace App\Core\Services;
 
+use phpDocumentor\Reflection\Types\Boolean;
 use ReCaptcha\ReCaptcha;
 
 class CaptchaValidator
 {
-    private $key;
-    private $secret;
+    private string $key;
+    private string $secret;
 
-    public function __construct($key, $secret)
+    public function __construct( string $key, string $secret)
     {
-        $this->key = $key;
+        $this->key    = $key;
         $this->secret = $secret;
     }
 
-    public function validateCaptcha($gRecaptchaResponse)
+    public function validateCaptcha( string $gRecaptchaResponse) :bool
     {
         $recaptcha = new ReCaptcha($this->secret);
-        $resp = $recaptcha->verify($gRecaptchaResponse);
+        $resp      = $recaptcha->verify($gRecaptchaResponse);
 
         return $resp->isSuccess();
     }

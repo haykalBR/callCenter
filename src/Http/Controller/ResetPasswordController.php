@@ -9,22 +9,22 @@
 
 namespace App\Http\Controller;
 
-use App\Core\Services\CaptchaValidator;
 use App\Domain\Membre\Entity\User;
-use App\Domain\Membre\Form\ChangePasswordFormType;
-use App\Domain\Membre\Form\ResetPasswordRequestFormType;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use App\Core\Services\CaptchaValidator;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Domain\Membre\Form\ChangePasswordFormType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Domain\Membre\Form\ResetPasswordRequestFormType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
-use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 /**
  * @Route("/reset-password")
@@ -42,7 +42,7 @@ class ResetPasswordController extends AbstractController
     public function __construct(ResetPasswordHelperInterface $resetPasswordHelper, CaptchaValidator $captchaValidator)
     {
         $this->resetPasswordHelper = $resetPasswordHelper;
-        $this->captchaValidator = $captchaValidator;
+        $this->captchaValidator    = $captchaValidator;
     }
 
     /**
@@ -142,7 +142,6 @@ class ResetPasswordController extends AbstractController
                  'There was a problem handling your password reset request - %s',
                 $e->getReason()
             ));
-
             return $this->redirectToRoute('admin_forgot_password_request');
         }
         $email = (new TemplatedEmail())
@@ -152,7 +151,7 @@ class ResetPasswordController extends AbstractController
             ->subject('Your password reset request')
             ->htmlTemplate('admin/membre/reset_password/email.html.twig')
             ->context([
-                'resetToken' => $resetToken,
+                'resetToken'    => $resetToken,
                 'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
             ])
         ;

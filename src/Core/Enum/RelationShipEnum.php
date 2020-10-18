@@ -11,12 +11,12 @@ namespace App\Core\Enum;
 
 abstract class RelationShipEnum
 {
-    const Single = 0;
-    const Married = 1;
+    const SINGLE  = 0;
+    const MARRIED = 1;
 
-    public static $typeName = [
-        self::Single => 'Single',
-        self::Married => 'Married',
+    public static array $typeName = [
+        self::SINGLE  => 'Single',
+        self::MARRIED => 'Married',
     ];
 
     /**
@@ -24,7 +24,7 @@ abstract class RelationShipEnum
      *
      * @return string
      */
-    public static function getTypeName($typeShortName)
+    public static function getTypeName($typeShortName) : string
     {
         if (!isset(static::$typeName[$typeShortName])) {
             return "Unknown type ($typeShortName)";
@@ -34,13 +34,13 @@ abstract class RelationShipEnum
     }
 
     /**
-     * @return array<string>
+     * @return array<int>
      */
     public static function getAvailableTypes(): array
     {
         return [
-            self::Single,
-            self::Married,
+            self::SINGLE,
+            self::MARRIED,
         ];
     }
 }

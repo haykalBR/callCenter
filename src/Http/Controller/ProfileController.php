@@ -9,21 +9,21 @@
 
 namespace App\Http\Controller;
 
-use App\Domain\Membre\Entity\Profile;
 use App\Domain\Membre\Entity\User;
-use App\Domain\Membre\Form\GoogleAuthenticationFormType;
+use App\Domain\Membre\Entity\Profile;
 use App\Domain\Membre\Form\ProfileType;
 use Doctrine\ORM\EntityManagerInterface;
-use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Routing\Annotation\Route;
+use App\Domain\Membre\Form\GoogleAuthenticationFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
+use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
 
 /**
  * @Route("/profile")
@@ -31,7 +31,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
  */
 class ProfileController extends AbstractController
 {
-    const CODE = 'code';
+    const CODE ='code';
     /**
      * @var GoogleAuthenticatorInterface
      */
@@ -45,11 +45,14 @@ class ProfileController extends AbstractController
      */
     private $session;
 
-    public function __construct(GoogleAuthenticatorInterface $googleAuthenticatorService, EntityManagerInterface $entityManager, SessionInterface $session)
-    {
+    public function __construct(
+        GoogleAuthenticatorInterface $googleAuthenticatorService,
+        EntityManagerInterface $entityManager,
+        SessionInterface $session
+    ) {
         $this->googleAuthenticatorService = $googleAuthenticatorService;
-        $this->entityManager = $entityManager;
-        $this->session = $session;
+        $this->entityManager              = $entityManager;
+        $this->session                    = $session;
     }
 
     /**
@@ -58,20 +61,20 @@ class ProfileController extends AbstractController
      */
     public function edit(Request $request, User $cuurnetUser): Response
     {
-        $profile = $cuurnetUser->getProfile();
+        $profile=$cuurnetUser->getProfile();
         if (!$profile) {
-            $profile = new Profile();
+            $profile=new Profile();
         }
         $form = $this->createForm(ProfileType::class, $profile);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $profile->setFile($form->getData()->getFile());
-            $profile->setUser($user);
+            $profile->setUser($cuurnetUser);
             $profile->setUpdatedAt(new \DateTime());
             $this->entityManager->persist($profile);
             $this->entityManager->flush();
 
-            return  $this->redirectToRoute('admin_profile_edit', ['username' => $user->getUsername()]);
+            return  $this->redirectToRoute('admin_profile_edit', ['username'=>$cuurnetUser->getUsername()]);
         }
 
         return $this->render('admin/membre/profile/edit.html.twig', [
@@ -101,7 +104,9 @@ class ProfileController extends AbstractController
     {
         if ($request->isXmlHttpRequest()) {
             $credentials = json_decode($request->getContent(), true);
-            $token = $csrfTokenManager->isTokenValid(new CsrfToken('google_authentication_form', $credentials['_token']));
+            $token       = $csrfTokenManager->isTokenValid(
+                new CsrfToken('google_authentication_form', $credentials['_token'])
+            );
             if (!$token) {
                 throw new InvalidCsrfTokenException();
             }

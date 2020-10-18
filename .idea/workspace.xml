@@ -2,30 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/phpstan.neon" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/Traits/FileUploadTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/personelProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/personelProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.php_cs.dist" beforeDir="false" afterPath="$PROJECT_DIR$/.php_cs.dist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201014183217.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201018000413.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20201018000413.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/profile/5f8b6a420e80b729510191.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Enum/GenreEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Enum/GenreEnum.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Enum/RelationShipEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Enum/RelationShipEnum.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Exception/RecaptchaException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Exception/RecaptchaException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Exception/TooManyBadCredentialsException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Exception/TooManyBadCredentialsException.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Exception/UserBannedException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Exception/UserBannedException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Helper/TimestampableTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Traits/TimestampableTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Services/CaptchaValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Services/CaptchaValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Traits/FileUploadTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Traits/FileUploadTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Twig/MenuExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Twig/MenuExtension.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
@@ -33,39 +21,24 @@
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/Profile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/ResetPasswordRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/ResetPasswordRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Event/BadPasswordLoginEvent.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Event/BadPasswordLoginEvent.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/ChangePasswordFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/ChangePasswordFormType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/GoogleAuthenticationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/GoogleAuthenticationFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/Profile1Type.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/ProfileType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/ProfileType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/ProfileType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/ResetPasswordRequestFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/ResetPasswordRequestFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/UserType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/LoginAttemptRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/LoginAttemptRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/PhotoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/PhotoRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/ProfileRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/ProfileRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/ResetPasswordRequestRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/ResetPasswordRequestRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/UserRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Security/LoginAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Security/LoginAuthenticator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Security/UserChecker.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Security/UserChecker.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Service/LoginAttemptService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Service/LoginAttemptService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Subscriber/LoginAttemptSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Subscriber/LoginAttemptSubscriber.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Http/Controller/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/ResetPasswordController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Http/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/SecurityController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_layout/_menu/menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/_menu/menu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_layout/_menu/navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/_menu/navbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_layout/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/footer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/membre/profile/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/profile/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +267,7 @@
       <workItem from="1602704182623" duration="18000" />
       <workItem from="1602704209365" duration="113000" />
       <workItem from="1602704330291" duration="9945000" />
-      <workItem from="1602882854080" duration="44383000" />
+      <workItem from="1602882854080" duration="47276000" />
     </task>
     <servers />
   </component>

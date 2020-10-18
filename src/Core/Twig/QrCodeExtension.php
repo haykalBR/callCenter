@@ -9,12 +9,12 @@
 
 namespace App\Core\Twig;
 
+use Twig\TwigFunction;
+use Twig\Extension\AbstractExtension;
 use App\Http\Controller\ProfileController;
-use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
+use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
 
 class QrCodeExtension extends AbstractExtension
 {
@@ -34,8 +34,8 @@ class QrCodeExtension extends AbstractExtension
     public function __construct(GoogleAuthenticatorInterface $googleAuthenticatorService, TokenStorageInterface $token, SessionInterface $session)
     {
         $this->googleAuthenticatorService = $googleAuthenticatorService;
-        $this->token = $token;
-        $this->session = $session;
+        $this->token                      = $token;
+        $this->session                    = $session;
     }
 
     public function getFunctions()

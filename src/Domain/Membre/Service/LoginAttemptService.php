@@ -9,10 +9,10 @@
 
 namespace App\Domain\Membre\Service;
 
-use App\Domain\Membre\Entity\LoginAttempt;
 use App\Domain\Membre\Entity\User;
-use App\Domain\Membre\Repository\LoginAttemptRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Domain\Membre\Entity\LoginAttempt;
+use App\Domain\Membre\Repository\LoginAttemptRepository;
 
 class LoginAttemptService
 {
@@ -26,7 +26,7 @@ class LoginAttemptService
         EntityManagerInterface $em
     ) {
         $this->repository = $repository;
-        $this->em = $em;
+        $this->em         = $em;
     }
 
     public function addAttempt(User $user): void

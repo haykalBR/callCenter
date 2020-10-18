@@ -9,13 +9,13 @@
 
 namespace App\Domain\Membre\Security;
 
-use App\Core\Exception\TooManyBadCredentialsException;
-use App\Core\Exception\UserBannedException;
 use App\Domain\Membre\Entity\User;
-use App\Domain\Membre\Service\LoginAttemptService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\User\UserCheckerInterface;
+use App\Core\Exception\UserBannedException;
+use App\Domain\Membre\Service\LoginAttemptService;
+use App\Core\Exception\TooManyBadCredentialsException;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserCheckerInterface;
 
 class UserChecker implements UserCheckerInterface
 {
@@ -31,7 +31,7 @@ class UserChecker implements UserCheckerInterface
     public function __construct(LoginAttemptService $attemptService, EntityManagerInterface $manager)
     {
         $this->attemptService = $attemptService;
-        $this->manager = $manager;
+        $this->manager        = $manager;
     }
 
     public function checkPreAuth(UserInterface $user)

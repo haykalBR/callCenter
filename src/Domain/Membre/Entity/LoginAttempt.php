@@ -9,9 +9,9 @@
 
 namespace App\Domain\Membre\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use App\Core\Traits\TimestampableTrait;
 use App\Domain\Membre\Repository\LoginAttemptRepository;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=LoginAttemptRepository::class)

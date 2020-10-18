@@ -9,12 +9,12 @@
 
 namespace App\DataFixtures;
 
-use App\Domain\Membre\Entity\Profile;
 use App\Domain\Membre\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Domain\Membre\Entity\Profile;
 use Doctrine\Persistence\ObjectManager;
-use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
 
 class AppFixtures extends Fixture
 {

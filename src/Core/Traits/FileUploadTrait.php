@@ -135,7 +135,7 @@ trait FileUploadTrait
             return;
         }
         if (\in_array($this->getFile()->getMimeType(), $this->getAllowedTypes(), true)) {
-            $name = str_replace('.', '', uniqid('', true));
+            $name      = str_replace('.', '', uniqid('', true));
             $extension = $this->getExtension($this->getFile());
 
             if (!is_dir($this->getAbsoluteUploadDir())) {

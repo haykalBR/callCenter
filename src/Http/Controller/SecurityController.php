@@ -10,10 +10,10 @@
 namespace App\Http\Controller;
 
 use App\Core\Services\CaptchaValidator;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -36,10 +36,10 @@ class SecurityController extends AbstractController
         if ($this->getUser()) {
             return $this->redirectToRoute('admin_profile');
         }
-        $error = $authenticationUtils->getLastAuthenticationError();
+        $error        = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('admin/membre/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error,
+        return $this->render('admin/membre/security/login.html.twig', ['last_username'   => $lastUsername, 'error' => $error,
                                                                             'captchakey' => $this->captchaValidator->getKey(), ]);
     }
 

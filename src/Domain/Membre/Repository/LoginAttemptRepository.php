@@ -9,10 +9,10 @@
 
 namespace App\Domain\Membre\Repository;
 
-use App\Domain\Membre\Entity\LoginAttempt;
 use App\Domain\Membre\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Domain\Membre\Entity\LoginAttempt;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method LoginAttempt|null find($id, $lockMode = null, $lockVersion = null)

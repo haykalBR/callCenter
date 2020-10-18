@@ -10,8 +10,8 @@
 namespace App\Core\Twig;
 
 use Twig\Environment;
-use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+use Twig\Extension\AbstractExtension;
 
 class MenuExtension extends AbstractExtension
 {

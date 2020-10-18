@@ -10,11 +10,11 @@
 namespace App\Domain\Membre\Entity;
 
 use App\Core\Enum\GenreEnum;
+use Doctrine\ORM\Mapping as ORM;
 use App\Core\Enum\RelationShipEnum;
 use App\Core\Traits\FileUploadTrait;
 use App\Core\Traits\TimestampableTrait;
 use App\Domain\Membre\Repository\ProfileRepository;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProfileRepository::class)
@@ -243,9 +243,9 @@ class Profile implements \Serializable
     {
         switch ($this->relationShipStatus) {
             case 0:
-                return RelationShipEnum::getTypeName(RelationShipEnum::Single);
+                return RelationShipEnum::getTypeName(RelationShipEnum::SINGLE);
             default:
-                return RelationShipEnum::getTypeName(RelationShipEnum::Married);
+                return RelationShipEnum::getTypeName(RelationShipEnum::MARRIED);
         }
     }
 

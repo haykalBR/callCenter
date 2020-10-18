@@ -10,8 +10,8 @@
 namespace App\Domain\Membre\Repository;
 
 use App\Domain\Membre\Entity\Profile;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Profile|null find($id, $lockMode = null, $lockVersion = null)
