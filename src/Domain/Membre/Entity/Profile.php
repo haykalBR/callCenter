@@ -1,10 +1,18 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Domain\Membre\Entity;
 
 use App\Core\Enum\GenreEnum;
 use App\Core\Enum\RelationShipEnum;
-use App\Core\Helper\TimestampableTrait;
+use App\Core\Traits\FileUploadTrait;
+use App\Core\Traits\TimestampableTrait;
 use App\Domain\Membre\Repository\ProfileRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,9 +20,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=ProfileRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */
-class Profile
+class Profile implements \Serializable
 {
     use TimestampableTrait;
+    use FileUploadTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -71,7 +80,6 @@ class Profile
      * @ORM\Column(type="integer", nullable=true)
      */
     private $codePostal;
-
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="profile", cascade={"persist", "remove"})
      */
@@ -215,26 +223,44 @@ class Profile
     }
 
     /**
-     * Render gender value
+     * Render gender value.
+     *
      * @return string
      */
     public function gender()
     {
-        switch ($this->gender){
+        switch ($this->gender) {
             case 0:
-                return GenreEnum::getTypeName( GenreEnum::GENRE_MR);
+                return GenreEnum::getTypeName(GenreEnum::GENRE_MR);
             case 1:
-                return GenreEnum::getTypeName( GenreEnum::GENRE_MME);
+                return GenreEnum::getTypeName(GenreEnum::GENRE_MME);
             default:
-                return GenreEnum::getTypeName( GenreEnum::GENRE_MLLE);
+                return GenreEnum::getTypeName(GenreEnum::GENRE_MLLE);
         }
     }
-    public function relationShipS(){
-        switch ($this->relationShipStatus){
+
+    public function relationShipS()
+    {
+        switch ($this->relationShipStatus) {
             case 0:
-                return RelationShipEnum::getTypeName( RelationShipEnum::Single);
+                return RelationShipEnum::getTypeName(RelationShipEnum::Single);
             default:
-                return RelationShipEnum::getTypeName( RelationShipEnum::Married);
+                return RelationShipEnum::getTypeName(RelationShipEnum::Married);
         }
+    }
+
+    public function getUploadDir()
+    {
+        return 'profile'.'..'.\DIRECTORY_SEPARATOR.'..'.$this->getUser()->getId();
+    }
+
+    public function serialize()
+    {
+        // TODO: Implement serialize() method.
+    }
+
+    public function unserialize($serialized)
+    {
+        // TODO: Implement unserialize() method.
     }
 }

@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\DataFixtures;
 
 use App\Domain\Membre\Entity\Profile;
@@ -20,38 +27,39 @@ class AppFixtures extends Fixture
      */
     private $googleAuthenticator;
 
-    public function __construct(UserPasswordEncoderInterface $userPasswordEncoder ,GoogleAuthenticatorInterface $googleAuthenticator)
+    public function __construct(UserPasswordEncoderInterface $userPasswordEncoder, GoogleAuthenticatorInterface $googleAuthenticator)
     {
         $this->userPasswordEncoder = $userPasswordEncoder;
         $this->googleAuthenticator = $googleAuthenticator;
     }
+
     public function load(ObjectManager $manager)
     {
-      for ($i=0;$i<10;$i++){
-          /**
-           * @var $user User
-           */
-          $user = new User();
-          $user->setEmail("haikelbrinis{$i}@gmail.com");
-          $user->setUsername("haikel{$i}");
-          $user->setEnabled(true);
-          $user->setPassword(
+        for ($i = 0; $i < 10; ++$i) {
+            /**
+             * @var $user User
+             */
+            $user = new User();
+            $user->setEmail("haikelbrinis{$i}@gmail.com");
+            $user->setUsername("haikel{$i}");
+            $user->setEnabled(true);
+            $user->setPassword(
               $this->userPasswordEncoder->encodePassword($user, 'haikel')
           );
-          $user->setGoogleAuthenticatorSecret($this->googleAuthenticator->generateSecret());
-          $manager->persist($user);
-          /**
-           * @var $profile Profile-
-           */
-          $profile= new Profile();
-          $profile->setAddress("addres{$i}");
-          $profile->setFirstName("haikel{$i}");
-          $profile->setLastName("brinis{$i}");
-          $profile->setGender(1);
-          $profile->setBirthday(new \DateTime());
-          $profile->setUser($user);
-          $manager->persist($profile);
-      }
-          $manager->flush();
+            $user->setGoogleAuthenticatorSecret($this->googleAuthenticator->generateSecret());
+            $manager->persist($user);
+            /**
+             * @var $profile Profile-
+             */
+            $profile = new Profile();
+            $profile->setAddress("addres{$i}");
+            $profile->setFirstName("haikel{$i}");
+            $profile->setLastName("brinis{$i}");
+            $profile->setGender(1);
+            $profile->setBirthday(new \DateTime());
+            $profile->setUser($user);
+            $manager->persist($profile);
+        }
+        $manager->flush();
     }
 }

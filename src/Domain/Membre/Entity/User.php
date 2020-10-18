@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Domain\Membre\Entity;
 
 use App\Domain\Membre\Repository\UserRepository;
@@ -7,7 +14,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
-use Scheb\TwoFactorBundle\Model\Totp\TotpConfigurationInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -92,6 +98,7 @@ class User implements UserInterface, TwoFactorInterface
     {
         return (string) $this->username;
     }
+
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -149,6 +156,7 @@ class User implements UserInterface, TwoFactorInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
     public function isGoogleAuthenticatorEnabled(): bool
     {
         return $this->googleAuthenticatorSecret ? true : false;
@@ -168,17 +176,19 @@ class User implements UserInterface, TwoFactorInterface
     {
         $this->googleAuthenticatorSecret = $googleAuthenticatorSecret;
     }
+
     /**
      * Return true if the user should do TOTP authentication.
      */
-    public function isTotpAuthenticationEnabled(): bool{
+    public function isTotpAuthenticationEnabled(): bool
+    {
         return $this->googleAuthenticatorSecret ? true : false;
     }
 
     /**
      * Return the user name.
      */
-    public function getTotpAuthenticationUsername():string
+    public function getTotpAuthenticationUsername(): string
     {
         return $this->username;
     }
@@ -186,7 +196,9 @@ class User implements UserInterface, TwoFactorInterface
     /**
      * Return the configuration for TOTP authentication.
      */
-    public function getTotpAuthenticationConfiguration(){}
+    public function getTotpAuthenticationConfiguration()
+    {
+    }
 
     public function getProfile(): ?Profile
     {
@@ -206,17 +218,11 @@ class User implements UserInterface, TwoFactorInterface
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getEnabled()
     {
         return $this->enabled;
     }
 
-    /**
-     * @param mixed $enabled
-     */
     public function setEnabled($enabled): void
     {
         $this->enabled = $enabled;
@@ -252,5 +258,4 @@ class User implements UserInterface, TwoFactorInterface
 
         return $this;
     }
-
 }

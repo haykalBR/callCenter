@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Domain\Membre\Repository;
 
 use App\Domain\Membre\Entity\LoginAttempt;
@@ -19,6 +26,7 @@ class LoginAttemptRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, LoginAttempt::class);
     }
+
     /**
      * Compte le nombre de tentative de connexion pour un utilisateur.
      */

@@ -1,5 +1,14 @@
 <?php
-namespace App\Core\Helper;
+
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace App\Core\Traits;
+
 use Doctrine\ORM\Mapping as ORM;
 
 trait TimestampableTrait
@@ -17,6 +26,7 @@ trait TimestampableTrait
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     public $updatedAt;
+
     /**
      * Gets triggered only on insert.
      *
@@ -27,6 +37,7 @@ trait TimestampableTrait
         $this->createdAt = null;
         $this->updatedAt = null;
     }
+
     /**
      * Gets triggered only on insert.
      *
@@ -37,6 +48,7 @@ trait TimestampableTrait
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
+
     /**
      * Gets triggered every time on update.
      *
@@ -94,5 +106,4 @@ trait TimestampableTrait
     {
         return $this->updatedAt;
     }
-
 }

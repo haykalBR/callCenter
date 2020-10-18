@@ -1,6 +1,16 @@
 <?php
+
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Core\Services;
+
 use ReCaptcha\ReCaptcha;
+
 class CaptchaValidator
 {
     private $key;
@@ -11,15 +21,15 @@ class CaptchaValidator
         $this->key = $key;
         $this->secret = $secret;
     }
+
     public function validateCaptcha($gRecaptchaResponse)
     {
         $recaptcha = new ReCaptcha($this->secret);
         $resp = $recaptcha->verify($gRecaptchaResponse);
+
         return $resp->isSuccess();
     }
-    /**
-     * @return string
-     */
+
     public function getKey(): string
     {
         return $this->key;

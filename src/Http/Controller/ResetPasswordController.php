@@ -1,8 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Http\Controller;
 
-use App\Core\Exception\RecaptchaException;
 use App\Core\Services\CaptchaValidator;
 use App\Domain\Membre\Entity\User;
 use App\Domain\Membre\Form\ChangePasswordFormType;
@@ -33,7 +39,7 @@ class ResetPasswordController extends AbstractController
      */
     private $captchaValidator;
 
-    public function __construct(ResetPasswordHelperInterface $resetPasswordHelper,CaptchaValidator $captchaValidator)
+    public function __construct(ResetPasswordHelperInterface $resetPasswordHelper, CaptchaValidator $captchaValidator)
     {
         $this->resetPasswordHelper = $resetPasswordHelper;
         $this->captchaValidator = $captchaValidator;
@@ -55,9 +61,10 @@ class ResetPasswordController extends AbstractController
                 $mailer
             );
         }
+
         return $this->render('admin/membre/reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
-             'captchakey'=>$this->captchaValidator->getKey()
+             'captchakey' => $this->captchaValidator->getKey(),
         ]);
     }
 
@@ -70,6 +77,7 @@ class ResetPasswordController extends AbstractController
     {
         if ($token) {
             $this->storeTokenInSession($token);
+
             return $this->redirectToRoute('admin_reset_password');
         }
         $token = $this->getTokenFromSession();
@@ -92,8 +100,9 @@ class ResetPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$form->isValid())
-                $this->addFlash('reset_password_error','haikel');
+            if (!$form->isValid()) {
+                $this->addFlash('reset_password_error', 'haikel');
+            }
             // A password reset token should be used only once, remove it.
             $this->resetPasswordHelper->removeResetRequest($token);
             $encodedPassword = $passwordEncoder->encodePassword(
@@ -103,6 +112,7 @@ class ResetPasswordController extends AbstractController
             $user->setPassword($encodedPassword);
             $this->getDoctrine()->getManager()->flush();
             $this->cleanSessionAfterReset();
+
             return $this->redirectToRoute('admin_login');
         }
 
@@ -117,7 +127,6 @@ class ResetPasswordController extends AbstractController
             'email' => $emailFormData,
         ]);
 
-
         // Marks that you are allowed to see the app_check_email page.
         $this->setCanCheckEmailInSession();
 
@@ -129,10 +138,11 @@ class ResetPasswordController extends AbstractController
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
         } catch (ResetPasswordExceptionInterface $e) {
-             $this->addFlash('reset_password_error', sprintf(
+            $this->addFlash('reset_password_error', sprintf(
                  'There was a problem handling your password reset request - %s',
                 $e->getReason()
             ));
+
             return $this->redirectToRoute('admin_forgot_password_request');
         }
         $email = (new TemplatedEmail())
@@ -147,9 +157,10 @@ class ResetPasswordController extends AbstractController
             ])
         ;
         $mailer->send($email);
-        $heure=  intval(gmdate("H", $this->resetPasswordHelper->getTokenLifetime()));
+        $heure = (int) (gmdate('H', $this->resetPasswordHelper->getTokenLifetime()));
         $this->addFlash('success', "An email has been sent that contains a link that you can click to reset
                                                 your password. This link will expire in {$heure} hour(s).");
+
         return $this->redirectToRoute('admin_forgot_password_request');
     }
 }

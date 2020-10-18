@@ -2,57 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Core/Enum/GenreEnum.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/Enum/RelationShipEnum.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/Exception/TooManyBadCredentialsException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/Exception/UserBannedException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/Helper/TimestampableTrait.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Domain/Membre/Event/BadPasswordLoginEvent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/GoogleAuthenticationFormType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Domain/Membre/Security/UserChecker.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Domain/Membre/Service/LoginAttemptService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Domain/Membre/Subscriber/LoginAttemptSubscriber.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Http/Controller/ResetPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phpstan.neon" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/Traits/FileUploadTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/personelProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/personelProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Domain/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Domain/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Domain/membre/ProfileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Domain/membre/ProfileController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/maker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/maker.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/profile/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201010181626.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201011174820.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201011175801.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201014183217.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml.dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Enum/GenreEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Enum/GenreEnum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Enum/RelationShipEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Enum/RelationShipEnum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Exception/RecaptchaException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Exception/RecaptchaException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Exception/TooManyBadCredentialsException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Exception/TooManyBadCredentialsException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Exception/UserBannedException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Exception/UserBannedException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Helper/TimestampableTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Traits/TimestampableTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Services/CaptchaValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Services/CaptchaValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Twig/MenuExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Twig/MenuExtension.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/LoginAttempt.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/LoginAttempt.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/Profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/ResetPasswordRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/ResetPasswordRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Event/BadPasswordLoginEvent.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Event/BadPasswordLoginEvent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/ChangePasswordFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/ChangePasswordFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/GoogleAuthenticationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/GoogleAuthenticationFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/Profile1Type.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/ProfileType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/ResetPasswordRequestFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/ResetPasswordRequestFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/LoginAttemptRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/LoginAttemptRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/ProfileRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/ProfileRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/ResetPasswordRequestRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/ResetPasswordRequestRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/UserRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Security/LoginAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Security/LoginAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Security/UserChecker.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Security/UserChecker.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Service/LoginAttemptService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Service/LoginAttemptService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Subscriber/LoginAttemptSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Subscriber/LoginAttemptSubscriber.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Controller/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/ResetPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/_layout/_menu/menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/_menu/menu.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_layout/_menu/navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/_menu/navbar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_layout/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/footer.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/membre/profile/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/profile/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/profile/profile.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/membre/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/security/login.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/docker/php7-fpm/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/php7-fpm/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
@@ -192,6 +202,15 @@
       <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/google-mailer" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan-doctrine" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan-mockery" />
+      <path value="$PROJECT_DIR$/vendor/phpstan/phpstan-phpunit" />
+      <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/vendor/php-cs-fixer/diff" />
+      <path value="$PROJECT_DIR$/vendor/friendsofphp/php-cs-fixer" />
     </include_path>
   </component>
   <component name="ProjectId" id="1iQXdkflBZqXOr44Sf8yIYbjC31" />
@@ -224,7 +243,25 @@
       <recent name="$PROJECT_DIR$/src/Http/Controller " />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Makefile.lint">
+    <configuration name="app-static-analysis" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="app-static-analysis" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="lint" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="lint" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="stan" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="stan" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
     <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings>
@@ -235,6 +272,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Makefile.lint" />
+        <item itemvalue="Makefile.stan" />
+        <item itemvalue="Makefile.app-static-analysis" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -254,7 +294,7 @@
       <workItem from="1602704182623" duration="18000" />
       <workItem from="1602704209365" duration="113000" />
       <workItem from="1602704330291" duration="9945000" />
-      <workItem from="1602882854080" duration="12319000" />
+      <workItem from="1602882854080" duration="44383000" />
     </task>
     <servers />
   </component>
@@ -262,10 +302,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="819" y="245" width="444" height="641" key="#com.intellij.ide.util.MemberChooser" timestamp="1602618205694">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="2699" y="224" width="444" height="641" key="#com.intellij.ide.util.MemberChooser" timestamp="1602968362899">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2699" y="224" width="419" height="657" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602359193977" />
+    <state x="2699" y="224" width="419" height="657" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602968362899" />
     <state x="819" y="245" width="444" height="641" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1080/67.27.1853.1053@67.27.1853.1053" timestamp="1602618205694" />
     <state x="2646" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602895759229">
       <screen x="1920" y="0" width="1920" height="1080" />
@@ -280,12 +320,32 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="779" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1602704398714" />
-    <state x="2649" y="256" width="559" height="593" key="NewPhpClassDialog" timestamp="1602893169558">
+    <state width="1807" height="269" key="GridCell.Tab.0.bottom" timestamp="1602978538949">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2649" y="256" width="559" height="593" key="NewPhpClassDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602893169558" />
+    <state width="1807" height="269" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602978538949" />
+    <state width="1807" height="269" key="GridCell.Tab.0.center" timestamp="1602978538948">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1807" height="269" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602978538948" />
+    <state width="1807" height="269" key="GridCell.Tab.0.left" timestamp="1602978538948">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1807" height="269" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602978538948" />
+    <state width="1807" height="269" key="GridCell.Tab.0.right" timestamp="1602978538949">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1807" height="269" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602978538949" />
+    <state x="2649" y="256" width="559" height="593" key="NewPhpClassDialog" timestamp="1602953885187">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2649" y="256" width="559" height="593" key="NewPhpClassDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602953885187" />
     <state x="771" y="277" width="607" height="579" key="NewPhpClassDialog/1920.0.1920.1080/67.27.1853.1053@67.27.1853.1053" timestamp="1602696792004" />
     <state x="771" y="277" key="NewPhpClassDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1602704590728" />
+    <state x="2709" y="474" width="399" height="157" key="NewPhpFileDialog" timestamp="1602976535099">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2709" y="474" width="399" height="157" key="NewPhpFileDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602976535099" />
     <state x="622" y="53" key="SettingsEditor" timestamp="1602704536611">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -311,10 +371,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2576" y="257" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602343475216" />
-    <state x="760" y="475" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602705367835">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602978538164">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602441965501" />
+    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602978538164" />
     <state x="760" y="475" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1602705367835" />
   </component>
 </project>

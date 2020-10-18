@@ -1,15 +1,19 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Http\Controller;
 
 use App\Core\Services\CaptchaValidator;
-use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -23,18 +27,20 @@ class SecurityController extends AbstractController
     {
         $this->captchaValidator = $captchaValidator;
     }
+
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils,Request  $request): Response
+    public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
         if ($this->getUser()) {
-             return $this->redirectToRoute('admin_profile');
-         }
+            return $this->redirectToRoute('admin_profile');
+        }
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
+
         return $this->render('admin/membre/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error,
-                                                                            'captchakey'=>$this->captchaValidator->getKey()]);
+                                                                            'captchakey' => $this->captchaValidator->getKey(), ]);
     }
 
     /**
@@ -44,11 +50,12 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
     /**
      * @Route("/2fa", name="2fa_login")
      */
-    public function check2Fa(){
+    public function check2Fa()
+    {
         return $this->render('admin/membre/security/2fa.html.twig');
     }
-
 }
