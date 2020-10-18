@@ -9,9 +9,6 @@
 
 namespace App\Core\Enum;
 
-use phpDocumentor\Reflection\Types\Integer;
-use PhpParser\Node\Scalar\String_;
-
 abstract class GenreEnum
 {
     const GENRE_MR   = 0;
@@ -24,12 +21,7 @@ abstract class GenreEnum
         self::GENRE_MLLE => 'Mlle',
     ];
 
-    /**
-     * @param string $typeShortName
-     *
-     * @return string
-     */
-    public static function getTypeName($typeShortName): string
+    public static function getTypeName(int $typeShortName): string
     {
         if (!isset(static::$typeName[$typeShortName])) {
             return "Unknown type ($typeShortName)";

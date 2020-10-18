@@ -29,58 +29,68 @@ class Profile implements \Serializable
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $firstName;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $lastName;
 
     /**
+     * @var  int|null
      * @ORM\Column(type="integer", nullable=true)
      */
     private $gender;
 
     /**
+     * @var \DateTimeInterface|null
      * @ORM\Column(type="date", nullable=true)
      */
     private $birthday;
 
     /**
+     * @var string|null
      * @ORM\Column(type="text", nullable=true)
      */
     private $address;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $mobile;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $telephone;
-
     /**
+     * @var int|null
      * @ORM\Column(type="integer", nullable=true)
      */
     private $relationShipStatus;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $locale;
 
     /**
+     * @var int|null
      * @ORM\Column(type="integer", nullable=true)
      */
     private $codePostal;
     /**
+     * @var User|null
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="profile", cascade={"persist", "remove"})
      */
     private $user;
@@ -239,7 +249,7 @@ class Profile implements \Serializable
         }
     }
 
-    public function relationShipS()
+    public function relationShipS(): string
     {
         switch ($this->relationShipStatus) {
             case 0:
@@ -249,14 +259,17 @@ class Profile implements \Serializable
         }
     }
 
-    public function getUploadDir()
+    public function getUploadDir(): string
     {
-        return 'profile'.'..'.\DIRECTORY_SEPARATOR.'..'.$this->getUser()->getId();
+        /** @var User $user */
+        $user=$this->getUser();
+
+        return 'profile'.'..'.\DIRECTORY_SEPARATOR.'..'.$user->getId();
     }
 
-    public function serialize()
+    public function serialize(): string
     {
-        // TODO: Implement serialize() method.
+        return  '';
     }
 
     public function unserialize($serialized)

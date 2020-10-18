@@ -19,9 +19,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 trait FileUploadTrait
 {
-    /**
-     * @var
-     */
     protected $file;
     /**
      * @ORM\Column(type="text",nullable=true)

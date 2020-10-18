@@ -18,7 +18,7 @@ class MenuExtension extends AbstractExtension
     /**
      * var Environment $twig.
      */
-    private $twig;
+    private Environment $twig;
 
     public function __construct(Environment $twig)
     {
@@ -36,7 +36,7 @@ class MenuExtension extends AbstractExtension
     /**
      * Create Navbar page.
      */
-    public function navbarBuild()
+    public function navbarBuild(): string
     {
         return $this->twig->render('_layout/_menu/navbar.html.twig', []);
     }
@@ -44,7 +44,7 @@ class MenuExtension extends AbstractExtension
     /**
      * Create Menu page.
      */
-    public function menuBuild()
+    public function menuBuild(): string
     {
         return $this->twig->render('_layout/_menu/menu.html.twig', []);
     }

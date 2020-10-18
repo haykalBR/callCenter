@@ -10,6 +10,7 @@
 namespace App\Core\Twig;
 
 use Twig\TwigFunction;
+use App\Domain\Membre\Entity\User;
 use Twig\Extension\AbstractExtension;
 use App\Http\Controller\ProfileController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -18,18 +19,9 @@ use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticator
 
 class QrCodeExtension extends AbstractExtension
 {
-    /**
-     * @var GoogleAuthenticatorInterface
-     */
-    private $googleAuthenticatorService;
-    /**
-     * @var TokenStorageInterface
-     */
-    private $token;
-    /**
-     * @var SessionInterface
-     */
-    private $session;
+    private GoogleAuthenticatorInterface $googleAuthenticatorService;
+    private TokenStorageInterface $token;
+    private SessionInterface $session;
 
     public function __construct(GoogleAuthenticatorInterface $googleAuthenticatorService, TokenStorageInterface $token, SessionInterface $session)
     {
@@ -45,14 +37,16 @@ class QrCodeExtension extends AbstractExtension
         ];
     }
 
-    public function qrCode()
+    public function qrCode(): string
     {
         $url = 'http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=';
-        if ('' === $this->token->getToken()->getUser()->getGoogleAuthenticatorSecret()) {
+        /** @var User $user */
+        $user=$this->token->getToken()->getUser();
+        if ('' === $user->getGoogleAuthenticatorSecret()) {
             $code = $this->googleAuthenticatorService->generateSecret();
-            $url .= $this->googleAuthenticatorService->getQRContent($this->token->getToken()->getUser()).''.$code;
+            $url .= $this->googleAuthenticatorService->getQRContent($user).''.$code;
         } else {
-            $url .= $this->googleAuthenticatorService->getQRContent($this->token->getToken()->getUser());
+            $url .= $this->googleAuthenticatorService->getQRContent($user);
             $code = explode('secret=', $url)[1];
         }
         $this->session->set(ProfileController::CODE, $code);

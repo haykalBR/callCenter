@@ -93,7 +93,7 @@ return array(
     'PhpCsFixer\\' => array($vendorDir . '/friendsofphp/php-cs-fixer/src'),
     'ParagonIE\\ConstantTime\\' => array($vendorDir . '/paragonie/constant_time_encoding/src'),
     'PackageVersions\\' => array($vendorDir . '/composer/package-versions-deprecated/src/PackageVersions'),
-    'PHPStan\\' => array($vendorDir . '/phpstan/phpstan-doctrine/src', $vendorDir . '/phpstan/phpstan-mockery/src', $vendorDir . '/phpstan/phpstan-phpunit/src'),
+    'PHPStan\\' => array($vendorDir . '/phpstan/phpstan-doctrine/src', $vendorDir . '/phpstan/phpstan-mockery/src', $vendorDir . '/phpstan/phpstan-phpunit/src', $vendorDir . '/phpstan/phpstan-symfony/src'),
     'OTPHP\\' => array($vendorDir . '/spomky-labs/otphp/src'),
     'MyCLabs\\Enum\\' => array($vendorDir . '/myclabs/php-enum/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),

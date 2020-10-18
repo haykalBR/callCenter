@@ -27,37 +27,39 @@ class User implements UserInterface, TwoFactorInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private string $email;
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $username;
+    private string $username;
     /**
      * @ORM\Column(type="boolean",options={"default":true})
      */
-    private $enabled;
+    private bool  $enabled;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private $password;
+    private string $password;
     /**
+     * @var string|null
      * @ORM\Column(name="googleAuthenticatorSecret", type="string", nullable=true)
      */
     private $googleAuthenticatorSecret;
 
     /**
+     * @var Profile|null
      * @ORM\OneToOne(targetEntity=Profile::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $profile;
@@ -65,7 +67,7 @@ class User implements UserInterface, TwoFactorInterface
     /**
      * @ORM\OneToMany(targetEntity=LoginAttempt::class, mappedBy="user")
      */
-    private $loginAttempts;
+    private Collection $loginAttempts;
 
     public function __construct()
     {
@@ -145,13 +147,13 @@ class User implements UserInterface, TwoFactorInterface
      */
     public function getSalt()
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        return null;
     }
 
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
@@ -196,7 +198,7 @@ class User implements UserInterface, TwoFactorInterface
     /**
      * Return the configuration for TOTP authentication.
      */
-    public function getTotpAuthenticationConfiguration()
+    public function getTotpAuthenticationConfiguration(): void
     {
     }
 
@@ -207,6 +209,7 @@ class User implements UserInterface, TwoFactorInterface
 
     public function setProfile(?Profile $profile): self
     {
+        /* @var Profile $profile */
         $this->profile = $profile;
 
         // set (or unset) the owning side of the relation if necessary
@@ -218,12 +221,12 @@ class User implements UserInterface, TwoFactorInterface
         return $this;
     }
 
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    public function setEnabled($enabled): void
+    public function setEnabled(bool $enabled): void
     {
         $this->enabled = $enabled;
     }
@@ -240,7 +243,7 @@ class User implements UserInterface, TwoFactorInterface
     {
         if (!$this->loginAttempts->contains($loginAttempt)) {
             $this->loginAttempts[] = $loginAttempt;
-            $loginAttempt->setUsers($this);
+            $loginAttempt->setUser($this);
         }
 
         return $this;
@@ -251,8 +254,8 @@ class User implements UserInterface, TwoFactorInterface
         if ($this->loginAttempts->contains($loginAttempt)) {
             $this->loginAttempts->removeElement($loginAttempt);
             // set the owning side to null (unless already changed)
-            if ($loginAttempt->getUsers() === $this) {
-                $loginAttempt->setUsers(null);
+            if ($loginAttempt->getUser() === $this) {
+                $loginAttempt->setUser(null);
             }
         }
 

@@ -9,7 +9,6 @@
 
 namespace App\Core\Services;
 
-use phpDocumentor\Reflection\Types\Boolean;
 use ReCaptcha\ReCaptcha;
 
 class CaptchaValidator
@@ -17,13 +16,13 @@ class CaptchaValidator
     private string $key;
     private string $secret;
 
-    public function __construct( string $key, string $secret)
+    public function __construct(string $key, string $secret)
     {
         $this->key    = $key;
         $this->secret = $secret;
     }
 
-    public function validateCaptcha( string $gRecaptchaResponse) :bool
+    public function validateCaptcha(string $gRecaptchaResponse): bool
     {
         $recaptcha = new ReCaptcha($this->secret);
         $resp      = $recaptcha->verify($gRecaptchaResponse);

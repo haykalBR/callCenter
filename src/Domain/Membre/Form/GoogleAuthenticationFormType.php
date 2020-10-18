@@ -9,6 +9,7 @@
 
 namespace App\Domain\Membre\Form;
 
+use App\Domain\Membre\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,14 +25,16 @@ class GoogleAuthenticationFormType extends AbstractType
 
     public function __construct(TokenStorageInterface $tokenStorage)
     {
-        $this->tokenStorage = $tokenStorage->getToken()->getUser();
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var User $user */
+        $user=$this->tokenStorage->getToken()->getUser();
         $builder
             ->add('state', CheckboxType::class, [
-                'attr' => ['checked' => $this->tokenStorage->getGoogleAuthenticatorSecret() ? true : false],
+                'attr' => ['checked' => $user->getGoogleAuthenticatorSecret() ? true : false],
                 ]);
     }
 

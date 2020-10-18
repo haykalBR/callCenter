@@ -100,7 +100,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/googleAuthentication", name="otp",  methods={"POST"})
      */
-    public function googleAuthentication(Request $request, CsrfTokenManagerInterface $csrfTokenManager)
+    public function googleAuthentication(Request $request, CsrfTokenManagerInterface $csrfTokenManager): Response
     {
         if ($request->isXmlHttpRequest()) {
             $credentials = json_decode($request->getContent(), true);
@@ -111,7 +111,7 @@ class ProfileController extends AbstractController
                 throw new InvalidCsrfTokenException();
             }
             /**
-             * @var $user User
+             * @var User $user
              */
             $user = $this->getUser();
             if ($request->isXmlHttpRequest()) {

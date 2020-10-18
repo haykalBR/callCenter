@@ -52,6 +52,7 @@
         "phpstan/phpstan-doctrine": "^0.12.21",
         "phpstan/phpstan-mockery": "^0.12.7",
         "phpstan/phpstan-phpunit": "^0.12.16",
+        "phpstan/phpstan-symfony": "^0.12.8",
         "squizlabs/php_codesniffer": "*",
         "symfony/browser-kit": "^5.1",
         "symfony/css-selector": "^5.1",

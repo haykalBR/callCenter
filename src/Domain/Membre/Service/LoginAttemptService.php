@@ -18,8 +18,8 @@ class LoginAttemptService
 {
     const ATTEMPTS = 3;
 
-    private $repository;
-    private $em;
+    private LoginAttemptRepository $repository;
+    private EntityManagerInterface $em;
 
     public function __construct(
         LoginAttemptRepository $repository,

@@ -19,12 +19,7 @@ abstract class RelationShipEnum
         self::MARRIED => 'Married',
     ];
 
-    /**
-     * @param string $typeShortName
-     *
-     * @return string
-     */
-    public static function getTypeName($typeShortName) : string
+    public static function getTypeName(int $typeShortName): string
     {
         if (!isset(static::$typeName[$typeShortName])) {
             return "Unknown type ($typeShortName)";

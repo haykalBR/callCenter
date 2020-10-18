@@ -14,11 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 trait TimestampableTrait
 {
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    public $createdAt;
+    public \DateTime $createdAt;
 
     /**
      * @var \DateTime
@@ -32,18 +30,7 @@ trait TimestampableTrait
      *
      * @ORM\PrePersist
      */
-    public function __clone()
-    {
-        $this->createdAt = null;
-        $this->updatedAt = null;
-    }
-
-    /**
-     * Gets triggered only on insert.
-     *
-     * @ORM\PrePersist
-     */
-    public function onPrePersist()
+    public function onPrePersist(): void
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
@@ -54,19 +41,15 @@ trait TimestampableTrait
      *
      * @ORM\PreUpdate
      */
-    public function onPreUpdate()
+    public function onPreUpdate(): void
     {
         $this->updatedAt = new \DateTime();
     }
 
     /**
      * Set createdAt.
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return \DateTime
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -85,12 +68,8 @@ trait TimestampableTrait
 
     /**
      * Set updatedAt.
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return \DateTime
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

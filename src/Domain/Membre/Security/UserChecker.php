@@ -34,7 +34,7 @@ class UserChecker implements UserCheckerInterface
         $this->manager        = $manager;
     }
 
-    public function checkPreAuth(UserInterface $user)
+    public function checkPreAuth(UserInterface $user): void
     {
         if (!$user instanceof User) {
             return;
@@ -49,7 +49,7 @@ class UserChecker implements UserCheckerInterface
         }
     }
 
-    public function checkPostAuth(UserInterface $user)
+    public function checkPostAuth(UserInterface $user): void
     {
         if (!$user instanceof  User) {
             return;

@@ -13,7 +13,7 @@ use App\Domain\Membre\Entity\User;
 
 class BadPasswordLoginEvent
 {
-    private $user;
+    private User $user;
 
     public function __construct(User $user)
     {

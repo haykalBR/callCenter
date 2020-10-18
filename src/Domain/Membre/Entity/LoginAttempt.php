@@ -25,7 +25,7 @@ class LoginAttempt
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="loginAttempts")

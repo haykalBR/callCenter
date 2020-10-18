@@ -33,11 +33,8 @@ class ResetPasswordController extends AbstractController
 {
     use ResetPasswordControllerTrait;
 
-    private $resetPasswordHelper;
-    /**
-     * @var CaptchaValidator
-     */
-    private $captchaValidator;
+    private ResetPasswordHelperInterface $resetPasswordHelper;
+    private CaptchaValidator $captchaValidator;
 
     public function __construct(ResetPasswordHelperInterface $resetPasswordHelper, CaptchaValidator $captchaValidator)
     {
@@ -142,6 +139,7 @@ class ResetPasswordController extends AbstractController
                  'There was a problem handling your password reset request - %s',
                 $e->getReason()
             ));
+
             return $this->redirectToRoute('admin_forgot_password_request');
         }
         $email = (new TemplatedEmail())

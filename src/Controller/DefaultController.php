@@ -19,7 +19,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="default")
      */
-    public function index(RouterInterface $router) :Response
+    public function index(RouterInterface $router): Response
     {
         $result = array_filter(array_keys($router->getRouteCollection()->all()), function ($v) {
             return preg_match('/admin_/', $v);
