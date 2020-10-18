@@ -44,7 +44,7 @@ class Profile implements \Serializable
     private $lastName;
 
     /**
-     * @var  int|null
+     * @var int|null
      * @ORM\Column(type="integer", nullable=true)
      */
     private $gender;

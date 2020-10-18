@@ -114,15 +114,6 @@
     "egulias/email-validator": {
         "version": "2.1.22"
     },
-    "endroid/installer": {
-        "version": "1.2.3"
-    },
-    "endroid/qr-code": {
-        "version": "3.9.3"
-    },
-    "endroid/qr-code-bundle": {
-        "version": "3.4.3"
-    },
     "friendsofphp/php-cs-fixer": {
         "version": "2.2",
         "recipe": {

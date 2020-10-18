@@ -4,24 +4,22 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
+class ComposerStaticInitb44e8a056eed9adfe9913fa6908d8465
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
-        '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
+        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
-        'a9ed0d27b5a698798a89181429f162c5' => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib/Common/customFunctions.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
+        '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
         '51fcf4e06c07cc00c920b44bcd900e7a' => __DIR__ . '/..' . '/thecodingmachine/safe/deprecated/apc.php',
         '47f619d9197b36cf5ab70738d7743fe2' => __DIR__ . '/..' . '/thecodingmachine/safe/deprecated/libevent.php',
         'ea6bb8a12ef9b68f6ada99058e530760' => __DIR__ . '/..' . '/thecodingmachine/safe/deprecated/mssql.php',
@@ -111,6 +109,8 @@ class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
         '4af1dca6db8c527c6eed27bff85ff0e5' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/yaz.php',
         'fe43ca06499ac37bc2dedd823af71eb5' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/zip.php',
         '356736db98a6834f0a886b8d509b0ecd' => __DIR__ . '/..' . '/thecodingmachine/safe/generated/zlib.php',
+        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
+        'a9ed0d27b5a698798a89181429f162c5' => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib/Common/customFunctions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -245,9 +245,6 @@ class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
         ),
         'E' => 
         array (
-            'Endroid\\QrCode\\' => 15,
-            'Endroid\\QrCodeBundle\\' => 21,
-            'Endroid\\Installer\\' => 18,
             'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
@@ -292,8 +289,8 @@ class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Zxing\\' => 
         array (
@@ -680,18 +677,6 @@ class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-code/src',
         ),
-        'Endroid\\QrCode\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/endroid/qr-code/src',
-        ),
-        'Endroid\\QrCodeBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/endroid/qr-code-bundle/src',
-        ),
-        'Endroid\\Installer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/endroid/installer/src',
-        ),
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/src',
@@ -750,10 +735,10 @@ class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            0 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
             1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
             2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
-            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
+            3 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
         'Doctrine\\Bundle\\MigrationsBundle\\' => 
         array (
@@ -821,7 +806,6 @@ class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
         'App\\Domain\\Membre\\Form\\ResetPasswordRequestFormType' => __DIR__ . '/../..' . '/src/Domain/Membre/Form/ResetPasswordRequestFormType.php',
         'App\\Domain\\Membre\\Form\\UserType' => __DIR__ . '/../..' . '/src/Domain/Membre/Form/UserType.php',
         'App\\Domain\\Membre\\Repository\\LoginAttemptRepository' => __DIR__ . '/../..' . '/src/Domain/Membre/Repository/LoginAttemptRepository.php',
-        'App\\Domain\\Membre\\Repository\\PhotoRepository' => __DIR__ . '/../..' . '/src/Domain/Membre/Repository/PhotoRepository.php',
         'App\\Domain\\Membre\\Repository\\ProfileRepository' => __DIR__ . '/../..' . '/src/Domain/Membre/Repository/ProfileRepository.php',
         'App\\Domain\\Membre\\Repository\\ResetPasswordRequestRepository' => __DIR__ . '/../..' . '/src/Domain/Membre/Repository/ResetPasswordRequestRepository.php',
         'App\\Domain\\Membre\\Repository\\UserRepository' => __DIR__ . '/../..' . '/src/Domain/Membre/Repository/UserRepository.php',
@@ -2087,41 +2071,6 @@ class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
-        'Endroid\\Installer\\Installer' => __DIR__ . '/..' . '/endroid/installer/src/Installer.php',
-        'Endroid\\QrCodeBundle\\Controller\\GenerateController' => __DIR__ . '/..' . '/endroid/qr-code-bundle/src/Controller/GenerateController.php',
-        'Endroid\\QrCodeBundle\\DependencyInjection\\Compiler\\WriterRegistryPass' => __DIR__ . '/..' . '/endroid/qr-code-bundle/src/DependencyInjection/Compiler/WriterRegistryPass.php',
-        'Endroid\\QrCodeBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/endroid/qr-code-bundle/src/DependencyInjection/Configuration.php',
-        'Endroid\\QrCodeBundle\\DependencyInjection\\EndroidQrCodeExtension' => __DIR__ . '/..' . '/endroid/qr-code-bundle/src/DependencyInjection/EndroidQrCodeExtension.php',
-        'Endroid\\QrCodeBundle\\EndroidQrCodeBundle' => __DIR__ . '/..' . '/endroid/qr-code-bundle/src/EndroidQrCodeBundle.php',
-        'Endroid\\QrCodeBundle\\Response\\QrCodeResponse' => __DIR__ . '/..' . '/endroid/qr-code-bundle/src/Response/QrCodeResponse.php',
-        'Endroid\\QrCodeBundle\\Twig\\QrCodeExtension' => __DIR__ . '/..' . '/endroid/qr-code-bundle/src/Twig/QrCodeExtension.php',
-        'Endroid\\QrCodeBundle\\Twig\\QrCodeRuntime' => __DIR__ . '/..' . '/endroid/qr-code-bundle/src/Twig/QrCodeRuntime.php',
-        'Endroid\\QrCode\\ErrorCorrectionLevel' => __DIR__ . '/..' . '/endroid/qr-code/src/ErrorCorrectionLevel.php',
-        'Endroid\\QrCode\\Exception\\GenerateImageException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/GenerateImageException.php',
-        'Endroid\\QrCode\\Exception\\InvalidFontException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/InvalidFontException.php',
-        'Endroid\\QrCode\\Exception\\InvalidLogoException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/InvalidLogoException.php',
-        'Endroid\\QrCode\\Exception\\InvalidWriterException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/InvalidWriterException.php',
-        'Endroid\\QrCode\\Exception\\MissingExtensionException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/MissingExtensionException.php',
-        'Endroid\\QrCode\\Exception\\MissingFunctionException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/MissingFunctionException.php',
-        'Endroid\\QrCode\\Exception\\MissingLogoHeightException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/MissingLogoHeightException.php',
-        'Endroid\\QrCode\\Exception\\QrCodeException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/QrCodeException.php',
-        'Endroid\\QrCode\\Exception\\UnsupportedExtensionException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/UnsupportedExtensionException.php',
-        'Endroid\\QrCode\\Exception\\ValidationException' => __DIR__ . '/..' . '/endroid/qr-code/src/Exception/ValidationException.php',
-        'Endroid\\QrCode\\Factory\\QrCodeFactory' => __DIR__ . '/..' . '/endroid/qr-code/src/Factory/QrCodeFactory.php',
-        'Endroid\\QrCode\\Factory\\QrCodeFactoryInterface' => __DIR__ . '/..' . '/endroid/qr-code/src/Factory/QrCodeFactoryInterface.php',
-        'Endroid\\QrCode\\LabelAlignment' => __DIR__ . '/..' . '/endroid/qr-code/src/LabelAlignment.php',
-        'Endroid\\QrCode\\QrCode' => __DIR__ . '/..' . '/endroid/qr-code/src/QrCode.php',
-        'Endroid\\QrCode\\QrCodeInterface' => __DIR__ . '/..' . '/endroid/qr-code/src/QrCodeInterface.php',
-        'Endroid\\QrCode\\WriterRegistry' => __DIR__ . '/..' . '/endroid/qr-code/src/WriterRegistry.php',
-        'Endroid\\QrCode\\WriterRegistryInterface' => __DIR__ . '/..' . '/endroid/qr-code/src/WriterRegistryInterface.php',
-        'Endroid\\QrCode\\Writer\\AbstractWriter' => __DIR__ . '/..' . '/endroid/qr-code/src/Writer/AbstractWriter.php',
-        'Endroid\\QrCode\\Writer\\BinaryWriter' => __DIR__ . '/..' . '/endroid/qr-code/src/Writer/BinaryWriter.php',
-        'Endroid\\QrCode\\Writer\\DebugWriter' => __DIR__ . '/..' . '/endroid/qr-code/src/Writer/DebugWriter.php',
-        'Endroid\\QrCode\\Writer\\EpsWriter' => __DIR__ . '/..' . '/endroid/qr-code/src/Writer/EpsWriter.php',
-        'Endroid\\QrCode\\Writer\\FpdfWriter' => __DIR__ . '/..' . '/endroid/qr-code/src/Writer/FpdfWriter.php',
-        'Endroid\\QrCode\\Writer\\PngWriter' => __DIR__ . '/..' . '/endroid/qr-code/src/Writer/PngWriter.php',
-        'Endroid\\QrCode\\Writer\\SvgWriter' => __DIR__ . '/..' . '/endroid/qr-code/src/Writer/SvgWriter.php',
-        'Endroid\\QrCode\\Writer\\WriterInterface' => __DIR__ . '/..' . '/endroid/qr-code/src/Writer/WriterInterface.php',
         'IntlDateFormatter' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/IntlDateFormatter.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laminas\\Code\\Annotation\\AnnotationCollection' => __DIR__ . '/..' . '/laminas/laminas-code/src/Annotation/AnnotationCollection.php',
@@ -6615,9 +6564,9 @@ class ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite34546b48a64ff8ad2fc36417970d0fc::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb44e8a056eed9adfe9913fa6908d8465::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb44e8a056eed9adfe9913fa6908d8465::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb44e8a056eed9adfe9913fa6908d8465::$classMap;
 
         }, null, ClassLoader::class);
     }
