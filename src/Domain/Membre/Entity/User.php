@@ -261,4 +261,5 @@ class User implements UserInterface, TwoFactorInterface
 
         return $this;
     }
+
 }

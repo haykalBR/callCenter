@@ -22,8 +22,9 @@ use App\Domain\Membre\Repository\ProfileRepository;
  */
 class Profile implements \Serializable
 {
-    use TimestampableTrait;
     use FileUploadTrait;
+
+    use TimestampableTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -33,7 +34,7 @@ class Profile implements \Serializable
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255,nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $firstName;
 
@@ -44,7 +45,7 @@ class Profile implements \Serializable
     private $lastName;
 
     /**
-     * @var int|null
+     * @var  int|null
      * @ORM\Column(type="integer", nullable=true)
      */
     private $gender;
@@ -105,7 +106,7 @@ class Profile implements \Serializable
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
 
@@ -276,4 +277,6 @@ class Profile implements \Serializable
     {
         // TODO: Implement unserialize() method.
     }
+
+
 }

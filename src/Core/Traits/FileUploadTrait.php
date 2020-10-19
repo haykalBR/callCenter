@@ -33,6 +33,7 @@ trait FileUploadTrait
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
+        $this->updatedAt= new \DateTime();
     }
 
     /**
@@ -186,4 +187,5 @@ trait FileUploadTrait
 
         return null;
     }
+
 }

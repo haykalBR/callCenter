@@ -25,13 +25,14 @@ class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
         $builder
             ->add('firstName', TextType::class, [
-                'attr' => [
                     'required' => false,
-                ],
             ])
-            ->add('lastName', TextType::class)
+            ->add('lastName', TextType::class,[
+                'required' => false,
+            ])
             ->add('gender', ChoiceType::class, [
                 'choices'      => GenreEnum::getAvailableTypes(),
                 'choice_label' => function ($choice) {
@@ -46,24 +47,36 @@ class ProfileType extends AbstractType
                 'format'   => 'dd-MM-yyyy',
                 'required' => false,
             ])
-            ->add('address', TextareaType::class)
-            ->add('mobile', TextType::class)
-            ->add('telephone')
+            ->add('address', TextareaType::class,[
+                'required' => false,
+            ])
+            ->add('mobile', TextType::class,[
+                'required' => false,
+            ])
+            ->add('telephone',TextType::class,[
+                'required' => false,
+            ])
             ->add('relationShipStatus', ChoiceType::class, [
                 'choices'      => RelationShipEnum::getAvailableTypes(),
                 'choice_label' => function ($choice) {
                     return RelationShipEnum::getTypeName($choice);
                 },
                 'multiple' => false,
+                'required' => false,
             ])
-            ->add('codePostal', TextType::class)
-            ->add('file', FileType::class)
+            ->add('codePostal', TextType::class,[
+                'required' => false,
+            ])
+            ->add('file', FileType::class,[
+                'required' => false,
+            ])
 
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
+
         $resolver->setDefaults([
             'data_class' => Profile::class,
         ]);
