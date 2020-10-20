@@ -21,11 +21,11 @@ class DefaultController extends AbstractController
      */
     public function index(RouterInterface $router): Response
     {
-        dd(88);
+        // dd(88);
         $result = array_filter(array_keys($router->getRouteCollection()->all()), function ($v) {
             return preg_match('/admin_/', $v);
         });
-        dd($result);
+        // dd($result);
 
         return $this->render('admin/default/index.html.twig', [
             'controller_name' => 'DefaultController',
