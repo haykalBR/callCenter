@@ -62,12 +62,12 @@ class ProfileController extends AbstractController
     public function edit(Request $request, User $cuurnetUser): Response
     {
         $profile= $cuurnetUser->getProfile() ?? new Profile();
-        $form = $this->createForm(ProfileType::class, $profile);
+        $form   = $this->createForm(ProfileType::class, $profile);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $profile->setFile($form->getData()->getFile());
             $profile->setUser($cuurnetUser);
-            if (!$cuurnetUser->getProfile()){
+            if (!$cuurnetUser->getProfile()) {
                 $this->entityManager->persist($profile);
             }
             $this->entityManager->flush();

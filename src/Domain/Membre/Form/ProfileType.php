@@ -25,12 +25,11 @@ class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder
             ->add('firstName', TextType::class, [
                     'required' => false,
             ])
-            ->add('lastName', TextType::class,[
+            ->add('lastName', TextType::class, [
                 'required' => false,
             ])
             ->add('gender', ChoiceType::class, [
@@ -47,13 +46,13 @@ class ProfileType extends AbstractType
                 'format'   => 'dd-MM-yyyy',
                 'required' => false,
             ])
-            ->add('address', TextareaType::class,[
+            ->add('address', TextareaType::class, [
                 'required' => false,
             ])
-            ->add('mobile', TextType::class,[
+            ->add('mobile', TextType::class, [
                 'required' => false,
             ])
-            ->add('telephone',TextType::class,[
+            ->add('telephone', TextType::class, [
                 'required' => false,
             ])
             ->add('relationShipStatus', ChoiceType::class, [
@@ -64,10 +63,10 @@ class ProfileType extends AbstractType
                 'multiple' => false,
                 'required' => false,
             ])
-            ->add('codePostal', TextType::class,[
+            ->add('codePostal', TextType::class, [
                 'required' => false,
             ])
-            ->add('file', FileType::class,[
+            ->add('file', FileType::class, [
                 'required' => false,
             ])
 
@@ -76,7 +75,6 @@ class ProfileType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-
         $resolver->setDefaults([
             'data_class' => Profile::class,
         ]);
