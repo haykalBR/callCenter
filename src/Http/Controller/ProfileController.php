@@ -45,6 +45,12 @@ class ProfileController extends AbstractController
      */
     private $session;
 
+    /**
+     * ProfileController constructor.
+     * @param GoogleAuthenticatorInterface $googleAuthenticatorService
+     * @param EntityManagerInterface $entityManager
+     * @param SessionInterface $session
+     */
     public function __construct(
         GoogleAuthenticatorInterface $googleAuthenticatorService,
         EntityManagerInterface $entityManager,
@@ -56,11 +62,13 @@ class ProfileController extends AbstractController
     }
 
     /**
+     * Edit Profile User
      * @Route("/edit/{username}", name="profile_edit", methods={"GET","POST"})
      * @Security("user == cuurnetUser")
      */
     public function edit(Request $request, User $cuurnetUser): Response
     {
+        // TODO Separee Image in table and date picker in Extension
         $profile= $cuurnetUser->getProfile() ?? new Profile();
         $form   = $this->createForm(ProfileType::class, $profile);
         $form->handleRequest($request);
@@ -82,6 +90,7 @@ class ProfileController extends AbstractController
     }
 
     /**
+     *  Retunn Page Profile
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("", name="profile")
      */
@@ -96,6 +105,7 @@ class ProfileController extends AbstractController
     }
 
     /**
+     * Active and Desactive google Auth
      * @Route("/googleAuthentication", name="otp",  methods={"POST"})
      */
     public function googleAuthentication(Request $request, CsrfTokenManagerInterface $csrfTokenManager): Response
