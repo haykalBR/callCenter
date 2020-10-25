@@ -25,59 +25,43 @@ class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder
-            ->add('firstName', TextType::class, [
-                    'required' => false,
-            ])
-            ->add('lastName', TextType::class,[
-                'required' => false,
-            ])
+            ->add('firstName', TextType::class)
+            ->add('lastName', TextType::class)
             ->add('gender', ChoiceType::class, [
                 'choices'      => GenreEnum::getAvailableTypes(),
                 'choice_label' => function ($choice) {
                     return GenreEnum::getTypeName($choice);
                 },
                 'multiple' => false,
+                'required' => true,
             ])
             ->add('birthday', DateType::class, [
                 'widget'   => 'single_text',
                 'attr'     => ['class' => 'js-datepicker form-control'],
                 'html5'    => false,
-                'format'   => 'dd-MM-yyyy',
-                'required' => false,
+                'format'   => 'dd/MM/yyyy',
             ])
-            ->add('address', TextareaType::class,[
-                'required' => false,
-            ])
-            ->add('mobile', TextType::class,[
-                'required' => false,
-            ])
-            ->add('telephone',TextType::class,[
-                'required' => false,
-            ])
+            ->add('address', TextareaType::class)
+            ->add('mobile', TextType::class)
+            ->add('telephone', TextType::class)
             ->add('relationShipStatus', ChoiceType::class, [
                 'choices'      => RelationShipEnum::getAvailableTypes(),
                 'choice_label' => function ($choice) {
                     return RelationShipEnum::getTypeName($choice);
                 },
                 'multiple' => false,
-                'required' => false,
             ])
-            ->add('codePostal', TextType::class,[
-                'required' => false,
-            ])
-            ->add('file', FileType::class,[
-                'required' => false,
-            ])
+            ->add('codePostal', TextType::class)
+            ->add('file', FileType::class)
 
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-
         $resolver->setDefaults([
+            'required'   => false,
             'data_class' => Profile::class,
         ]);
     }

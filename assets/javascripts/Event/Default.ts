@@ -4,12 +4,11 @@ import 'bootstrap-switch-button';
 import 'dropify';
 import 'bootstrap-datepicker';
 
-
 export default class Default{
     constructor(){
         $(document).ready(function() {
             $('.js-datepicker').datepicker({
-                format: 'mm/dd/yyyy',
+                format: 'dd/mm/yyyy',
             });
             $('.dropify-fr').dropify({
                 messages: {
