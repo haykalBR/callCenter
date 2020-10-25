@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/default/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +260,7 @@
       <workItem from="1602704330291" duration="9945000" />
       <workItem from="1602882854080" duration="64214000" />
       <workItem from="1603218394240" duration="17253000" />
-      <workItem from="1603576550483" duration="15391000" />
+      <workItem from="1603576550483" duration="17206000" />
     </task>
     <servers />
   </component>

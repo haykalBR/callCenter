@@ -55,7 +55,7 @@
 
 <script>
     $(document).ready(function() {
-
+          var i =0;
         $('#example').DataTable({
 
             ajax:           "/",
@@ -63,6 +63,7 @@
             "serverSide": true,
             "sAjaxDataProp": "data",
             "pageLength": 40,
+            "length": 40,
             "deferRender": true,
             "scrollY": 500,
             "scrollX":     true,
@@ -71,30 +72,32 @@
             },
             "columnDefs": [
                 {
-                    "targets": 0,
+                    "targets": i++,
+                    'name':'id',
                     "render": function ( data, type, full, meta ) {
                         return full.id;
                     }},
                     {
-                    "targets": 1,
+                    "targets": i++,
+                    'name':'id',
                     "render": function ( data, type, full, meta ) {
                         return full.username;
                     }
                     },
                 {
-                    "targets": 2,
+                    "targets": i++,
                     "render": function ( data, type, full, meta ) {
                         return full.email;
                     }
                 },
                 {
-                    "targets": 3,
+                    "targets": i++,
                     "render": function ( data, type, full, meta ) {
                         return full.enabled;
                     }
                 },
                 {
-                    "targets": 4,
+                    "targets": i++,
                     "render": function ( data, type, full, meta ) {
                         return full.username;
                     }
@@ -110,7 +113,7 @@
                 }
 
                 ],
-          //  "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+           "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             // infitif Scrol https://datatables.net/extensions/scroller/examples/initialisation/api_scrolling.html
             "language": {
                 //TODO Anglais et francais http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/

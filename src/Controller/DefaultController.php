@@ -36,7 +36,10 @@ class DefaultController extends AbstractController
 
 
             $start=$request->query->all()['start'];
-            $length=$request->query->all()['length'];
+            $length=$request->query->all()['length'] ;
+
+            dd($request->query->all()['columns']);
+
             $queryBuilder = $entityManager->getRepository(User::class)->createQueryBuilder('u')->select('u.id ,u.username,u.email,u.enabled');
             $total = $entityManager->getRepository(User::class)->createQueryBuilder('u')->select('count(u.id)');
 
@@ -58,8 +61,9 @@ class DefaultController extends AbstractController
             } catch (NonUniqueResultException $e) {
                 $recordsFiltered = 0;
             }
+        //    dd($queryBuilder->getQuery()->getScalarResult());
             $output = [
-               // 'request' => $request,
+                'request' => $request,
                 'draw' => $request->query->all()['draw'],
                 'recordsTotal' => $recordsTotal,
                 'recordsFiltered' => $recordsFiltered,
