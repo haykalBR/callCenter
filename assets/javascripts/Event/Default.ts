@@ -3,21 +3,15 @@ import 'bootstrap';
 import 'bootstrap-switch-button';
 import 'dropify';
 import 'bootstrap-datepicker';
+import dropifyConfig from '../Config/dropify';
+import datepickerConfig from '../Config/datepicker';
 
 export default class Default{
+    
     constructor(){
         $(document).ready(function() {
-            $('.js-datepicker').datepicker({
-                format: 'dd/mm/yyyy',
-            });
-            $('.dropify-fr').dropify({
-                messages: {
-                    'default': '',
-                    'replace': 'Faites glisser et déposez ou cliquez pour remplacer',
-                    'remove':  'Retirer',
-                    'error':   'Oups, quelque chose de mal s\'est produit.'
-                }
-            });
+            $('.js-datepicker').datepicker(datepickerConfig);
+            $('.dropify-fr').dropify(dropifyConfig);
         });
     }
 }
