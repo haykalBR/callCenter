@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Services/CaptchaValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Services/CaptchaValidator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Twig/QrCodeExtension.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/default/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" afterDir="false" />
     </list>
@@ -182,7 +186,7 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -263,6 +267,7 @@
       <workItem from="1602704330291" duration="9945000" />
       <workItem from="1602882854080" duration="64214000" />
       <workItem from="1603218394240" duration="17253000" />
+      <workItem from="1603576550483" duration="15391000" />
     </task>
     <servers />
   </component>
@@ -288,26 +293,62 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="779" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1602704398714" />
-    <state width="1807" height="269" key="GridCell.Tab.0.bottom" timestamp="1603390852087">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1807" height="332" key="GridCell.Tab.0.bottom" timestamp="1603576540778">
+      <screen x="0" y="27" width="3840" height="1053" />
     </state>
+    <state width="1807" height="332" key="GridCell.Tab.0.bottom/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540778" />
     <state width="1807" height="269" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602978538949" />
     <state width="1807" height="269" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1603390852087" />
-    <state width="1807" height="269" key="GridCell.Tab.0.center" timestamp="1603390852082">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1807" height="332" key="GridCell.Tab.0.center" timestamp="1603576540777">
+      <screen x="0" y="27" width="3840" height="1053" />
     </state>
+    <state width="1807" height="332" key="GridCell.Tab.0.center/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540777" />
     <state width="1807" height="269" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602978538948" />
     <state width="1807" height="269" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1603390852082" />
-    <state width="1807" height="269" key="GridCell.Tab.0.left" timestamp="1603390852080">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1807" height="332" key="GridCell.Tab.0.left" timestamp="1603576540777">
+      <screen x="0" y="27" width="3840" height="1053" />
     </state>
+    <state width="1807" height="332" key="GridCell.Tab.0.left/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540777" />
     <state width="1807" height="269" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602978538948" />
     <state width="1807" height="269" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1603390852079" />
-    <state width="1807" height="269" key="GridCell.Tab.0.right" timestamp="1603390852086">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1807" height="332" key="GridCell.Tab.0.right" timestamp="1603576540778">
+      <screen x="0" y="27" width="3840" height="1053" />
     </state>
+    <state width="1807" height="332" key="GridCell.Tab.0.right/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540778" />
     <state width="1807" height="269" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602978538949" />
     <state width="1807" height="269" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1603390852086" />
+    <state width="1807" height="332" key="GridCell.Tab.1.bottom" timestamp="1603576540780">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1807" height="332" key="GridCell.Tab.1.bottom/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540780" />
+    <state width="1807" height="332" key="GridCell.Tab.1.center" timestamp="1603576540779">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1807" height="332" key="GridCell.Tab.1.center/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540779" />
+    <state width="1807" height="332" key="GridCell.Tab.1.left" timestamp="1603576540779">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1807" height="332" key="GridCell.Tab.1.left/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540779" />
+    <state width="1807" height="332" key="GridCell.Tab.1.right" timestamp="1603576540780">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1807" height="332" key="GridCell.Tab.1.right/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540780" />
+    <state width="1807" height="332" key="GridCell.Tab.2.bottom" timestamp="1603576540782">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1807" height="332" key="GridCell.Tab.2.bottom/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540782" />
+    <state width="1807" height="332" key="GridCell.Tab.2.center" timestamp="1603576540781">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1807" height="332" key="GridCell.Tab.2.center/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540781" />
+    <state width="1807" height="332" key="GridCell.Tab.2.left" timestamp="1603576540781">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1807" height="332" key="GridCell.Tab.2.left/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540781" />
+    <state width="1807" height="332" key="GridCell.Tab.2.right" timestamp="1603576540782">
+      <screen x="0" y="27" width="3840" height="1053" />
+    </state>
+    <state width="1807" height="332" key="GridCell.Tab.2.right/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540782" />
     <state x="2649" y="256" width="559" height="593" key="NewPhpClassDialog" timestamp="1602953885187">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -329,9 +370,10 @@
     </state>
     <state width="529" height="458" key="SwitcherDM/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603038150448" />
     <state width="510" height="446" key="SwitcherDM/1920.0.1920.1080/67.27.1853.1053@67.27.1853.1053" timestamp="1602533820106" />
-    <state x="2605" y="137" width="803" height="831" key="find.popup" timestamp="1603044959660">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="2132" y="180" width="1606" height="812" key="find.popup" timestamp="1603576340988">
+      <screen x="0" y="27" width="3840" height="1053" />
     </state>
+    <state x="2132" y="180" width="1606" height="812" key="find.popup/0.27.3840.1053@0.27.3840.1053" timestamp="1603576340988" />
     <state x="2605" y="137" width="803" height="831" key="find.popup/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603044959660" />
     <state x="728" y="161" width="775" height="811" key="find.popup/1920.0.1920.1080/67.27.1853.1053@67.27.1853.1053" timestamp="1602625114776" />
     <state x="728" y="161" width="775" height="811" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1602706171173" />
