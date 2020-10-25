@@ -22,6 +22,11 @@ class CaptchaValidator
         $this->secret = $secret;
     }
 
+    /**
+     * Validate Captcha
+     * @param string $gRecaptchaResponse
+     * @return bool
+     */
     public function validateCaptcha(string $gRecaptchaResponse): bool
     {
         $recaptcha = new ReCaptcha($this->secret);
@@ -30,6 +35,10 @@ class CaptchaValidator
         return $resp->isSuccess();
     }
 
+    /**
+     *  get Key in env
+     * @return string
+     */
     public function getKey(): string
     {
         return $this->key;
