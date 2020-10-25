@@ -1,2 +1,6 @@
-import 'bootstrap-switch-button';
-import './Event/ProfileEvent';
+import ProfileEvent from './Event/ProfileEvent';
+import Default from './Event/Default';
+
+new Default();
+let profileEvent = new ProfileEvent();
+profileEvent.googleAuthFormStat();

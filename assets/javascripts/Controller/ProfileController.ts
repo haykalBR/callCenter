@@ -3,7 +3,7 @@ import toastr from '../Config/toastr';
 
 export default class ProfileController{
 
-    public googleAuthFormStat(event,url:string, token:string){
+    googleAuthFormStat(event,url:string, token:string){
         axios({
             method: 'post',
             url: url,
