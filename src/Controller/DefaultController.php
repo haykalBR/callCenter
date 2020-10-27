@@ -13,13 +13,14 @@ use App\Domain\Membre\Entity\User;
 use App\Domain\Membre\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
+use mysql_xdevapi\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Doctrine\ORM\Query\Expr;
 class DefaultController extends AbstractController
 {
     /**
@@ -27,29 +28,59 @@ class DefaultController extends AbstractController
      */
     public function index(RouterInterface $router,Request  $request,UserRepository $repository,EntityManagerInterface  $entityManager): Response
     {
-        // dd(88);
         $result = array_filter(array_keys($router->getRouteCollection()->all()), function ($v) {
             return preg_match('/admin_/', $v);
         });
-        // dd($result);
         if ($request->isXmlHttpRequest()){
 
-
-            $start=$request->query->all()['start'];
-            $length=$request->query->all()['length'] ;
-
-            dd($request->query->all()['columns']);
-
-            $queryBuilder = $entityManager->getRepository(User::class)->createQueryBuilder('u')->select('u.id ,u.username,u.email,u.enabled');
-            $total = $entityManager->getRepository(User::class)->createQueryBuilder('u')->select('count(u.id)');
-
-            $FilteredTotal = clone $total;
-            if (isset($start) and null != $start) {
-                $queryBuilder->setFirstResult((int) $start);
+            $draw = intval($request->query->all()['draw']);
+            $start = $request->query->all()['start'];
+            $length = $request->query->all()['length'];
+            $search = $request->query->all()['search'];
+            $orders = $request->query->all()['order'];
+            $columns = $request->query->all()['columns'];
+            if (isset($columns)) {
+                $column = '';
+                foreach ($columns as $colums) {
+                    if ('true' == $colums['searchable'] and false === strpos($column, $colums['name'])) {
+                        $column .= $colums['name'].' AS '.$colums['data'].',';
+                    }
+                }
+            } else {
+                $column = 't';
             }
 
+            $qb = $entityManager->getRepository(User::class)->createQueryBuilder('t')->select(rtrim($column, ','));
+            $total = $entityManager->getRepository(User::class)->createQueryBuilder('t')->select('count(t.id)');
+            $FilteredTotal = clone $total;
+            if (isset($start) and null != $start) {
+                $qb->setFirstResult((int) $start);
+            }
             if (isset($length) and null != $length) {
-                $queryBuilder->setMaxResults((int) $length);
+                $qb->setMaxResults((int) $length);
+            }
+            $searchlist = [];
+            if (isset($columns) and isset($search) and '' != $search['value']) {
+                foreach ($columns as $column) {
+                    if ('true' == $column['searchable']) {
+                        $searchlist[] = $qb->expr()->like($column['name'], '\'%'.$search['value'].'%\'');
+                    }
+                }
+            }
+
+
+
+
+
+
+            if (0 != count($searchlist)) {
+                $qb->andWhere(new Expr\Orx($searchlist));
+              //  $FilteredTotal->andWhere(new Expr\Orx($searchlist));
+            }
+            try {
+                $w=$qb->getQuery()->getScalarResult();
+            }catch (\Exception $exception){
+                    var_dump($exception->getMessage());die;
             }
             try {
                 $recordsTotal = $total->getQuery()->getSingleScalarResult();
@@ -61,15 +92,16 @@ class DefaultController extends AbstractController
             } catch (NonUniqueResultException $e) {
                 $recordsFiltered = 0;
             }
-        //    dd($queryBuilder->getQuery()->getScalarResult());
-            $output = [
+
+            $output = array(
                 'request' => $request,
-                'draw' => $request->query->all()['draw'],
+                'draw' => $draw,
                 'recordsTotal' => $recordsTotal,
                 'recordsFiltered' => $recordsFiltered,
-                'data' => $queryBuilder->getQuery()->getScalarResult(),
-            ];
-            return $this->json($output,200);
+                'data' => $qb->getQuery()->getScalarResult(),
+            );
+            return $this->json($output);
+
             }
 
         return $this->render('admin/default/index.html.twig', [

@@ -60,6 +60,7 @@
 
             ajax:           "/",
             "processing": true,
+            "searching": true,
             "serverSide": true,
             "sAjaxDataProp": "data",
             "pageLength": 40,
@@ -73,38 +74,39 @@
             "columnDefs": [
                 {
                     "targets": i++,
-                    'name':'id',
-                    "render": function ( data, type, full, meta ) {
-                        return full.id;
-                    }},
+                    'name':'t.id',
+                    'data':'t_id',
+
+                    },
                     {
                     "targets": i++,
-                    'name':'id',
-                    "render": function ( data, type, full, meta ) {
-                        return full.username;
-                    }
+                    'name':'t.username',
+                     'data':'t_username',
+
                     },
                 {
                     "targets": i++,
-                    "render": function ( data, type, full, meta ) {
-                        return full.email;
-                    }
+                    'name':'t.enabled',
+                    'data':'t_enabled',
+
                 },
                 {
                     "targets": i++,
-                    "render": function ( data, type, full, meta ) {
-                        return full.enabled;
-                    }
+                    'name':'t.email',
+                    'data':'t_usern',
+
                 },
                 {
                     "targets": i++,
-                    "render": function ( data, type, full, meta ) {
-                        return full.username;
-                    }
+                    'name':'t.googleAuthenticatorSecret',
+                    'data':'t_email',
+
                 },
 
                 {
                     "targets": -1,
+                    'name':'t.id',
+                    'data':'t_id',
                     "render": function ( data, type, full, meta ) {
 
                         var ch = '<button class="btn btn-info">55</button>';
