@@ -6,6 +6,8 @@ npm-debug.log
 yarn-error.log
 /var
 /vendor
+/public/uploads/
+/tools/docker/nginx/log/
 .env
 
 ###< symfony/webpack-encore-bundle ###

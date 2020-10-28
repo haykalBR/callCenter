@@ -1,8 +1,18 @@
+@import 'bootstrap';
+// @import 'tempusdominus-bootstrap-4/src/sass/_tempusdominus-bootstrap-4.scss';
 @import '../../node_modules/bootstrap-switch-button/css/bootstrap-switch-button.css';
 @import 'toastr';
 @import 'dropify/src/sass/dropify.scss'; 
 @import '../../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.css';
+@import '@fortawesome/fontawesome-free';
+@import '@fortawesome/fontawesome-free/scss/brands.scss';
+@import '@fortawesome/fontawesome-free/scss/regular.scss';
+@import '@fortawesome/fontawesome-free/scss/solid.scss';
 
-body {
-    background-color: lightgray;
+.profile-user-img {
+    border: 3px solid #adb5bd;
+    margin: 0 auto;
+    padding: 0;
+    width: 70px;
+    height: 70px;
 }
