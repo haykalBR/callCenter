@@ -263,6 +263,116 @@
         ]
     },
     {
+        "name": "beberlei/doctrineextensions",
+        "version": "v1.2.8",
+        "version_normalized": "1.2.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/beberlei/DoctrineExtensions.git",
+            "reference": "814183667f1d0d67ed8b9d81c1ee04e557e6a24d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/814183667f1d0d67ed8b9d81c1ee04e557e6a24d",
+            "reference": "814183667f1d0d67ed8b9d81c1ee04e557e6a24d",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/orm": "^2.6",
+            "php": "^7.1"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "^2.14",
+            "nesbot/carbon": "*",
+            "phpunit/phpunit": "^7.0 || ^8.0",
+            "symfony/yaml": "^4.2",
+            "zf1/zend-date": "^1.12",
+            "zf1/zend-registry": "^1.12"
+        },
+        "time": "2020-10-01T05:10:47+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "DoctrineExtensions\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Benjamin Eberlei",
+                "email": "kontakt@beberlei.de"
+            },
+            {
+                "name": "Steve Lacey",
+                "email": "steve@steve.ly"
+            }
+        ],
+        "description": "A set of extensions to Doctrine 2 that add support for additional query functions available in MySQL and Oracle.",
+        "keywords": [
+            "database",
+            "doctrine",
+            "orm"
+        ]
+    },
+    {
+        "name": "boldtrn/jsonb-bundle",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/boldtrn/JsonbBundle.git",
+            "reference": "bef906f150d3b6a3439c727eabc0fc10a01b33b2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/boldtrn/JsonbBundle/zipball/bef906f150d3b6a3439c727eabc0fc10a01b33b2",
+            "reference": "bef906f150d3b6a3439c727eabc0fc10a01b33b2",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/dbal": "~2.4",
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "doctrine/orm": ">2.4,<2.6",
+            "phpunit/phpunit": "~4.2"
+        },
+        "suggest": {
+            "doctrine/orm": "To use DQL functions"
+        },
+        "time": "2019-10-09T07:05:14+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Boldtrn\\JsonbBundle\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Robin Boldt",
+                "email": "boldtrn@gmail.com"
+            }
+        ],
+        "description": "A library adding the support for JSONB columns of PostgreSQL to Doctrine.",
+        "homepage": "https://github.com/boldtrn/JsonbBundle",
+        "keywords": [
+            "bundle",
+            "doctrine",
+            "jsonb",
+            "postgresql",
+            "symfony"
+        ]
+    },
+    {
         "name": "composer/package-versions-deprecated",
         "version": "1.11.99",
         "version_normalized": "1.11.99.0",

@@ -34,6 +34,8 @@ final class Versions
      */
     const VERSIONS          = array (
   'beberlei/assert' => 'v3.2.7@d63a6943fc4fd1a2aedb65994e3548715105abcf',
+  'beberlei/doctrineextensions' => 'v1.2.8@814183667f1d0d67ed8b9d81c1ee04e557e6a24d',
+  'boldtrn/jsonb-bundle' => 'v1.2.0@bef906f150d3b6a3439c727eabc0fc10a01b33b2',
   'composer/package-versions-deprecated' => '1.11.99@c8c9aa8a14cc3d3bec86d0a8c3fa52ea79936855',
   'doctrine/annotations' => '1.10.4@bfe91e31984e2ba76df1c1339681770401ec262f',
   'doctrine/cache' => '1.10.2@13e3381b25847283a91948d04640543941309727',
@@ -176,14 +178,14 @@ final class Versions
   'vimeo/psalm' => '4.0.1@b1e2e30026936ef8d5bf6a354d1c3959b6231f44',
   'webmozart/glob' => '4.1.0@3cbf63d4973cf9d780b93d2da8eec7e4a9e63bbe',
   'webmozart/path-util' => '2.3.0@d939f7edc24c9a1bb9c0dee5cb05d8e859490725',
-  'paragonie/random_compat' => '2.*@7cc8bce76a602b725a960beeac61f66632aa3c61',
-  'symfony/polyfill-ctype' => '*@7cc8bce76a602b725a960beeac61f66632aa3c61',
-  'symfony/polyfill-iconv' => '*@7cc8bce76a602b725a960beeac61f66632aa3c61',
-  'symfony/polyfill-php72' => '*@7cc8bce76a602b725a960beeac61f66632aa3c61',
-  'symfony/polyfill-php71' => '*@7cc8bce76a602b725a960beeac61f66632aa3c61',
-  'symfony/polyfill-php70' => '*@7cc8bce76a602b725a960beeac61f66632aa3c61',
-  'symfony/polyfill-php56' => '*@7cc8bce76a602b725a960beeac61f66632aa3c61',
-  '__root__' => 'dev-feature/membre@7cc8bce76a602b725a960beeac61f66632aa3c61',
+  'paragonie/random_compat' => '2.*@89be722b6f33d60243b985d17ac4147f00029f18',
+  'symfony/polyfill-ctype' => '*@89be722b6f33d60243b985d17ac4147f00029f18',
+  'symfony/polyfill-iconv' => '*@89be722b6f33d60243b985d17ac4147f00029f18',
+  'symfony/polyfill-php72' => '*@89be722b6f33d60243b985d17ac4147f00029f18',
+  'symfony/polyfill-php71' => '*@89be722b6f33d60243b985d17ac4147f00029f18',
+  'symfony/polyfill-php70' => '*@89be722b6f33d60243b985d17ac4147f00029f18',
+  'symfony/polyfill-php56' => '*@89be722b6f33d60243b985d17ac4147f00029f18',
+  '__root__' => 'dev-feature/membre@89be722b6f33d60243b985d17ac4147f00029f18',
 );
 
     private function __construct()

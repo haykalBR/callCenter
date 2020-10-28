@@ -11,6 +11,12 @@
     "beberlei/assert": {
         "version": "v3.2.7"
     },
+    "beberlei/doctrineextensions": {
+        "version": "v1.2.8"
+    },
+    "boldtrn/jsonb-bundle": {
+        "version": "v1.2.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99"
     },

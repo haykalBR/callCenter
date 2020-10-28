@@ -33,6 +33,8 @@ class DefaultController extends AbstractController
         });
         if ($request->isXmlHttpRequest()){
 
+
+
             $draw = intval($request->query->all()['draw']);
             $start = $request->query->all()['start'];
             $length = $request->query->all()['length'];
@@ -77,6 +79,7 @@ class DefaultController extends AbstractController
                 $qb->andWhere(new Expr\Orx($searchlist));
               //  $FilteredTotal->andWhere(new Expr\Orx($searchlist));
             }
+          //  dump($w=$qb->getQuery());die;
             try {
                 $w=$qb->getQuery()->getScalarResult();
             }catch (\Exception $exception){

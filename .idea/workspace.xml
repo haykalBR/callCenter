@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/personelProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/personelProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/default/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/docker/php7-fpm/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/php7-fpm/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/docker/php7-fpm/php.ini" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/php7-fpm/php.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +173,8 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/common" />
       <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/boldtrn/jsonb-bundle" />
+      <path value="$PROJECT_DIR$/vendor/beberlei/doctrineextensions" />
     </include_path>
   </component>
   <component name="ProjectId" id="1iQXdkflBZqXOr44Sf8yIYbjC31" />
@@ -265,7 +275,7 @@
       <workItem from="1603218394240" duration="17253000" />
       <workItem from="1603576550483" duration="24706000" />
       <workItem from="1603744509183" duration="1008000" />
-      <workItem from="1603821643567" duration="1513000" />
+      <workItem from="1603821643567" duration="4930000" />
     </task>
     <servers />
   </component>
@@ -368,17 +378,18 @@
     </state>
     <state width="529" height="458" key="SwitcherDM/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603038150448" />
     <state width="510" height="446" key="SwitcherDM/1920.0.1920.1080/67.27.1853.1053@67.27.1853.1053" timestamp="1602533820106" />
-    <state x="2132" y="180" width="1606" height="812" key="find.popup" timestamp="1603576340988">
-      <screen x="0" y="27" width="3840" height="1053" />
+    <state x="728" y="161" width="775" height="811" key="find.popup" timestamp="1603825257902">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="2132" y="180" width="1606" height="812" key="find.popup/0.27.3840.1053@0.27.3840.1053" timestamp="1603576340988" />
     <state x="2605" y="137" width="803" height="831" key="find.popup/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603044959660" />
     <state x="728" y="161" width="775" height="811" key="find.popup/1920.0.1920.1080/67.27.1853.1053@67.27.1853.1053" timestamp="1602625114776" />
-    <state x="728" y="161" width="775" height="811" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1602706171173" />
-    <state x="2577" y="253" key="run.anything.popup" timestamp="1602335921152">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="728" y="161" width="775" height="811" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1603825257902" />
+    <state x="701" y="274" key="run.anything.popup" timestamp="1603825581078">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="2577" y="253" key="run.anything.popup/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602335921152" />
+    <state x="701" y="274" key="run.anything.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1603825581078" />
     <state x="700" y="278" width="672" height="662" key="search.everywhere.popup" timestamp="1603737363212">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
