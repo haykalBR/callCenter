@@ -23,9 +23,7 @@ class CaptchaValidator
     }
 
     /**
-     * Validate Captcha
-     * @param string $gRecaptchaResponse
-     * @return bool
+     * Validate Captcha.
      */
     public function validateCaptcha(string $gRecaptchaResponse): bool
     {
@@ -36,8 +34,7 @@ class CaptchaValidator
     }
 
     /**
-     *  get Key in env
-     * @return string
+     *  get Key in env.
      */
     public function getKey(): string
     {

@@ -1,5 +1,10 @@
 <!doctype html>
 <html lang="en">
+<style>
+    #example{
+        background-color:#eee;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -51,76 +56,66 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" >
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" >
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css" >
-
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 
 <script>
     $(document).ready(function() {
-          var i =0;
+        var i =0;
         $('#example').DataTable({
-
-            ajax:           "/",
+            "dom": 'Bfrtip',
+            "buttons": [
+                'copy', 'csv', 'excel', 'pdf'
+            ],
             "processing": true,
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",
+
+            },
+
             "searching": true,
             "serverSide": true,
+            "paging":true,
             "sAjaxDataProp": "data",
-            "pageLength": 40,
+            "pageLength": 50,
             "length": 40,
             "deferRender": true,
-            "scrollY": 500,
+            "scrollY": '70vh',
+            "scrollCollapse": true,
             "scrollX":     true,
             "scroller": {
                 "loadingIndicator": true
             },
+            ajax:  {
+                'url': "/",
+                data: {
+                    join: [
+                        {   "join": "App\\Domain\\Membre\\Entity\\Profile","alias": 'p',"condition": "t.id = p.user"}
+                    ],
+                    hiddenColumn: [
+                        {   name: 'p.mobile',data: 'p_mobile'}
+                    ]
+                }
+            },
             "columnDefs": [
-                {
-                    "targets": i++,
-                    'name':'t.id',
-                    'data':'t_id',
-
-                    },
-                    {
-                    "targets": i++,
-                    'name':'t.username',
-                     'data':'t_username',
-
-                    },
-                {
-                    "targets": i++,
-                    'name':'t.enabled',
-                    'data':'t_enabled',
-
-                },
-                {
-                    "targets": i++,
-                    'name':'t.email',
-                    'data':'t_usern',
-
-                },
-                {
-                    "targets": i++,
-                    'name':'t.googleAuthenticatorSecret',
-                    'data':'t_email',
-
-                },
-
+                {   "targets": i++,'name':'t.id','data':'t_id'},
+                {   "targets": i++,'name':'p.address','data':'p_address' },
+                {   "targets": i++,'name':'t.enabled','data':'t_enabled'},
+                {   "targets": i++,'name':'t.email','data':'t_usern'},
+                {   "targets": i++,'name':'t.googleAuthenticatorSecret','data':'t_email'},
                 {
                     "targets": -1,
-                    'name':'t.id',
-                    'data':'t_id',
+                    'name':'t.email',
+                    'data':'t_usern',
                     "render": function ( data, type, full, meta ) {
-
                         var ch = '<button class="btn btn-info">55</button>';
                         return ch;
                     }
                 }
+            ],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 
-                ],
-           "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            // infitif Scrol https://datatables.net/extensions/scroller/examples/initialisation/api_scrolling.html
-            "language": {
-                //TODO Anglais et francais http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/
-                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
-            }
 
         });
     } );

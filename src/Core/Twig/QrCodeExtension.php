@@ -36,9 +36,9 @@ class QrCodeExtension extends AbstractExtension
             new TwigFunction('qrCode', [$this, 'qrCode'], ['is_safe' => ['html']]),
         ];
     }
+
     /**
-     * generate qr code
-     * @return string
+     * generate qr code.
      */
     public function qrCode(): string
     {

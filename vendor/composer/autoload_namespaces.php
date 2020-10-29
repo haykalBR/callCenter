@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'PHPMD\\' => array($vendorDir . '/phpmd/phpmd/src/main/php'),
+    'Oro\\ORM' => array($vendorDir . '/oro/doctrine-extensions/src'),
+    'Oro\\DBAL' => array($vendorDir . '/oro/doctrine-extensions/src'),
     'LSS' => array($vendorDir . '/openlss/lib-array2xml'),
     'JsonMapper' => array($vendorDir . '/netresearch/jsonmapper/src'),
 );
