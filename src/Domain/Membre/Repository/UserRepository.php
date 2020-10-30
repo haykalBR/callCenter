@@ -12,6 +12,7 @@ namespace App\Domain\Membre\Repository;
 use App\Domain\Membre\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Core\Repository\BaseRepositoryTrait;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -27,11 +28,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 {
     use BaseRepositoryTrait;
 
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var RequestStack
+     */
+    private RequestStack $requestStack;
+
+    public function __construct(ManagerRegistry $registry, RequestStack $requestStack)
     {
         parent::__construct($registry, User::class);
+        $this->requestStack = $requestStack ;
     }
-
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */

@@ -28,7 +28,7 @@ class DefaultController extends AbstractController
             return preg_match('/admin_/', $v);
         });
         if ($request->isXmlHttpRequest()) {
-            $output =$userRepository->dataTable($request);
+            $output =$userRepository->dataTable();
 
             return $this->json($output);
         }

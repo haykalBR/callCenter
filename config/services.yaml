@@ -35,3 +35,6 @@ services:
         arguments:
             $key: '%recaptcha_key%'
             $secret: '%recaptcha_secret%'
+    App\Core\Repository\BaseRepositoryTrait:
+        calls:
+            - [dataTable, ['@@request'],true]

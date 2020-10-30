@@ -15,8 +15,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 trait BaseRepositoryTrait
 {
-    public function dataTable(Request $request): array
+    public function dataTable(): array
     {
+        $request=$this->requestStack->getCurrentRequest();
         $draw         = (int) ($request->query->all()['draw']);
         $start        = $request->query->all()['start'];
         $length       = $request->query->all()['length'];
@@ -87,8 +88,7 @@ trait BaseRepositoryTrait
         if (isset($columns) and isset($search) and '' !== $search['value']) {
             foreach ($columns as $column) {
                 if ('true' === $column['searchable']) {
-                    $searchlist[] = $qb->expr()->like(
-                        'CAST('.$column['name'].' as text)', '\'%'.$search['value'].'%\''
+                    $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.$search['value'].'%\''
                     );
                 }
             }
