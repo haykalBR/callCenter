@@ -80,6 +80,8 @@ logs: 	##  look for 's' service logs, make s=php logs
 ###    Project 🐝
 ###----------------------#
 ##
+db: up  ##  Build the DB, control the schema validity, load fixtures and check the migration status
+	$(sy) doctrine:database:create
 fixtures: up  ##  Build the DB, control the schema validity, load fixtures and check the migration status
 	$(sy) doctrine:fixtures:load
 ##

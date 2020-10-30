@@ -10,6 +10,7 @@
 namespace App\Domain\Membre\Entity;
 
 use App\Core\Traits\SoftDeleteTrait;
+use App\Core\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use App\Domain\Membre\Repository\UserRepository;
@@ -23,9 +24,12 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=true)
+ * @Gedmo\Loggable
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface, TwoFactorInterface
 {
+    use  TimestampableTrait;
     use SoftDeleteTrait;
     /**
      * @ORM\Id
@@ -35,6 +39,7 @@ class User implements UserInterface, TwoFactorInterface
     private int $id;
 
     /**
+     * @Gedmo\Versioned
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private string $email;

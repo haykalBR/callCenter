@@ -3,22 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/javascripts/Config/datepicker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Config/datepicker.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/javascripts/Config/dropify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Config/dropify.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/javascripts/Controller/ProfileController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Controller/ProfileController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/javascripts/Event/ProfileEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Event/ProfileEvent.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/javascripts/modules.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_layout/head-end.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/head-end.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/default/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201023215130.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201030220525.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,11 +236,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Makefile.@grep" />
       <item itemvalue="Makefile.app-static-analysis" />
+      <item itemvalue="Makefile.coding-standards" />
       <item itemvalue="Makefile.lint" />
       <item itemvalue="Makefile.stan" />
-      <item itemvalue="Makefile.@grep" />
-      <item itemvalue="Makefile.coding-standards" />
     </list>
     <recent_temporary>
       <list>
@@ -286,6 +278,7 @@
       <workItem from="1604091908940" duration="11000" />
       <workItem from="1604091946434" duration="306000" />
       <workItem from="1604094966285" duration="17000" />
+      <workItem from="1604098624683" duration="3000" />
     </task>
     <servers />
   </component>

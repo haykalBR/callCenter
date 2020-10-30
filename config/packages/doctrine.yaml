@@ -21,6 +21,12 @@ doctrine:
                 type: annotation
                 dir: '%kernel.project_dir%/src/Domain'
                 prefix: 'App\Domain'
+            gedmo_loggable:
+                type: annotation
+                prefix: Gedmo\Loggable\Entity 
+                dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Loggable/Entity"
+                alias: GedmoLoggable # (optional) it will default to the name set for the mapping
+                is_bundle: false                
         dql:
             datetime_functions:
                 date: Oro\ORM\Query\AST\Functions\SimpleFunction
@@ -55,3 +61,4 @@ doctrine:
             soft-deleteable:
                 class: 'Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter'
                 enabled: true                
+                
