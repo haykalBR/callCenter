@@ -29,8 +29,8 @@ class DefaultController extends AbstractController
 
             $user=$repository->find(3268);
             $logs = $repo->getLogEntries($user);
-            $repo->revert($user, 1/*version*/);
-            dd($user->getEmail());
+            $repo->revert($article, 1/*version*/);
+            dd($logs);
 
             $user->setEmail('ssss@mo3a9.com');
             $entityManager->persist($user);
