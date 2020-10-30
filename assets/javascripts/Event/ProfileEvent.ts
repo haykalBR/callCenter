@@ -2,11 +2,12 @@ import * as $ from 'jquery';
 import ProfileController  from '../Controller/ProfileController';
 
 export default class ProfileEvent{
-    profileController:ProfileController ;
+    private profileController:ProfileController ;
     googleAuthFormStat(){
-        $('#google_authentication_form_state').on('change', function (event) {
+        $('#google_authentication_form_state').on('change',  (event) => {
             event.preventDefault();
-            const url = $(this).closest('form')[0].action;
+            //@ts-ignore
+            let url:string = $(this).closest('form')[0].action;
             this.profileController.googleAuthFormStat(
                 event, 
                 url, 

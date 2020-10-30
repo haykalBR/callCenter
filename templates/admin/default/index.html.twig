@@ -1,34 +1,25 @@
-<!doctype html>
-<html lang="en">
-<style>
-    #example{
-        background-color:#eee;
-    }
-</style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Blank Page</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Blank Page</li>
-                </ol>
+{% extends 'base.html.twig' %}
+{% block content %}
+
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Profile</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">User Profile</li>
+                    </ol>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 <section class="content">
+    <div class="container-fluid">
+        <div class="card">
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
         <tr>
@@ -41,86 +32,7 @@
         </tr>
         </thead>
     </table>
+        </div>
+    </div>
 </section>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/scroller/2.0.3/js/dataTables.scroller.min.js"></script>
-{#
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-#}
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" >
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" >
-<link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.3/css/scroller.dataTables.min.css" >
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" >
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" >
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css" >
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        var i =0;
-        $('#example').DataTable({
-            "dom": 'Bfrtip',
-            "buttons": [
-                'copy', 'csv', 'excel', 'pdf'
-            ],
-            "processing": true,
-            "language": {
-                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",
-
-            },
-
-            "searching": true,
-            "serverSide": true,
-            "paging":true,
-            "sAjaxDataProp": "data",
-            "pageLength": 50,
-            "length": 40,
-            "deferRender": true,
-            "scrollY": '70vh',
-            "scrollCollapse": true,
-            "scrollX":     true,
-            "scroller": {
-                "loadingIndicator": true
-            },
-            ajax:  {
-                'url': "/",
-                data: {
-                    join: [
-                        {   "join": "App\\Domain\\Membre\\Entity\\Profile","alias": 'p',"condition": "t.id = p.user"}
-                    ],
-                    hiddenColumn: [
-                        {   name: 'p.mobile',data: 'p_mobile'}
-                    ]
-                }
-            },
-            "columnDefs": [
-                {   "targets": i++,'name':'t.id','data':'t_id'},
-                {   "targets": i++,'name':'p.address','data':'p_address' },
-                {   "targets": i++,'name':'t.enabled','data':'t_enabled'},
-                {   "targets": i++,'name':'t.email','data':'t_usern'},
-                {   "targets": i++,'name':'t.googleAuthenticatorSecret','data':'t_email'},
-                {
-                    "targets": -1,
-                    'name':'t.email',
-                    'data':'t_usern',
-                    "render": function ( data, type, full, meta ) {
-                        var ch = '<button class="btn btn-info">55</button>';
-                        return ch;
-                    }
-                }
-            ],
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-
-
-        });
-    } );
-</script>
-</body>
-</html>
-
-
+{% endblock %}

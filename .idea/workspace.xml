@@ -3,10 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Config/datepicker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Config/datepicker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Config/dropify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Config/dropify.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Controller/ProfileController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Controller/ProfileController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Event/ProfileEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Event/ProfileEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/modules.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_layout/head-end.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/head-end.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/default/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,6 +280,12 @@
       <workItem from="1603576550483" duration="24706000" />
       <workItem from="1603744509183" duration="1008000" />
       <workItem from="1603821643567" duration="4930000" />
+      <workItem from="1604091205057" duration="230000" />
+      <workItem from="1604091442048" duration="416000" />
+      <workItem from="1604091865479" duration="35000" />
+      <workItem from="1604091908940" duration="11000" />
+      <workItem from="1604091946434" duration="306000" />
+      <workItem from="1604094966285" duration="17000" />
     </task>
     <servers />
   </component>
@@ -293,6 +311,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="532" y="34" width="912" height="1036" key="CommitChangelistDialog2/1920.0.1920.1080/67.27.1853.1053@67.27.1853.1053" timestamp="1602535879238" />
+    <state x="2547" y="326" width="722" height="453" key="EditFileWatcherDialog" timestamp="1604091215845">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2547" y="326" width="722" height="453" key="EditFileWatcherDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1604091215845" />
     <state x="779" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1602704398714">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -391,10 +413,10 @@
     </state>
     <state x="2576" y="257" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1602343475216" />
     <state x="700" y="278" width="672" height="662" key="search.everywhere.popup/1920.0.1920.1080/67.27.1853.1053@67.27.1853.1053" timestamp="1603737363212" />
-    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1603044941793">
+    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1604089831430">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603044941793" />
+    <state x="2638" y="459" width="540" height="186" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1604089831430" />
     <state x="760" y="475" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1602705367835" />
   </component>
 </project>

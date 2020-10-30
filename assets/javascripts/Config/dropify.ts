@@ -1,3 +1,5 @@
+import 'dropify';
+
 export default {
     messages: {
         'default': '',

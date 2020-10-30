@@ -3,7 +3,7 @@ import toastr from '../Config/toastr';
 
 export default class ProfileController{
 
-    googleAuthFormStat(event,url:string, token:string){
+    googleAuthFormStat(event:JQuery.EventBase,url:string, token: string | number | string[]){
         axios({
             method: 'post',
             url: url,
@@ -14,6 +14,7 @@ export default class ProfileController{
          }).then((response) => {
             toastr.info(response.data)
         }, (error) => {
+
          });
     }
 }
