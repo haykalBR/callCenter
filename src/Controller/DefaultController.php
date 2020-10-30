@@ -24,6 +24,7 @@ class DefaultController extends AbstractController
      */
     public function index(RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
+
         $result = array_filter(array_keys($router->getRouteCollection()->all()), function ($v) {
             return preg_match('/admin_/', $v);
         });

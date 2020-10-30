@@ -9,19 +9,24 @@
 
 namespace App\Domain\Membre\Entity;
 
+use App\Core\Traits\SoftDeleteTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use App\Domain\Membre\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=true)
  */
 class User implements UserInterface, TwoFactorInterface
 {
+    use SoftDeleteTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

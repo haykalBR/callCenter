@@ -51,3 +51,7 @@ doctrine:
                 cast: Oro\ORM\Query\AST\Functions\Cast
                 replace: Oro\ORM\Query\AST\Functions\String\Replace
                 date_format: Oro\ORM\Query\AST\Functions\String\DateFormat
+        filters:
+            soft-deleteable:
+                class: 'Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter'
+                enabled: true                
