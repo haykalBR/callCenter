@@ -29,7 +29,7 @@ class DefaultController extends AbstractController
 
             $user=$repository->find(3268);
             $logs = $repo->getLogEntries($user);
-            $repo->revert($user, 4/*version*/);
+            $repo->revert($user, 2/*version*/);
             dd($user->getEmail());
 
             $user->setEmail('ssss@mo3a9.com');
