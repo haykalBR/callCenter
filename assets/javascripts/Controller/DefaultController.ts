@@ -33,5 +33,31 @@ export default class DefaultController{
                
                ]
        }
+
+       getDrawCallback(groupColumn:number){
+
+        return  function ( settings ) {   
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+            var columnLength:number = settings.aoColumns.length;
+           
+            api.column(groupColumn, {page:'current'} ).data().each( function ( group, i, arr ) {
+                if ( last !== group ) {
+                 
+                    console.log(settings.aoColumns.length);
+                    $(rows).eq( i ).before(
+    
+                        `<tr class="group">
+                            <td colspan="`+(columnLength - 1)+`">`+group+`</td>
+                            <td>`+arr.toArray().filter(x => x==group).length+`</td>
+                        </tr>`
+                    );
+                   
+                    last = group;
+                }
+            } );
+        }
+       }
     
 }

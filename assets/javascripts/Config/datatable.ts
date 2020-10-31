@@ -32,25 +32,5 @@ export default {
     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
     ajax:           {},
     "columnDefs":[],
-    "drawCallback": function ( settings ) {
-        var api = this.api();
-        var rows = api.rows( {page:'current'} ).nodes();
-        var last=null;
-       
-        api.column(groupColumn, {page:'current'} ).data().each( function ( group, i, arr ) {
-            if ( last !== group ) {
-             
-                $(rows).eq( i ).before(
-
-                    `<tr class="group">
-                        <td colspan="5">`+group+`</td>
-                        <td>`+arr.toArray().filter(x => x==group).length+`</td>
-                    </tr>`
-                );
-               
-
-                last = group;
-            }
-        } );
-    }
+    "drawCallback": function ( settings ) {}
 }
