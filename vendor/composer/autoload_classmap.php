@@ -2673,8 +2673,6 @@ return array(
     'PHPStan\\Type\\Symfony\\SerializerDynamicReturnTypeExtension' => $vendorDir . '/phpstan/phpstan-symfony/src/Type/Symfony/SerializerDynamicReturnTypeExtension.php',
     'PHPStan\\Type\\Symfony\\ServiceDynamicReturnTypeExtension' => $vendorDir . '/phpstan/phpstan-symfony/src/Type/Symfony/ServiceDynamicReturnTypeExtension.php',
     'PHPStan\\Type\\Symfony\\ServiceTypeSpecifyingExtension' => $vendorDir . '/phpstan/phpstan-symfony/src/Type/Symfony/ServiceTypeSpecifyingExtension.php',
-    'PackageVersions\\FallbackVersions' => $vendorDir . '/composer/package-versions-deprecated/src/PackageVersions/FallbackVersions.php',
-    'PackageVersions\\Installer' => $vendorDir . '/composer/package-versions-deprecated/src/PackageVersions/Installer.php',
     'PackageVersions\\Versions' => $vendorDir . '/composer/package-versions-deprecated/src/PackageVersions/Versions.php',
     'ParagonIE\\ConstantTime\\Base32' => $vendorDir . '/paragonie/constant_time_encoding/src/Base32.php',
     'ParagonIE\\ConstantTime\\Base32Hex' => $vendorDir . '/paragonie/constant_time_encoding/src/Base32Hex.php',
