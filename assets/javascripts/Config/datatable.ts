@@ -4,7 +4,10 @@ import "datatables.net";
 //import "datatables.net-bs4";
 import "datatables.net-scroller";
 //import "datatables.net-buttons";
+var groupColumn = 2;
+
 export default {
+    
     "dom": 'Bfrtip',
     "buttons": [
         'copy', 'csv', 'excel', 'pdf'
@@ -20,7 +23,7 @@ export default {
     "pageLength": 50,
     "length": 40,
     "deferRender": true,
-    "scrollY": '70vh',
+    "scrollY": 500,
     "scrollCollapse": true,
     "scrollX":     true,
     "scroller": {
@@ -29,4 +32,22 @@ export default {
     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
     ajax:           {},
     "columnDefs":[],
+    "drawCallback": function ( settings ) {
+        var api = this.api();
+        var rows = api.rows( {page:'current'} ).nodes();
+        var last=null;
+       
+        api.column(groupColumn, {page:'current'} ).data().each( function ( group, i, arr ) {
+            if ( last !== group ) {
+             
+                $(rows).eq( i ).before(
+
+                    '<tr class="group"><td colspan="5">'+group , arr.toArray().filter(x => x==group).length  +' </td></tr>'
+                );
+               
+
+                last = group;
+            }
+        } );
+    }
 }

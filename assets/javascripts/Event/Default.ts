@@ -7,6 +7,12 @@ import datatableConfig from '../Config/datatable';
 
 export default class Default{
 constructor(){
+
+   
+   
+      
+
+
         datatableConfig.columnDefs = this.getDatableColumnDef();
         datatableConfig.ajax = this.getAjax();
         $('#example').DataTable(datatableConfig);
@@ -43,7 +49,9 @@ constructor(){
                     return ch;
                 }
             }
+            
             ]
     }
 
 }
+   

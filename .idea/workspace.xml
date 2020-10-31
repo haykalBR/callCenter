@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/personelProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/personelProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201023215130.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201030220525.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/default/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +168,9 @@
       <path value="$PROJECT_DIR$/vendor/beberlei/doctrineextensions" />
       <path value="$PROJECT_DIR$/vendor/martin-georgiev/postgresql-for-doctrine" />
       <path value="$PROJECT_DIR$/vendor/oro/doctrine-extensions" />
+      <path value="$PROJECT_DIR$/vendor/stof/doctrine-extensions-bundle" />
+      <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/vendor/gedmo/doctrine-extensions" />
     </include_path>
   </component>
   <component name="ProjectId" id="1iQXdkflBZqXOr44Sf8yIYbjC31" />
@@ -279,6 +279,9 @@
       <workItem from="1604091946434" duration="306000" />
       <workItem from="1604094966285" duration="17000" />
       <workItem from="1604098624683" duration="3000" />
+      <workItem from="1604102727496" duration="1000" />
+      <workItem from="1604102809499" duration="90000" />
+      <workItem from="1604103732977" duration="8000" />
     </task>
     <servers />
   </component>

@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Domain\Membre\Repository\UserRepository;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DefaultController extends AbstractController
@@ -25,18 +25,10 @@ class DefaultController extends AbstractController
      */
     public function index( RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
-        $repo = $entityManager->getRepository('Gedmo\Loggable\Entity\LogEntry');
+   
+ 
 
-            $user=$repository->find(3268);
-            $logs = $repo->getLogEntries($user);
-
-            dd($logs);die;  
-
-            $user->setEmail('ssss@mo3a9.com');
-            $entityManager->persist($user);
-            $entityManager->flush();
-             die;
-
+         
         $result = array_filter(array_keys($router->getRouteCollection()->all()), function ($v) {
             return preg_match('/admin_/', $v);
         });
