@@ -1,9 +1,9 @@
 import "datatables.net";
-//import "datatables-responsive";
-//import "datatables.net-dt";
-//import "datatables.net-bs4";
+import "datatables-responsive";
+import "datatables.net-dt";
+import "datatables.net-bs4";
 import "datatables.net-scroller";
-//import "datatables.net-buttons";
+import "datatables.net-buttons";
 var groupColumn = 2;
 
 export default {
@@ -25,7 +25,7 @@ export default {
     "deferRender": true,
     "scrollY": 500,
     "scrollCollapse": true,
-    "scrollX":     true,
+    "scrollX":     false,
     "scroller": {
         "loadingIndicator": true
     },
@@ -42,7 +42,10 @@ export default {
              
                 $(rows).eq( i ).before(
 
-                    '<tr class="group"><td colspan="5">'+group , arr.toArray().filter(x => x==group).length  +' </td></tr>'
+                    `<tr class="group">
+                        <td colspan="5">`+group+`</td>
+                        <td>`+arr.toArray().filter(x => x==group).length+`</td>
+                    </tr>`
                 );
                
 

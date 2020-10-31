@@ -1,4 +1,4 @@
-import * as $ from 'jquery';
+const $ = require('jquery');
 import ProfileController  from '../Controller/ProfileController';
 
 export default class ProfileEvent{

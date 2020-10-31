@@ -8,10 +8,11 @@
 @import '@fortawesome/fontawesome-free/scss/regular.scss';
 @import '@fortawesome/fontawesome-free/scss/solid.scss';
 @import '../../node_modules/datatables/media/css/jquery.dataTables.min.css';
-@import '../../node_modules/datatables-responsive/css/datatables-responsive.scss';
+@import '../../node_modules/datatables-responsive/css/responsive.dataTables.scss';
 @import '../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css';
 @import '../../node_modules/datatables.net-dt/css/jquery.dataTables.min.css';
-//@import '../../node_modules/datatables-scroller/css/scroller.dataTables.scss';
+@import '../../node_modules/datatables.net-scroller-bs4/css/scroller.bootstrap4.min.css';
+
 .profile-user-img {
     border: 3px solid #adb5bd;
     margin: 0 auto;
