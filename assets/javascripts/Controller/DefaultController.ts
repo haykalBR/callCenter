@@ -50,7 +50,7 @@ export default class DefaultController{
     
                         `<tr class="group">
                             <td colspan="`+(columnLength - 1)+`">`+group+`</td>
-                            <td>`+arr.toArray().filter(x => x==group).length+`</td> 
+                            <td>`+arr.toArray().filter(x => x==group).length+`</td>
                         </tr>`
                     );
                    
