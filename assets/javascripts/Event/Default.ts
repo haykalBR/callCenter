@@ -10,6 +10,7 @@ import DefaultController from '../Controller/DefaultController';
 export default class Default{
     private defaultControler:DefaultController ;
     constructor(){
+
         this.defaultControler=new DefaultController();
         $('#example').DataTable(this.setDatatableConfig());
         $('.js-datepicker').datepicker(datepickerConfig);

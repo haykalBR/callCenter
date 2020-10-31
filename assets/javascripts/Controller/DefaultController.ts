@@ -1,6 +1,6 @@
 
 export default class DefaultController{
-    getAjax(){
+        getAjax(){
         return {
             'url': "/",
             data: {
@@ -13,7 +13,7 @@ export default class DefaultController{
             }
         }
        }
-       getDatableColumnDef(){
+        getDatableColumnDef(){
            let i =0;
            return [
                {   "targets": i++,'name':'t.id','data':'t_id'},

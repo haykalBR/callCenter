@@ -35,7 +35,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 5; ++$i) {
+        for ($i = 10; $i < 550; ++$i) {
             /**
              * @var $user User
              */

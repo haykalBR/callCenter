@@ -29,10 +29,9 @@ export default {
     "scroller": {
         "loadingIndicator": true
     },
-    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
     ajax:           {},
     "columnDefs":[],
-    "drawCallback": function ( settings ) {
+    /*"drawCallback": function ( settings ) {
         var api = this.api();
         var rows = api.rows( {page:'current'} ).nodes();
         var last=null;
@@ -52,5 +51,5 @@ export default {
                 last = group;
             }
         } );
-    }
+    }*/
 }

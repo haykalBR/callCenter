@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Maker/AbstractMakeCommand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/javascripts/Controller/UsersController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/javascripts/Event/UsersEvent.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Http/Controller/UsersController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/membre/users/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/maker.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Config/datatable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Config/datatable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Controller/DefaultController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Controller/DefaultController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +286,7 @@
       <workItem from="1604166263714" duration="8000" />
       <workItem from="1604167437541" duration="8000" />
       <workItem from="1604167493673" duration="10000" />
-      <workItem from="1604167535992" duration="6015000" />
+      <workItem from="1604167535992" duration="12668000" />
     </task>
     <servers />
   </component>
@@ -298,6 +298,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2542" y="234" width="732" height="637" key="#Inspections/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603997991285" />
+    <state x="2593" y="344" width="631" height="416" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604183218786">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2593" y="344" width="631" height="416" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1604183218786" />
     <state x="819" y="245" width="444" height="641" key="#com.intellij.ide.util.MemberChooser" timestamp="1604065444447">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -377,10 +381,10 @@
       <screen x="0" y="27" width="3840" height="1053" />
     </state>
     <state width="1807" height="332" key="GridCell.Tab.2.right/0.27.3840.1053@0.27.3840.1053" timestamp="1603576540782" />
-    <state x="2649" y="256" width="575" height="593" key="NewPhpClassDialog" timestamp="1604171188927">
+    <state x="2649" y="256" width="575" height="593" key="NewPhpClassDialog" timestamp="1604182041574">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2649" y="256" width="575" height="593" key="NewPhpClassDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1604171188927" />
+    <state x="2649" y="256" width="575" height="593" key="NewPhpClassDialog/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1604182041574" />
     <state x="771" y="277" width="607" height="579" key="NewPhpClassDialog/1920.0.1920.1080/67.27.1853.1053@67.27.1853.1053" timestamp="1602696792004" />
     <state x="771" y="277" key="NewPhpClassDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1602704590728" />
     <state x="2709" y="474" width="399" height="157" key="NewPhpFileDialog" timestamp="1602976535099">
