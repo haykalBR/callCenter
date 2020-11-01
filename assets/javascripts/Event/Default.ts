@@ -20,7 +20,6 @@ export default class Default{
     private setDatatableConfig(){
         datatableConfig.columnDefs = this.defaultControler.getDatableColumnDef();
         datatableConfig.ajax = this.defaultControler.getAjax();
-        datatableConfig.drawCallback = this.defaultControler.getDrawCallback(2);
         return datatableConfig;
     }
 

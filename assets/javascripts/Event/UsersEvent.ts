@@ -6,8 +6,14 @@ export default class UsersEvent{
     private usersController:UsersController ;
     constructor(){
         this.usersController=new UsersController();
-        $('#users_table').DataTable(this.setDatatableConfig());
-        $('.test').bootstrapSwitch();
+       var dataTable = $('#users_table').DataTable(this.setDatatableConfig());
+
+        $('#searchByName').keyup(function(){
+            dataTable.draw();
+        });
+        $('#searchByGender').change(function(){
+            dataTable.draw();
+        });
     }
     private setDatatableConfig(){
 
@@ -15,4 +21,8 @@ export default class UsersEvent{
         datatableConfig.ajax = this.usersController.getAjax();
         return datatableConfig;
     }
+
+
+
+
 }

@@ -5,14 +5,22 @@ export default class UsersController{
     getAjax(){
         return {
             'url': "/",
-            data: {
-                join: [
+            data: function(data) {
+
+                data.join = [
                     {   "join": "App\\Domain\\Membre\\Entity\\Profile","alias": 'p',"condition": "t.id = p.user"}
-                ],
-                hiddenColumn: [
+                ];
+                data.hiddenColumn= [
                     {   name: 'p.mobile',data: 'p_mobile'}
-                ]
-            }
+                ];
+                data.customSearch =[
+                    {'name':'p.gender','value':$('#searchByGender').val()},
+                    {'name':'p.firstName','value':$('#searchByName').val()}
+                  ]
+                ;
+
+            },
+
         }
     }
     getDatableColumnDef(){

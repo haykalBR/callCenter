@@ -4,6 +4,8 @@ import "datatables.net-dt";
 import "datatables.net-bs4";
 import "datatables.net-scroller";
 import "datatables.net-buttons";
+import 'bootstrap-switch-button';
+
 var groupColumn = 2;
 
 export default {
@@ -31,7 +33,6 @@ export default {
     },
     ajax:           {},
     "columnDefs":[],
-<<<<<<< HEAD
     /*"drawCallback": function ( settings ) {
         var api = this.api();
         var rows = api.rows( {page:'current'} ).nodes();
@@ -53,7 +54,12 @@ export default {
             }
         } );
     }*/
-=======
-    "drawCallback": function ( settings ) {}
->>>>>>> be47b087a138a823d072b1ddad9ad6b9258939dc
+    "fnDrawCallback": function() {
+        $(".faiez").each((i,element) => {
+            element.switchButton({
+                onlabel: "Enabled f",
+                offlabel: "Disabled f"
+            });
+        });
+    },
 }

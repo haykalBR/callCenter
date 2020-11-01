@@ -22,6 +22,7 @@ trait BaseRepositoryTrait
         $start        = $request->query->all()['start'];
         $length       = $request->query->all()['length'];
         $search       = $request->query->all()['search'];
+        $customSearch       = $request->query->all()['customSearch'];
         $orders       = $request->query->all()['order'];
         $columns      = $request->query->all()['columns'];
         $hiddenColumn = $request->query->all('hiddenColumn');
@@ -94,6 +95,14 @@ trait BaseRepositoryTrait
             }
             foreach ($hiddenColumn as $column) {
                 $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.$search['value'].'%\'');
+            }
+        }
+        /**
+         *  Custom Search
+         */
+        foreach ($customSearch as $search){
+            if ($search['value'] != ''){
+                $searchlist[] = $qb->expr()->like('CAST('.$search['name'].' as text)', '\'%'.$search['value'].'%\'');
             }
         }
         /*

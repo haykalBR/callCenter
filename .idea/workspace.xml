@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/javascripts/Controller/UsersController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/javascripts/Event/UsersEvent.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Http/Controller/UsersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/membre/users/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/javascripts/Config/datatable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Config/datatable.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/javascripts/Controller/DefaultController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Controller/DefaultController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Controller/UsersController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Controller/UsersController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Event/Default.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/javascripts/Event/UsersEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Event/UsersEvent.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/membre/users/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/users/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,10 +291,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2542" y="234" width="732" height="637" key="#Inspections" timestamp="1603997991285">
+    <state x="2542" y="234" width="732" height="637" key="#Inspections" timestamp="1604256529412">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2542" y="234" width="732" height="637" key="#Inspections/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1603997991285" />
+    <state x="2542" y="234" width="732" height="637" key="#Inspections/1920.0.1920.1080/0.27.1920.1053@1920.0.1920.1080" timestamp="1604256529412" />
     <state x="2593" y="344" width="631" height="416" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604183218786">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
