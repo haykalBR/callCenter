@@ -1,7 +1,10 @@
 import * as moment from 'moment'
 import 'bootstrap-switch-button';
-
+const routes = require('../../../public/js/fos_js_routes.json');
+import * as  Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+Routing.setRoutingData(routes);
 export default class UsersController{
+
     getAjax(){
         return {
             'url': "/",
@@ -14,8 +17,9 @@ export default class UsersController{
                     {   name: 'p.mobile',data: 'p_mobile'}
                 ];
                 data.customSearch =[
-                    {'name':'p.gender','value':$('#searchByGender').val()},
-                    {'name':'p.firstName','value':$('#searchByName').val()}
+                     {'name':'t.username','value':$('#search_users_username').val(),'type':'text'},
+                     {'name':'t.email','value':$('#search_users_email').val(),'type':'text'},
+                    {'name':'p.gender','value':$('#search_users_gender').val(),'type':'array'}
                   ]
                 ;
 
@@ -42,8 +46,8 @@ export default class UsersController{
                 'data':'t_id',
                 "render": function ( data, type, full, meta ) {
                     let ch="";
-                     ch = '<button class="btn btn-info">Edit</button> ';
-                     ch += '<button class="btn btn-info">Delete</button>';
+                     ch = '<a class="btn btn-info"  href="'+Routing.generate('admin_new_users')+'">Edit</a> ';
+                     ch += '<a class="btn btn-info">Delete</a> ';
                      ch+='<input type="checkbox"  class="test" data-toggle="switchbutton" checked data-size="xs">';
                     return ch;
                 }

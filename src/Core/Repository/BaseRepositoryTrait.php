@@ -9,12 +9,15 @@
 
 namespace App\Core\Repository;
 
+use App\Core\Enum\DataTableEnum;
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\HttpFoundation\Request;
 
 trait BaseRepositoryTrait
 {
+
+
     public function dataTable(): array
     {
         $request=$this->requestStack->getCurrentRequest();
@@ -22,7 +25,6 @@ trait BaseRepositoryTrait
         $start        = $request->query->all()['start'];
         $length       = $request->query->all()['length'];
         $search       = $request->query->all()['search'];
-        $customSearch       = $request->query->all()['customSearch'];
         $orders       = $request->query->all()['order'];
         $columns      = $request->query->all()['columns'];
         $hiddenColumn = $request->query->all('hiddenColumn');
@@ -89,21 +91,57 @@ trait BaseRepositoryTrait
         if (isset($columns) and isset($search) and '' !== $search['value']) {
             foreach ($columns as $column) {
                 if ('true' === $column['searchable']) {
-                    $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.$search['value'].'%\''
+                    $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.trim($search['value']).'%\''
                     );
                 }
             }
             foreach ($hiddenColumn as $column) {
-                $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.$search['value'].'%\'');
+                $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.trim($search['value']).'%\'');
             }
         }
         /**
          *  Custom Search
          */
-        foreach ($customSearch as $search){
-            if ($search['value'] != ''){
-                $searchlist[] = $qb->expr()->like('CAST('.$search['name'].' as text)', '\'%'.$search['value'].'%\'');
+        if (isset($request->query->all()['customSearch'])){
+            $customSearch       = $request->query->all()['customSearch'];
+
+            foreach ($customSearch as $search){
+                /**
+                 *  Type Text
+                 */
+                if ($search['type'] == DataTableEnum::TEXT){
+                    if ($search['value'] != ''){
+                        $searchlist[] = $qb->expr()->like('CAST('.$search['name'].' as text)', '\'%'.trim($search['value']).'%\'');
+                    }
+                }
+                /**
+                 *  Type Array
+                 */
+                if ($search['type']== DataTableEnum::ARRAY){
+                    if (key_exists('value',$search)){
+                        foreach ($search['value'] as $val){
+                            $searchlist[] = $qb->expr()->like('CAST('.$search['name'].' as text)', '\'%'.trim($val).'%\'');
+
+                        }
+                    }
+                }
+        }
+
+           /* if ($search['type']==DataTableEnum::DATE){
+                    if ($search['value'][0] != ''){
+                        $s=trim($search['value'][0]);
+                        $date = strtotime($s);
+
+                        $qb->andWhere($qb->expr()->andX(array(
+                            $qb->expr()->gte('CAST('.$search['name'].' as text)', date('d/m/Y:H:i:s', $date)),
+                        )));
+                    }
+
+
+
             }
+           */
+
         }
         /*
          *  if list search not empty serach

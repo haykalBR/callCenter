@@ -40,6 +40,7 @@
         "jqvmap": "^1.5.1",
         "moment": "^2.29.1",
         "reflect-metadata": "^0.1.13",
+        "select2": "^4.0.13",
         "sweetalert2": "^10.9.0",
         "tempusdominus-bootstrap-4": "^5.1.2",
         "toastr": "^2.1.4"

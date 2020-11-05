@@ -55,11 +55,13 @@ export default {
         } );
     }*/
     "fnDrawCallback": function() {
-        $(".faiez").each((i,element) => {
+ /*       $(".faiez").each((i,element) => {
             element.switchButton({
                 onlabel: "Enabled f",
                 offlabel: "Disabled f"
             });
         });
+        */
+
     },
 }

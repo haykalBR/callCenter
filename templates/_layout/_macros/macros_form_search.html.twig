@@ -1,0 +1,7 @@
+{% macro formsearch(form,route) %}
+{% form_theme form '_layout/theme/form-layout.html.twig' %}
+ {{ form_start(form, {'attr': {'class': 'row'}}) }}
+  {{ form_end(form) }}
+ <br>
+ <a  href="{{ path(route.name) }}" class="btn btn-primary">{{ route.label}}</a>
+{% endmacro formsearch %}

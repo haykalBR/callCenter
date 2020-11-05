@@ -10,5 +10,6 @@ return array(
     'Oro\\ORM' => array($vendorDir . '/oro/doctrine-extensions/src'),
     'Oro\\DBAL' => array($vendorDir . '/oro/doctrine-extensions/src'),
     'LSS' => array($vendorDir . '/openlss/lib-array2xml'),
+    'JsonpCallbackValidator' => array($vendorDir . '/willdurand/jsonp-callback-validator/src'),
     'JsonMapper' => array($vendorDir . '/netresearch/jsonmapper/src'),
 );

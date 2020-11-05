@@ -15,9 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use App\Domain\Membre\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -26,6 +28,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=true)
  * @Gedmo\Loggable
  * @ORM\HasLifecycleCallbacks()
+ **@UniqueEntity(
+ *  fields={"email"},
+ *  message="Un autre utilisateur s'est déjà inscrit avec cette adresse email, merci de la modifier"
+ * )
  */
 class User implements UserInterface, TwoFactorInterface
 {
@@ -40,10 +46,15 @@ class User implements UserInterface, TwoFactorInterface
 
     /**
      * @Gedmo\Versioned
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private string $email;
     /**
+     * @Assert\Length(
+     *     min=6,max=20,minMessage="Your Username should be at least {{ limit }} characters",
+     *      maxMessage="This value is too long. It should have {{ limit }} characters or less."
+     *       )
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private string $username;
