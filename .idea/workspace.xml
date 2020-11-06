@@ -2,42 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Core/Enum/DataTableEnum.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/_layout/_macros/macros_form_search.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/_layout/theme/form-layout.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/membre/users/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/membre/users/new.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/personelProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/personelProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/membre/users/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/javascripts/Config/datatable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Config/datatable.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/javascripts/Controller/UsersController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Controller/UsersController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/javascripts/Event/UsersEvent.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/javascripts/Event/UsersEvent.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/assets/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201030231238.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/fos_js_routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/fos_js_routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Entity/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Membre/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Membre/Form/UserType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Http/Controller/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Controller/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/membre/profile/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/profile/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_layout/_macros/macros_form_search.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/_macros/macros_form_search.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_layout/theme/form-layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_layout/theme/form-layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/membre/users/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/users/_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/membre/users/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/membre/users/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/package-versions-deprecated/src/PackageVersions/Versions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,7 +297,7 @@
       <workItem from="1604431636323" duration="6099000" />
       <workItem from="1604518624023" duration="2730000" />
       <workItem from="1604521891901" duration="1894000" />
-      <workItem from="1604604703307" duration="6766000" />
+      <workItem from="1604604703307" duration="13396000" />
     </task>
     <servers />
   </component>

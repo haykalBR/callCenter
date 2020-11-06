@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @Route("/users",options={"expose"=true})
+ * @Route("/users")
  * Class UsersController
  */
 class UsersController extends  AbstractController
@@ -74,8 +74,20 @@ class UsersController extends  AbstractController
             return  $this->redirectToRoute('admin_new_users');
         }
         return $this->render('admin/membre/users/new.html.twig',[ 'form' => $form->createView()]);
-
-
     }
+    /**
+     * @Route("/edit/{id}", name="edit_users", methods={"GET","POST"},options={"expose"=true})
+     * @return Response
+     */
+    public function edit (Request $request, User $user) : Response{
 
+        $form   = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+            return  $this->redirectToRoute('admin_new_users');
+        }
+        return $this->render('admin/membre/users/edit.html.twig',[ 'form' => $form->createView()]);
+
+     }
 }

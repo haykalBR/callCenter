@@ -22,8 +22,8 @@
                 <div class="card-header">
                 </div>
                 <div class="card-body">
-                      {# a chnage facon behy mais mannpilation masta  plus button import expoort pdf  facon mate3 route et labe l#}
-                        {{ macro.formsearch(form,{'name':"admin_new_users",'label':"add user"}) }}
+                    {{ macro.formsearch(form) }}
+                    <a  href="{{ path('admin_new_users') }}" class="btn btn-info"> add user </a>
                     <table id="users_table" class="table table-striped table-bordered">
                         <thead>
                         <tr>

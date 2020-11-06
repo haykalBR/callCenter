@@ -46,7 +46,7 @@ export default class UsersController{
                 'data':'t_id',
                 "render": function ( data, type, full, meta ) {
                     let ch="";
-                     ch = '<a class="btn btn-info"  href="'+Routing.generate('admin_new_users')+'">Edit</a> ';
+                     ch = '<a class="btn btn-info"  href="'+Routing.generate('admin_edit_users',{id:data})+'">Edit</a> ';
                      ch += '<a class="btn btn-info">Delete</a> ';
                      ch+='<input type="checkbox"  class="test" data-toggle="switchbutton" checked data-size="xs">';
                     return ch;

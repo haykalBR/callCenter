@@ -28,10 +28,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=true)
  * @Gedmo\Loggable
  * @ORM\HasLifecycleCallbacks()
- **@UniqueEntity(
- *  fields={"email"},
- *  message="Un autre utilisateur s'est déjà inscrit avec cette adresse email, merci de la modifier"
- * )
+ * @UniqueEntity(fields={"username"}, message="Cet utilisateur existe déjà")
+ * @UniqueEntity(fields={"email"}, message="Cette addresse mail déjà existe")
  */
 class User implements UserInterface, TwoFactorInterface
 {
@@ -53,8 +51,8 @@ class User implements UserInterface, TwoFactorInterface
     /**
      * @Assert\Length(
      *     min=6,max=20,minMessage="Your Username should be at least {{ limit }} characters",
-     *      maxMessage="This value is too long. It should have {{ limit }} characters or less."
-     *       )
+     *     maxMessage="This value is too long. It should have {{ limit }} characters or less."
+     *      )
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private string $username;

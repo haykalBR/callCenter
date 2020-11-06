@@ -17,6 +17,9 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -24,8 +27,20 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 class UserType extends AbstractType
 {
+    const EDIT_ROUTE= "admin_edit_users";
+
+    /**
+     * @var RequestStack
+     */
+    private RequestStack $requestStack;
+
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
         $builder
             ->add('email',EmailType::class)
             ->add('username',TextType::class)
@@ -34,7 +49,13 @@ class UserType extends AbstractType
                     'checked'   => 'checked'
                 ]
             ])
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('profile', ProfileType::class);
+        $builder->addEventListener(FormEvents::PRE_SET_DATA,[$this, 'showPassword']);
+        }
+    public function showPassword(FormEvent $event){
+        $form=$event->getForm();
+        if ($this->requestStack->getCurrentRequest()->get('_route') != self::EDIT_ROUTE){
+            $form->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'mapped' => false,
                 'constraints' => [
@@ -42,7 +63,7 @@ class UserType extends AbstractType
                         'message' => 'Please enter a password',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 10,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         'max' => 4096,
                     ]),
@@ -54,14 +75,15 @@ class UserType extends AbstractType
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Confirm Password'],
                 'invalid_message' => 'Your password does not match the confirmation.'
-            ])
-            ->add('profile', ProfileType::class);
-    }
+            ]);
+        }
 
+    }
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
     }
-}
+
+    }

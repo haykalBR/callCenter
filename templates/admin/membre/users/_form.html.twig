@@ -1,3 +1,4 @@
+
 {{ form_start(form) }}
 <div class="row">
     <div class="col-md-6">
@@ -6,11 +7,14 @@
             {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.username) }}
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-            {{ form_errors(form.plainPassword.children['first'])}}
-        </div>
+        {% if   constant('App\\Domain\\Membre\\Form\\UserType::EDIT_ROUTE') != app.request.attributes.get('_route') %}
+            <div class="form-group">
+                <label>Password</label>
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.plainPassword.children['first'])}}
+            </div>
+        {% endif %}
+
         <div class="form-group">
             <label> Last Name </label>
             {{ form_widget(form.profile.lastName, {'attr': {'class': 'form-control'}}) }}
@@ -43,11 +47,14 @@
             {{ form_errors(form.email)}}
 
         </div>
+        {% if   constant('App\\Domain\\Membre\\Form\\UserType::EDIT_ROUTE') != app.request.attributes.get('_route') %}
+
         <div class="form-group">
             <label> Confirm Password</label>
             {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.plainPassword.children['second']) }}
         </div>
+        {% endif %}
         <div class="form-group">
             <label> First Name </label>
             {{ form_widget(form.profile.firstName, {'attr': {'class': 'form-control'}}) }}

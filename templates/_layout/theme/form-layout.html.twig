@@ -6,13 +6,7 @@
                 {{- form_errors(form) -}}
             </div>
 {%- endblock form_row %}
-{%- block checkbox_widget -%}
-    {% set rand = random() %}
-    <div class="checkbox-toggle -large">
-        <input type="checkbox" id="check-toggle-{{ rand }}" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-        <label for="check-toggle-{{ rand }}"></label>
-    </div>
-{%- endblock checkbox_widget -%}
+
 
 
 
