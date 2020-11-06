@@ -103,6 +103,7 @@ trait BaseRepositoryTrait
          *  Custom Search
          */
         if (isset($request->query->all()['customSearch'])){
+
             $customSearch       = $request->query->all()['customSearch'];
 
             foreach ($customSearch as $search){
@@ -119,36 +120,18 @@ trait BaseRepositoryTrait
                  */
                 if ($search['type']== DataTableEnum::ARRAY){
                     if (key_exists('value',$search)){
-                        foreach ($search['value'] as $val){
-                            $searchlist[] = $qb->expr()->like('CAST('.$search['name'].' as text)', '\'%'.trim($val).'%\'');
-
-                        }
+                            $searchlist[] = $qb->expr()->in($search['name'], $search['value']);
                     }
                 }
+                //TODO 2TYPE DATE and DateInterval
         }
-
-           /* if ($search['type']==DataTableEnum::DATE){
-                    if ($search['value'][0] != ''){
-                        $s=trim($search['value'][0]);
-                        $date = strtotime($s);
-
-                        $qb->andWhere($qb->expr()->andX(array(
-                            $qb->expr()->gte('CAST('.$search['name'].' as text)', date('d/m/Y:H:i:s', $date)),
-                        )));
-                    }
-
-
-
-            }
-           */
-
         }
         /*
          *  if list search not empty serach
          */
         if (!empty($searchlist)) {
-            $qb->andWhere(new Expr\Orx($searchlist));
-            $FilteredTotal->andWhere(new Expr\Orx($searchlist));
+            $qb->andWhere(new Expr\Andx($searchlist));
+            $FilteredTotal->andWhere(new Expr\Andx($searchlist));
         }
         try {
             /**
@@ -166,7 +149,6 @@ trait BaseRepositoryTrait
         } catch (NonUniqueResultException $e) {
             $recordsFiltered = 0;
         }
-
         return [
             'draw'            => $draw,
             'recordsTotal'    => $recordsTotal,
