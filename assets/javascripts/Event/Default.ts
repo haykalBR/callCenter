@@ -5,6 +5,8 @@ import dropifyConfig from '../Config/dropify';
 import datepickerConfig from '../Config/datepicker';
 import datatableConfig from '../Config/datatable';
 import DefaultController from '../Controller/DefaultController';
+import '../Component/DefaultComponent';
+
 
 
 export default class Default{
