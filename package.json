@@ -1,5 +1,6 @@
 {
     "devDependencies": {
+        "@babel/preset-react": "^7.12.5",
         "@symfony/webpack-encore": "^0.30.0",
         "core-js": "^3.0.0",
         "node-sass": "^4.14.1",
@@ -21,6 +22,9 @@
         "@fortawesome/fontawesome-free": "^5.15.1",
         "@types/datatables.net": "^1.10.19",
         "@types/jquery": "^3.5.3",
+        "@types/prop-types": "^15.7.3",
+        "@types/react": "^16.9.56",
+        "@types/react-dom": "^16.9.9",
         "@types/sizzle": "^2.3.2",
         "axios": "^0.20.0",
         "bootstrap": "^4.5.3",
@@ -39,6 +43,9 @@
         "ionicons": "^5.2.3",
         "jqvmap": "^1.5.1",
         "moment": "^2.29.1",
+        "prop-types": "^15.7.2",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
         "reflect-metadata": "^0.1.13",
         "select2": "^4.0.13",
         "sweetalert2": "^10.9.0",
