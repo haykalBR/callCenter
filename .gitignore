@@ -7,8 +7,12 @@ yarn-error.log
 /var
 /vendor
 /public/uploads/
+/public/uploads/*
 /tools/docker/nginx/log/
+/tools/docker/nginx/log/*
 .env
+/vendor/*
+/.idea/*
 
 ###< symfony/webpack-encore-bundle ###
 
