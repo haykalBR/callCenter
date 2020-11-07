@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="636c9065-c8d3-4bb4-b9f9-53680ee6267f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Repository/BaseRepositoryTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" beforeDir="false" afterPath="$PROJECT_DIR$/tools/docker/nginx/log/access.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +282,7 @@
       <workItem from="1604431636323" duration="6099000" />
       <workItem from="1604518624023" duration="2730000" />
       <workItem from="1604521891901" duration="1894000" />
-      <workItem from="1604604703307" duration="15343000" />
+      <workItem from="1604604703307" duration="16258000" />
     </task>
     <servers />
   </component>
