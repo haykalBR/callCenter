@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Profile</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">User Profile</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    {{ form_start(form, {'action': path('admin_otp'), 'method': 'POST'}) }}
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                               {{ qrCode() }}
+                            </div>
+                            <ul class="list-group list-group-unbordered mb-3 align-items-center">
+                                {{ form_widget(form.state, {'attr': {'class': 'form-control','data-toggle':'switchbutton','data-size':'sm','data-onlabel':'Enabled','data-offlabel':'Disabled'}}) }}
+                            </ul>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+                <div class="col-md-9">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle" src="{{ asset(user.profile ? app.user.profile.relativeUrl : '') }}" alt="User profile picture">
+                            </div>
+                            <h3 class="profile-username text-center">{{ not user.profile ? '' : user.profile.firstName}} {{ not user.profile ? '' : user.profile.lastName}}</h3>
+                            <p class="text-muted text-center">ROLE ENCORE </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b>gender</b>
+                                            <a class="float-right">
+                                                 {{ not user.profile ? '' :user.profile.gender }}
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>birthday</b> <a class="float-right">
+                                                {{ not user.profile ? '' :user.profile.birthday|date("m-d-Y") }}
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>address</b> <a class="float-right">  {{ not user.profile ? '' :user.profile.address }}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>codePostal</b> <a class="float-right">{{ not user.profile ? '' :user.profile.codePostal }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b>mobile</b> <a class="float-right">{{ not user.profile ? '' :user.profile.mobile }}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>telephone</b> <a class="float-right">{{ not user.profile ? '' :user.profile.telephone }}</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>relationShipStatus</b> <a class="float-right">{{ not user.profile ? '' :user.profile.relationShipS }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

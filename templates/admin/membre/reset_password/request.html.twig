@@ -1,0 +1,92 @@
+
+{% extends 'admin/membre/auth.html.twig' %}
+{% block title %}Log in!{% endblock %}
+{% block content %}
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Admin</b>LTE</a>
+        </div>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">
+                        Enter your email address and we we will send you a
+                        link to reset your password.
+                </p>
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <form action="{{ path('admin_forgot_password_request') }}" method="post">
+                    {% for flashError in app.flashes('reset_password_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                    {% endfor %}
+                    <div class="input-group mb-3">
+                        {{ form_widget(requestForm.email, {'attr': {'class': 'form-control'}}) }}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="g-recaptcha" data-sitekey={{ captchakey }}></div><br>
+                    {{ form_rest(requestForm) }}
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block">Request new password</button>
+                        </div>
+                    </div>
+                </form>
+                <p class="mt-3 mb-1">
+                    <a href="{{ path('admin_app_login') }}">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% block javascripts %}
+        <script src='//www.google.com/recaptcha/api.js?hl=fr'></script>
+    {% endblock %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

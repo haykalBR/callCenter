@@ -6,4 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'PHPMD\\' => array($vendorDir . '/phpmd/phpmd/src/main/php'),
+    'Oro\\ORM' => array($vendorDir . '/oro/doctrine-extensions/src'),
+    'Oro\\DBAL' => array($vendorDir . '/oro/doctrine-extensions/src'),
+    'LSS' => array($vendorDir . '/openlss/lib-array2xml'),
+    'JsonpCallbackValidator' => array($vendorDir . '/willdurand/jsonp-callback-validator/src'),
+    'JsonMapper' => array($vendorDir . '/netresearch/jsonmapper/src'),
 );
