@@ -4,7 +4,7 @@ import "datatables.net-dt";
 import "datatables.net-bs4";
 import "datatables.net-scroller";
 import "datatables.net-buttons";
-import 'bootstrap-switch-button';
+import {func} from "prop-types";
 
 var groupColumn = 2;
 
@@ -54,14 +54,7 @@ export default {
             }
         } );
     }*/
-    "fnDrawCallback": function() {
- /*       $(".faiez").each((i,element) => {
-            element.switchButton({
-                onlabel: "Enabled f",
-                offlabel: "Disabled f"
-            });
-        });
-        */
+    "fnDrawCallback": function () {
 
-    },
+    }
 }

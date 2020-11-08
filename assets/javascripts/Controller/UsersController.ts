@@ -4,6 +4,8 @@ const routes = require('../../../public/js/fos_js_routes.json');
 import * as  Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 import {randomString} from "../functions/Strings";
 Routing.setRoutingData(routes);
+import 'bootstrap-switch-button';
+
 export default class UsersController{
 
     getAjax(){
@@ -51,14 +53,23 @@ export default class UsersController{
                      ch+= '<a class="btn btn-info"  href="'+Routing.generate('admin_edit_users',{id:data})+'">Edit</a> ';
                      ch+= '<a class="btn btn-info delete_user" data-user="'+full.t_email+'"  href="'+Routing.generate('admin_remove_users',{id:data})+'">DELETE</a> ';
                      ch+= '<a class="btn btn-info password_user"  data-user="'+full.t_email+'" href="'+Routing.generate('admin_generate_password_users',{id:data})+'">Password</a> ';
-                     ch+='<input type="checkbox"  class="test" data-toggle="switchbutton" checked data-size="xs">';
+                     ch+='<input type="checkbox"  class="state_user" data-user="'+full.t_email+'"  data-toggle="switchbutton"  href="'+Routing.generate('admin_state_users',{id:data})+'" checked data-size="xs">';
                     return ch;
                 }
             }
 
         ]
     }
-
+    getfnDrawCallback(){
+        return function () {
+            $(".state_user").each((i,element) => {
+                element.switchbutton({
+                    onlabel: "Enabled f",
+                    offlabel: "Disabled f"
+                });
+            });
+        }
+    }
     /**
      * genrete random password
      */
@@ -66,5 +77,9 @@ export default class UsersController{
        let password =randomString(10,20);
        $('#user_plainPassword_first').val(password);
        $('#user_plainPassword_second').val(password);
+    }
+    changeState(url,state){
+        console.log('haikel');
+
     }
 }

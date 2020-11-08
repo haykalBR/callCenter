@@ -58,6 +58,23 @@ class MailerService
          }catch (\Exception $exception){
              dd($exception->getMessage());
          }
+     }
+     public function changePasswordUser(User $user , string $password){
+         try {
+             $url = $this->router->generate('admin_app_login',[], UrlGeneratorInterface::ABSOLUTE_URL);
+             $email = (new TemplatedEmail())
+                 ->from('haikelbrinis@gmail.com')
+                 ->to($user->getEmail())
+                 ->subject('this is new Password!');
+             $email ->htmlTemplate('admin/mailer/users/newpassword.html.twig')
+                 ->context([
+                     'user' => $user,
+                     'url'=> $url,
+                     'password'=>$password
+                 ]);
+             $this->mailer->send($email);
+         }catch (\Exception $exception){
 
+         }
      }
 }

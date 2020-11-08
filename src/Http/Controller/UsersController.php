@@ -6,6 +6,7 @@ namespace App\Http\Controller;
 
 use App\Domain\Membre\Entity\User;
 use App\Domain\Membre\Event\MailAddUserEvent;
+use App\Domain\Membre\Event\MailRegeneratePasswordEvent;
 use App\Domain\Membre\Form\ProfileType;
 use App\Domain\Membre\Form\SearchUsersType;
 use App\Domain\Membre\Form\UserType;
@@ -126,12 +127,28 @@ class UsersController extends  AbstractController
                         json_decode($request->getContent(), true)['password']
                     ));
                 $this->entityManager->flush();
-              //TODO Send email with new password
+                $this->eventDispatcher->dispatch(new MailRegeneratePasswordEvent($user,  json_decode($request->getContent(), true)['password']));
                 return $this->json( 'succres password update ! ',200);
             }catch(\Exception $exception){
                 return $this->json( $exception->getMessage(),400);
             }
         }
         return  $this->redirectToRoute('admin_users');
+    }
+    /**
+     * @Route("/state//{id}", name="state_users", methods={"GET","POST"},options={"expose"=true})
+     * @return Response
+     */
+    public function changeState(User $user,Request $request) :Response{
+       if ($request->isXmlHttpRequest()){
+           try {
+               $user->setEnabled(json_decode($request->getContent(), true)['state']);
+               $this->entityManager->flush();
+               return $this->json( " Compte Update with State {json_decode($request->getContent(), true)['state']?'disabled':'enabled'} ",200);
+           }catch (\Exception $exception){
+               return $this->json( $exception->getMessage(),400);
+           }
+       }
+       return  $this->redirectToRoute('admin_users');
     }
 }
