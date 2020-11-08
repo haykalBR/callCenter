@@ -54,7 +54,20 @@ services:
     ports:
       - "8081:8081"   
     networks:
-      - web         
+      - web
+  mail:
+    image: mailhog/mailhog
+    ports:
+      - 1090:8025
+    volumes:
+      - ./volumes/mailhog/volume:/maildir
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.mail.rule=Host(`www.mail.local.com`)"
+      - "traefik.http.services.mail.loadbalancer.server.port=1090"
+    networks:
+      - web
   portainer:
       image: portainer/portainer
       expose:

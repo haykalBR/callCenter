@@ -5,17 +5,18 @@ namespace App\Http\Controller;
 
 
 use App\Domain\Membre\Entity\User;
+use App\Domain\Membre\Event\MailAddUserEvent;
 use App\Domain\Membre\Form\ProfileType;
 use App\Domain\Membre\Form\SearchUsersType;
 use App\Domain\Membre\Form\UserType;
 use App\Domain\Membre\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
 /**
  * @Route("/users")
  * Class UsersController
@@ -35,12 +36,18 @@ class UsersController extends  AbstractController
      * @var UserPasswordEncoderInterface
      */
     private UserPasswordEncoderInterface $passwordEncoder;
+    /**
+     * @var EventDispatcherInterface
+     */
+    private EventDispatcherInterface $eventDispatcher;
 
-    public  function __construct(UserRepository $userRepository,EntityManagerInterface $entityManager,UserPasswordEncoderInterface $passwordEncoder)
+    public  function __construct(UserRepository $userRepository,EntityManagerInterface $entityManager,UserPasswordEncoderInterface $passwordEncoder,
+                                    EventDispatcherInterface $eventDispatcher)
     {
         $this->userRepository = $userRepository;
         $this->entityManager = $entityManager;
         $this->passwordEncoder = $passwordEncoder;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -71,7 +78,8 @@ class UsersController extends  AbstractController
                 ));
             $this->entityManager->persist($user);
             $this->entityManager->flush();
-            return  $this->redirectToRoute('admin_new_users');
+            $this->eventDispatcher->dispatch(new MailAddUserEvent($user, $form->get('plainPassword')->getData()));
+            return  $this->redirectToRoute('admin_users');
         }
         return $this->render('admin/membre/users/new.html.twig',[ 'form' => $form->createView()]);
     }
@@ -85,7 +93,7 @@ class UsersController extends  AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->flush();
-            return  $this->redirectToRoute('admin_new_users');
+            return  $this->redirectToRoute('admin_users');
         }
         return $this->render('admin/membre/users/edit.html.twig',[ 'form' => $form->createView()]);
 

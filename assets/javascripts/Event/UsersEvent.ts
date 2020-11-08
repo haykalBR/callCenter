@@ -7,9 +7,10 @@ const $ = require('jquery');
 export default class UsersEvent{
     private usersController:UsersController ;
     constructor(){
-        this.usersController=new UsersController();
+        this.usersController= new UsersController();
         var dataTable = $('#users_table').DataTable(this.setDatatableConfig());
         this.Search(dataTable);
+        $('')
     }
     private setDatatableConfig(){
 
@@ -26,6 +27,12 @@ export default class UsersEvent{
         });
         $('#search_users_gender').change(function(){
             dataTable.draw();
+        });
+    }
+
+    generatePassword(){
+        $('#user_random_password').on('click',()=>{
+                this.usersController.randompaasword();
         });
     }
 
