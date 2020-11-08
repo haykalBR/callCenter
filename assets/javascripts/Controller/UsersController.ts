@@ -2,6 +2,7 @@ import * as moment from 'moment'
 import 'bootstrap-switch-button';
 const routes = require('../../../public/js/fos_js_routes.json');
 import * as  Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+import {randomString} from "../functions/Strings";
 Routing.setRoutingData(routes);
 export default class UsersController{
 
@@ -56,4 +57,12 @@ export default class UsersController{
         ]
     }
 
+    /**
+     * genrete random password
+     */
+    randompaasword(){
+       let password =randomString(10,20);
+       $('#user_plainPassword_first').val(password);
+       $('#user_plainPassword_second').val(password);
+    }
 }
