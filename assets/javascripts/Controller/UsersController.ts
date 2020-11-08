@@ -46,9 +46,11 @@ export default class UsersController{
                 'name':'t.id',
                 'data':'t_id',
                 "render": function ( data, type, full, meta ) {
+
                     let ch="";
-                     ch = '<a class="btn btn-info"  href="'+Routing.generate('admin_edit_users',{id:data})+'">Edit</a> ';
-                     ch += '<a class="btn btn-info">Delete</a> ';
+                     ch+= '<a class="btn btn-info"  href="'+Routing.generate('admin_edit_users',{id:data})+'">Edit</a> ';
+                     ch+= '<a class="btn btn-info delete_user" data-user="'+full.t_email+'"  href="'+Routing.generate('admin_remove_users',{id:data})+'">DELETE</a> ';
+                     ch+= '<a class="btn btn-info password_user"  data-user="'+full.t_email+'" href="'+Routing.generate('admin_generate_password_users',{id:data})+'">Password</a> ';
                      ch+='<input type="checkbox"  class="test" data-toggle="switchbutton" checked data-size="xs">';
                     return ch;
                 }
