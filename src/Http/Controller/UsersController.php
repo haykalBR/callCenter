@@ -49,7 +49,6 @@ class UsersController extends  AbstractController
         $this->passwordEncoder = $passwordEncoder;
         $this->eventDispatcher = $eventDispatcher;
     }
-
     /**
      * @Route("/", name="users", methods={"GET","POST"})
      * @return Response
@@ -61,7 +60,6 @@ class UsersController extends  AbstractController
          }
         return $this->render('admin/membre/users/index.html.twig',[ 'form' => $form->createView()]);
     }
-
     /**
      * @Route("/new", name="new_users", methods={"GET","POST"})
      * @return Response
@@ -98,4 +96,42 @@ class UsersController extends  AbstractController
         return $this->render('admin/membre/users/edit.html.twig',[ 'form' => $form->createView()]);
 
      }
+    /**
+     * @Route("/remove/{id}", name="remove_users", methods={"GET","DELETE"},options={"expose"=true})
+     * @return Response
+     */
+    public function delete(User $user, Request $request) : Response{
+        //TODO DELETE EXCEPTION
+       if ($request->isXmlHttpRequest()){
+           try {
+               $this->entityManager->remove($user);
+               $this->entityManager->flush();
+               return $this->json("User {$user->getEmail()} bien removed",200);
+           } catch (\Exception $exception){
+               return $this->json( $exception->getMessage(),400);
+           }
+       }
+        return  $this->redirectToRoute('admin_users');
+    }
+    /**
+     * @Route("/generate/password/{id}", name="generate_password_users", methods={"GET","POST"},options={"expose"=true})
+     * @return Response
+     */
+    public function generatePassword(User $user ,Request $request): Response{
+        if ($request->isXmlHttpRequest()){
+            try {
+                $user->setPassword(
+                    $this->passwordEncoder->encodePassword(
+                        $user,
+                        json_decode($request->getContent(), true)['password']
+                    ));
+                $this->entityManager->flush();
+              //TODO Send email with new password
+                return $this->json( 'succres password update ! ',200);
+            }catch(\Exception $exception){
+                return $this->json( $exception->getMessage(),400);
+            }
+        }
+        return  $this->redirectToRoute('admin_users');
+    }
 }

@@ -1,16 +1,17 @@
 import datatableConfig from "../Config/datatable";
 import UsersController from "../Controller/UsersController";
 import 'bootstrap-switch-button';
-import Swal from 'sweetalert2'
+import {deleterecord, userpassword} from "../functions/sweetalert2";
 
 const $ = require('jquery');
 export default class UsersEvent{
     private usersController:UsersController ;
+
     constructor(){
         this.usersController= new UsersController();
         var dataTable = $('#users_table').DataTable(this.setDatatableConfig());
         this.Search(dataTable);
-        $('')
+         this.deleteUser(dataTable)
     }
     private setDatatableConfig(){
 
@@ -33,6 +34,23 @@ export default class UsersEvent{
     generatePassword(){
         $('#user_random_password').on('click',()=>{
                 this.usersController.randompaasword();
+        });
+    }
+    deleteUser(){
+        $("#users_table").on('click', '.delete_user', function (event) {
+            event.preventDefault();
+            const email = $(this).attr('data-user');
+            const url = this.href;
+            deleterecord(email,url);
+
+        });
+    }
+    passwordUser(){
+        $("#users_table").on('click', '.password_user', function (event) {
+            event.preventDefault();
+            const email = $(this).attr('data-user');
+            const url = this.href;
+            userpassword(email,url);
         });
     }
 
