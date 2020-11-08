@@ -4,6 +4,7 @@
 namespace App\Domain\Membre\Subscriber;
 
 use App\Domain\Membre\Event\MailAddUserEvent;
+use App\Domain\Membre\Event\MailRegeneratePasswordEvent;
 use App\Domain\Membre\Service\MailerService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -25,6 +26,7 @@ class MailUserSubscriber implements EventSubscriberInterface
     {
         return [
             MailAddUserEvent::class => 'sendAddUser',
+            MailRegeneratePasswordEvent::class => 'regeneratePassword',
         ];
     }
 
@@ -33,5 +35,11 @@ class MailUserSubscriber implements EventSubscriberInterface
      */
     public function sendAddUser(MailAddUserEvent $event) :void {
         $this->mailerService->sendAddUser($event->getUser(),$event->getPassword());
+    }
+    /**
+     * @param MailRegeneratePasswordEvent $event
+     */
+    public function regeneratePassword(MailRegeneratePasswordEvent $event){
+        $this->mailerService->changePasswordUser($event->getUser(),$event->getPassword());
     }
 }

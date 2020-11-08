@@ -11,12 +11,11 @@ export default class UsersEvent{
         this.usersController= new UsersController();
         var dataTable = $('#users_table').DataTable(this.setDatatableConfig());
         this.Search(dataTable);
-         this.deleteUser(dataTable)
     }
     private setDatatableConfig(){
-
         datatableConfig.columnDefs = this.usersController.getDatableColumnDef();
         datatableConfig.ajax = this.usersController.getAjax();
+        datatableConfig.fnDrawCallback=this.usersController.getfnDrawCallback();
         return datatableConfig;
     }
     private  Search(dataTable){
@@ -51,6 +50,15 @@ export default class UsersEvent{
             const email = $(this).attr('data-user');
             const url = this.href;
             userpassword(email,url);
+        });
+    }
+    changeStateUser(){
+        $("#users_table").on('change', '.state_user', function (event) {
+            event.preventDefault();
+            console.log(159258)
+         /*   const email = $(this).attr('data-user');
+            const url = this.href;
+            userpassword(email,url);*/
         });
     }
 
