@@ -9,6 +9,9 @@ RUN apt-get install -y zlib1g-dev libpq-dev git libicu-dev libxml2-dev libzip-de
 RUN apt-get install -y \
         libonig-dev \
     && docker-php-ext-install iconv mbstring
+RUN apt-get update -y && apt-get install -y sendmail libpng-dev
+RUN docker-php-ext-install gd
+
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y nodejs
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \

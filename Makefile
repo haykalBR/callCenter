@@ -86,9 +86,9 @@ fixtures: up  ##  Build the DB, control the schema validity, load fixtures and c
 	$(sy) doctrine:fixtures:load
 entity: up  ##  Create Entity in ure Domaine 
 	$(sy) next:entity
-data: up
+data: up ## add new data
 	$(sy) next:data
-routingjs:
+routingjs: ## Generate routing json
 	$(sy)  fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 ##
 ###----------------------#

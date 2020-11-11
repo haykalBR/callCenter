@@ -11,10 +11,10 @@ profileEvent.googleAuthFormStat();
 import 'select2/dist/js/select2';
 import 'select2/dist/css/select2.css';
 
-const url :any = new URL('http://www.mercure.local.com:8001/.well-known/mercure');
+/*const url :any = new URL('http://www.mercure.local.com:8001/.well-known/mercure');
 url.searchParams.append('topic', '/test');
 const eventSource = new EventSource(url, { withCredentials: true });
 eventSource.onmessage = e => {
     console.log('Nouveau message');
 
-}
+}*/

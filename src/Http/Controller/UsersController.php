@@ -14,6 +14,7 @@ use App\Domain\Membre\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,8 +58,9 @@ class UsersController extends  AbstractController
     public function index(Request $request):Response{
         $form   = $this->createForm(SearchUsersType::class, Null);
         if ($request->isXmlHttpRequest()){
-             return $this->json($this->userRepository->dataTable(),200);
-         }
+            return $this->json($this->userRepository->dataTable(),200);
+
+        }
         return $this->render('admin/membre/users/index.html.twig',[ 'form' => $form->createView()]);
     }
     /**
