@@ -9,7 +9,7 @@ export default class UsersController{
 
     getAjax(){
         return {
-            'url': "/",
+            'url': "/admin/users/",
             data: function(data) {
 
                 data.join = [
