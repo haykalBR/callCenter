@@ -30,8 +30,8 @@ class UserNormalizer implements ContextAwareNormalizerInterface
      */
     public function normalize($object, string $format = null, array $context = [])
     {
-        dd($format);
-      return [
+
+      $users= [
         "id"=>$object->getId(),
         "username"=>$object->getUsername(),
         "email"=>$object->getEmail(),
@@ -41,5 +41,21 @@ class UserNormalizer implements ContextAwareNormalizerInterface
         "deletedAt"=>$object->getDeletedAt(),
         "googleAuthenticatorSecret"=>$object->getGoogleAuthenticatorSecret(),
       ];
+      $profile=[];
+      if ($object->getProfile()){
+          $profile=[
+              'Id_user'=>$object->getId(),
+              'FirstName'=>$object->getProfile()->getFirstName(),
+              'LastName'=>$object->getProfile()->getLastName(),
+              'Adress'=>$object->getProfile()->getAddress(),
+              'Birthday'=>$object->getProfile()->getBirthday(),
+              'CodePostal'=>$object->getProfile()->getCodePostal(),
+              'Telephone'=>$object->getProfile()->getTelephone(),
+              'Gender'=>$object->getProfile()->getGender(),
+              'CreatedAt'=>$object->getProfile()->getCreatedAt(),
+              'UpdatedAt'=>$object->getProfile()->getUpdatedAt(),
+          ];
+      }
+      return  [$users,$profile];
     }
 }

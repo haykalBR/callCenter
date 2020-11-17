@@ -14,7 +14,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Key;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mercure\PublisherInterface;
@@ -91,16 +90,28 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/", name="test")
+     * @Route("/", name="default")
      */
-    public function index( PublisherInterface $publisher ,RouterInterface $router, Request $request,
-                           UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository)
+    public function index( PublisherInterface $publisher ,RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
-        return new JsonResponse(1);
         $users = $userRepository->findAll();
-       // $x=  $this->normalizer->normalize($users,'export_users');
-      //   return  $this->membreImporter->export($x);
+        $x=  $this->normalizer->normalize($users,'export_users');
+         return  $this->membreImporter->export($x);
+        $filename = 'Browser_characteristics.csv';
 
+        $spreadsheet = $this->createSpreadsheet();
+      //  $contentType = 'text/csv';
+        $writer = new Csv($spreadsheet);
+        $response = new StreamedResponse();
+        //$response->headers->set('Content-Type', $contentType);
+        $response->headers->set('Content-Disposition', 'attachment;filename="'.$filename.'"');
+        $response->setPrivate();
+        $response->headers->addCacheControlDirective('no-cache', true);
+        $response->headers->addCacheControlDirective('must-revalidate', true);
+        $response->setCallback(function() use ($writer) {
+            $writer->save('php://output');
+        });
+        return $response;
 /*
         //TODO nkamil nraka w nsob messanger 3ala redis  w nebda f tandhim
 
