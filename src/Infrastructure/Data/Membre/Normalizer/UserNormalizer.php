@@ -1,61 +1,59 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace App\Infrastructure\Data\Membre\Normalizer;
 
-
 use App\Domain\Membre\Entity\User;
-use Symfony\Component\Serializer\Exception\CircularReferenceException;
-use Symfony\Component\Serializer\Exception\ExceptionInterface;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
-use Symfony\Component\Serializer\Exception\LogicException;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 
 class UserNormalizer implements ContextAwareNormalizerInterface
 {
-
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function supportsNormalization($data, string $format = null, array $context = [])
     {
-        return $data instanceof User  && $format === "export_users" ;
+        return $data instanceof User && 'export_users' === $format;
     }
 
     /**
      * @param User $object
-     * @param string|null $format
-     * @param array $context
-     * @return array|\ArrayObject|bool|float|int|string|null
      */
-    public function normalize($object, string $format = null, array $context = [])
+    public function normalize($object, string $format = null, array $context = []): array
     {
-
-      $users= [
-        "id"=>$object->getId(),
-        "username"=>$object->getUsername(),
-        "email"=>$object->getEmail(),
-        "enabled"=>$object->getEnabled(),
-        "createdAt"=>$object->getCreatedAt(),
-        "updatedAt"=>$object->getUpdatedAt(),
-        "deletedAt"=>$object->getDeletedAt(),
-        "googleAuthenticatorSecret"=>$object->getGoogleAuthenticatorSecret(),
+        $users_list= [
+        'id'                       => $object->getId(),
+        'username'                 => $object->getUsername(),
+        'email'                    => $object->getEmail(),
+        'enabled'                  => $object->getEnabled(),
+        'createdAt'                => $object->getCreatedAt(),
+        'updatedAt'                => $object->getUpdatedAt(),
+        'deletedAt'                => $object->getDeletedAt(),
+        'googleAuthenticatorSecret'=> $object->getGoogleAuthenticatorSecret(),
       ];
-      $profile=[];
-      if ($object->getProfile()){
-          $profile=[
-              'Id_user'=>$object->getId(),
-              'FirstName'=>$object->getProfile()->getFirstName(),
-              'LastName'=>$object->getProfile()->getLastName(),
-              'Adress'=>$object->getProfile()->getAddress(),
-              'Birthday'=>$object->getProfile()->getBirthday(),
-              'CodePostal'=>$object->getProfile()->getCodePostal(),
-              'Telephone'=>$object->getProfile()->getTelephone(),
-              'Gender'=>$object->getProfile()->getGender(),
-              'CreatedAt'=>$object->getProfile()->getCreatedAt(),
-              'UpdatedAt'=>$object->getProfile()->getUpdatedAt(),
+        $profile_list=[];
+        $profile     =$object->getProfile();
+        if ($profile) {
+            $profile_list=[
+              'Id_user'   => $object->getId(),
+              'id'        => $profile->getId(),
+              'FirstName' => $profile->getFirstName(),
+              'LastName'  => $profile->getLastName(),
+              'Adress'    => $profile->getAddress(),
+              'Birthday'  => $profile->getBirthday(),
+              'CodePostal'=> $profile->getCodePostal(),
+              'Telephone' => $profile->getTelephone(),
+              'Gender'    => $profile->getGender(),
+              'CreatedAt' => $profile->getCreatedAt(),
+              'UpdatedAt' => $profile->getUpdatedAt(),
           ];
-      }
-      return  [$users,$profile];
+        }
+        return  [$users_list, $profile_list];
     }
 }

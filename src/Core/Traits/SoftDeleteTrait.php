@@ -1,8 +1,13 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace App\Core\Traits;
-
 
 trait SoftDeleteTrait
 {
@@ -11,20 +16,13 @@ trait SoftDeleteTrait
      */
     private $deletedAt;
 
-    /**
-     * @return mixed
-     */
     public function getDeletedAt()
     {
         return $this->deletedAt;
     }
 
-    /**
-     * @param mixed $deletedAt
-     */
     public function setDeletedAt($deletedAt): void
     {
         $this->deletedAt = $deletedAt;
     }
-
 }

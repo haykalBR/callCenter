@@ -46,7 +46,7 @@ class AppFixtures extends Fixture
             $user->setPassword(
               $this->userPasswordEncoder->encodePassword($user, 'haikel')
           );
-          //  $user->setGoogleAuthenticatorSecret($this->googleAuthenticator->generateSecret());
+            //  $user->setGoogleAuthenticatorSecret($this->googleAuthenticator->generateSecret());
             $manager->persist($user);
             /**
              * @var $profile Profile-

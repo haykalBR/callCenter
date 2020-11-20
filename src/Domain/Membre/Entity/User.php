@@ -9,18 +9,17 @@
 
 namespace App\Domain\Membre\Entity;
 
-use App\Core\Traits\SoftDeleteTrait;
-use App\Core\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Core\Traits\SoftDeleteTrait;
+use Gedmo\Mapping\Annotation as Gedmo;
+use App\Core\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\Collection;
 use App\Domain\Membre\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)

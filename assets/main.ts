@@ -18,3 +18,25 @@ eventSource.onmessage = e => {
     console.log('Nouveau message');
 
 }*/
+const url:any = new URL('http://www.mercure.local.com:8001/.well-known/mercure');
+url.searchParams.append('topic', 'csv:123456');
+const eventSource = new EventSource(url);
+const messageElt :any = document.getElementById('message');
+const progressElt :any = document.getElementById('progress');
+
+
+eventSource.onmessage = e => {
+    const payload = JSON.parse(e.data);
+
+    if (payload.type === 'progress') {
+        if (!payload.data.total) {
+            return
+        }
+        const percentage = (payload.data.current / payload.data.total) * 100 ;
+
+
+        progressElt.style = `width: ${percentage}%`;
+    } else if (payload.type === 'message') {
+        messageElt.innerHTML = payload.data;
+    }
+};
