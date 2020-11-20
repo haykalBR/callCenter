@@ -1,44 +1,44 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace App\Infrastructure\Maker;
 
-
-use App\Domain\Membre\Entity\Profile;
 use App\Domain\Membre\Entity\User;
+use App\Domain\Membre\Entity\Profile;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class FakeDataCommand extends AbstractMakeCommand
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    protected static $defaultName = 'next:data';
+
     private EntityManagerInterface $entityManager;
-    /**
-     * @var UserPasswordEncoderInterface
-     */
+
     private UserPasswordEncoderInterface $userPasswordEncoder;
 
-    public function __construct(string $projectDir, EntityManagerInterface $entityManager,UserPasswordEncoderInterface $userPasswordEncoder)
+    public function __construct(string $projectDir, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $userPasswordEncoder)
     {
         parent::__construct($projectDir);
-        $this->entityManager = $entityManager;
+        $this->entityManager       = $entityManager;
         $this->userPasswordEncoder = $userPasswordEncoder;
     }
 
-    protected static $defaultName = 'next:data';
     protected function configure(): void
     {
         $this
             ->setDescription('Crée des fake data with command line ')
         ;
     }
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
@@ -68,11 +68,11 @@ class FakeDataCommand extends AbstractMakeCommand
             $profile->setUser($user);
             $this->entityManager->persist($profile);
             $io->progressAdvance();
-
         }
         $this->entityManager->flush();
         $io->progressFinish();
         $io->success('Les contenus ont bien été enregistrés');
+
         return 0;
     }
 }

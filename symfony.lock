@@ -314,6 +314,9 @@
     "phpstan/phpstan-symfony": {
         "version": "0.12.8"
     },
+    "predis/predis": {
+        "version": "v1.1.6"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -661,6 +664,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.18.1"
+    },
+    "symfony/polyfill-uuid": {
+        "version": "v1.20.0"
     },
     "symfony/process": {
         "version": "v5.1.6"

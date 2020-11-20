@@ -1,16 +1,19 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace App\Infrastructure\Data;
-
 
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 interface DataInterface
 {
-    public function import();
-    public function export(array  $object):StreamedResponse;
-    public function columnNames(array $object,string $key,$sheet):void ;
-    public function columnValues(array $object,string $key,$sheet):void ;
+    public function import(int $importId, $content);
 
+    public function export(array $arrays): StreamedResponse;
 }

@@ -28,16 +28,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 {
     use BaseRepositoryTrait;
 
-    /**
-     * @var RequestStack
-     */
     private RequestStack $requestStack;
 
     public function __construct(ManagerRegistry $registry, RequestStack $requestStack)
     {
         parent::__construct($registry, User::class);
-        $this->requestStack = $requestStack ;
+        $this->requestStack = $requestStack;
     }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */

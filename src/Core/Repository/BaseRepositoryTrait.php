@@ -9,18 +9,15 @@
 
 namespace App\Core\Repository;
 
-use App\Core\Enum\DataTableEnum;
 use Doctrine\ORM\Query\Expr;
+use App\Core\Enum\DataTableEnum;
 use Doctrine\ORM\NonUniqueResultException;
-use Symfony\Component\HttpFoundation\Request;
 
 trait BaseRepositoryTrait
 {
-
-
     public function dataTable(): array
     {
-        $request=$this->requestStack->getCurrentRequest();
+        $request      =$this->requestStack->getCurrentRequest();
         $draw         = (int) ($request->query->all()['draw']);
         $start        = $request->query->all()['start'];
         $length       = $request->query->all()['length'];
@@ -99,32 +96,31 @@ trait BaseRepositoryTrait
                 $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.trim($search['value']).'%\'');
             }
         }
-        /**
+        /*
          *  Custom Search
          */
-        if (isset($request->query->all()['customSearch'])){
-
+        if (isset($request->query->all()['customSearch'])) {
             $customSearch       = $request->query->all()['customSearch'];
 
-            foreach ($customSearch as $search){
-                /**
+            foreach ($customSearch as $search) {
+                /*
                  *  Type Text
                  */
-                if ($search['type'] == DataTableEnum::TEXT){
-                    if ($search['value'] != ''){
+                if (DataTableEnum::TEXT === $search['type']) {
+                    if ('' !== $search['value']) {
                         $searchlist[] = $qb->expr()->like('CAST('.$search['name'].' as text)', '\'%'.trim($search['value']).'%\'');
                     }
                 }
-                /**
+                /*
                  *  Type Array
                  */
-                if ($search['type']== DataTableEnum::ARRAY){
-                    if (key_exists('value',$search)){
-                            $searchlist[] = $qb->expr()->in($search['name'], $search['value']);
+                if (DataTableEnum::ARRAY === $search['type']) {
+                    if (\array_key_exists('value', $search)) {
+                        $searchlist[] = $qb->expr()->in($search['name'], $search['value']);
                     }
                 }
                 //TODO 2TYPE DATE and DateInterval
-        }
+            }
         }
         /*
          *  if list search not empty serach
@@ -149,6 +145,7 @@ trait BaseRepositoryTrait
         } catch (NonUniqueResultException $e) {
             $recordsFiltered = 0;
         }
+
         return [
             'draw'            => $draw,
             'recordsTotal'    => $recordsTotal,
