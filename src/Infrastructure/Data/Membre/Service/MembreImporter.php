@@ -100,7 +100,7 @@ class MembreImporter implements DataInterface
         $count = 0;
         for ($i=0; $i < $objPHPExcel->getSheetCount(); ++$i) {
             $sheet = $objPHPExcel->setActiveSheetIndex($i);
-            $count += $sheet->getHighestRow();
+            $count += $sheet->getHighestRow()-1;
         }
 
         return $count;

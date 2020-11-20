@@ -9,6 +9,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Mercure\Update;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,26 +50,11 @@ class DefaultController extends AbstractController
      */
     public function index(PublisherInterface $publisher, RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
-        $users = $userRepository->findAll();
+   /*     $users = $userRepository->findAll();
         $x     =  $this->normalizer->normalize($users, 'export_users');
 
-        return  $this->membreImporter->export($x);
-        $filename = 'Browser_characteristics.csv';
+        return  $this->membreImporter->export($x);*/
 
-        $spreadsheet = $this->createSpreadsheet();
-        //  $contentType = 'text/csv';
-        $writer   = new Csv($spreadsheet);
-        $response = new StreamedResponse();
-        //$response->headers->set('Content-Type', $contentType);
-        $response->headers->set('Content-Disposition', 'attachment;filename="'.$filename.'"');
-        $response->setPrivate();
-        $response->headers->addCacheControlDirective('no-cache', true);
-        $response->headers->addCacheControlDirective('must-revalidate', true);
-        $response->setCallback(function () use ($writer) {
-            $writer->save('php://output');
-        });
-
-        return $response;
         /*
                 //TODO nkamil nraka w nsob messanger 3ala redis  w nebda f tandhim
 
@@ -84,15 +70,36 @@ class DefaultController extends AbstractController
                 $result = array_filter(array_keys($router->getRouteCollection()->all()), function ($v) {
                     return preg_match('/admin_/', $v);
                 });
-             *
-        /*     if ($request->isMethod('POST')){
+             */
+         if ($request->isMethod('POST')){
 
-                      $content=$request->files->get('db');
+           $content=$request->files->get('db');
+             $file=$request->files->get('db');
+
+
+             $fileFolder = __DIR__ . '/../../public/faiez/';  //choose the folder in which the uploaded file will be stored
+
+             $filePathName = md5(uniqid()) . $file->getClientOriginalName();
+
+           try {
+                 $file->move($fileFolder, $filePathName);
+             } catch (FileException $e) {
+                 dd($e);
+             }
+
+             $spreadsheet = IOFactory::load($fileFolder . $filePathName);
+             $spreadsheet->setActiveSheetIndex(0);
+             $spreadsheet->getActiveSheet()->removeRow(1); // I added this to be able to remove the first file line
+             $sheetData = $spreadsheet->getActiveSheet()->ToArray(true, true, true); // here, the read data is turned into an array
+            foreach ($sheetData as $sheet){
+                dd($sheet[0]);
+            }
                       if ($content){
                           $type = IOFactory::identify($content->getRealPath());
                           $objReader = IOFactory::createReader($type);
                           $objPHPExcel = $objReader->load($content->getRealPath());
-                          $importId = uuid_create();
+
+                         // $importId = uuid_create();
                           $importId = 123456;
                           //$this->membreImporter->import($importId,$content);
                           $this->bus->dispatch(new ExcelsUploaded($importId, $objPHPExcel));
@@ -104,7 +111,7 @@ class DefaultController extends AbstractController
                      'controller_name' => 'DefaultController',
                      'importId' => $importId,
                  ]);
-                 }*/
+                 }
 
         return $this->render('admin/default/index.html.twig', [
             'controller_name' => 'DefaultController',
