@@ -9,6 +9,8 @@
 
 namespace App\Controller;
 
+use App\Domain\Membre\Entity\User;
+use App\Infrastructure\Data\Membre\Imports\UsersImport;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Mercure\Update;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -72,38 +74,23 @@ class DefaultController extends AbstractController
                 });
              */
          if ($request->isMethod('POST')){
-
-           $content=$request->files->get('db');
              $file=$request->files->get('db');
+             $type = IOFactory::identify($file->getRealPath());
+             $objReader = IOFactory::createReader($type);
+             $spreadsheet = $objReader->load($file->getRealPath());
+             $importId = 123456;
+             //$this->membreImporter->import($importId,$spreadsheet);
+             $this->bus->dispatch(new ExcelsUploaded($importId, $spreadsheet));
 
 
-             $fileFolder = __DIR__ . '/../../public/faiez/';  //choose the folder in which the uploaded file will be stored
 
-             $filePathName = md5(uniqid()) . $file->getClientOriginalName();
+           /*  $spreadsheet->setActiveSheetIndex(0);
+             $spreadsheet->getActiveSheet()->removeRow(1);
+             $sheetData = $spreadsheet->getActiveSheet()->ToArray(true, true, true);
+            foreach ($sheetData as $key=>$sheet){
+                dd(UsersImport::model($sheet));
+            }*/
 
-           try {
-                 $file->move($fileFolder, $filePathName);
-             } catch (FileException $e) {
-                 dd($e);
-             }
-
-             $spreadsheet = IOFactory::load($fileFolder . $filePathName);
-             $spreadsheet->setActiveSheetIndex(0);
-             $spreadsheet->getActiveSheet()->removeRow(1); // I added this to be able to remove the first file line
-             $sheetData = $spreadsheet->getActiveSheet()->ToArray(true, true, true); // here, the read data is turned into an array
-            foreach ($sheetData as $sheet){
-                dd($sheet[0]);
-            }
-                      if ($content){
-                          $type = IOFactory::identify($content->getRealPath());
-                          $objReader = IOFactory::createReader($type);
-                          $objPHPExcel = $objReader->load($content->getRealPath());
-
-                         // $importId = uuid_create();
-                          $importId = 123456;
-                          //$this->membreImporter->import($importId,$content);
-                          $this->bus->dispatch(new ExcelsUploaded($importId, $objPHPExcel));
-                      }
 
 
 
