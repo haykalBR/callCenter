@@ -9,6 +9,9 @@
 
 namespace App\Infrastructure\Data\Membre\Service;
 
+use App\Infrastructure\Data\Membre\Imports\ProfileImport;
+use App\Infrastructure\Data\Membre\Imports\UsersImport;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mercure\Update;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -25,33 +28,53 @@ class MembreImporter implements DataInterface
     const PROFILE='Profile Management';
 
     private PublisherInterface $mercurePublisher;
+    /**
+     * @var EntityManagerInterface
+     */
+    private EntityManagerInterface $entityManager;
+    /**
+     * @var UsersImport
+     */
+    private UsersImport $usersImport;
+    /**
+     * @var ProfileImport
+     */
+    private ProfileImport $profileImport;
 
-    public function __construct(PublisherInterface $mercurePublisher)
+    public function __construct(PublisherInterface $mercurePublisher,EntityManagerInterface $entityManager, UsersImport $usersImport ,ProfileImport $profileImport)
     {
         $this->mercurePublisher = $mercurePublisher;
+        $this->entityManager = $entityManager;
+        $this->usersImport = $usersImport;
+        $this->profileImport = $profileImport;
     }
 
-    public function import($importId, $objPHPExcel)
+    public function import( int $importId, Spreadsheet $spreadsheet)
     {
-        $lineCount = $this->countLines($objPHPExcel);
-        $batchSize = 100;
-        $sheet     = $objPHPExcel->setActiveSheetIndex(0);
-        for ($i = 2; $i <= $lineCount; ++$i) {
-            $id                       =(int) $sheet->getCell('A'.$i)->getValue();
-            $username                 =$sheet->getCell('B'.$i)->getValue();
-            $email                    =$sheet->getCell('C'.$i)->getValue();
-            $enabled                  =$sheet->getCell('D'.$i)->getValue();
-            $createdAt                =$sheet->getCell('E'.$i)->getValue();
-            $updatedAt                =$sheet->getCell('F'.$i)->getValue();
-            $deletedAt                =$sheet->getCell('G'.$i)->getValue();
-            $googleAuthenticatorSecret=$sheet->getCell('H'.$i)->getValue();
-            if (0 === ($i % $batchSize)) {
-                $this->publishProgress($importId, 'progress', [
-                    'current' => $i,
-                    'total'   => $lineCount,
-                ]);
+
+        $lineCount = $this->countLines($spreadsheet);
+        $batchSize = 50;
+        try {
+            for($i=0;$i<$spreadsheet->getSheetCount();$i++){
+                $spreadsheet->setActiveSheetIndex($i);
+                $spreadsheet->getActiveSheet()->removeRow(1);
+                $sheetData = $spreadsheet->getActiveSheet()->ToArray(true, true, true);
+                foreach ($sheetData as $key=> $sheet){
+                    $i==0? $this->entityManager->persist($this->usersImport->model($sheet)):$this->profileImport->model($sheet);
+                    if (0 === ($key % $batchSize)) {
+                        $this->entityManager->flush();
+                        $this->entityManager->clear();
+                        $this->publishProgress($importId, 'progress', [
+                            'current' => $i,
+                            'total' => $lineCount,
+                        ]);
+                    }
+                }
             }
+        }catch (\Exception $exception){
+            echo  $exception->getMessage();
         }
+
         $this->publishProgress($importId, 'message', sprintf('Import of CSV with %d lines finished.', $lineCount));
     }
 
@@ -95,7 +118,7 @@ class MembreImporter implements DataInterface
      *
      * @param $objPHPExcel
      */
-    private function countLines($objPHPExcel): int
+    public function countLines($objPHPExcel): int
     {
         $count = 0;
         for ($i=0; $i < $objPHPExcel->getSheetCount(); ++$i) {

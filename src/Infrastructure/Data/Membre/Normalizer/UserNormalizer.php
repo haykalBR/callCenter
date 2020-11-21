@@ -34,7 +34,7 @@ class UserNormalizer implements ContextAwareNormalizerInterface
         'enabled'                  => $object->getEnabled(),
         'createdAt'                => $object->getCreatedAt(),
         'updatedAt'                => $object->getUpdatedAt(),
-        'deletedAt'                => $object->getDeletedAt(),
+      //  'deletedAt'                => $object->getDeletedAt(),
         'googleAuthenticatorSecret'=> $object->getGoogleAuthenticatorSecret(),
       ];
         $profile_list=[];

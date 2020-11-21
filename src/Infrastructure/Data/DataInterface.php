@@ -9,11 +9,12 @@
 
 namespace App\Infrastructure\Data;
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 interface DataInterface
 {
-    public function import(int $importId, $content);
+    public function import(int $importId, Spreadsheet $spreadsheet);
 
     public function export(array $arrays): StreamedResponse;
 }
