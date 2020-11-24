@@ -32,13 +32,15 @@ eventSource.onmessage = e => {
         if (!payload.data.total) {
             return
         }
-        const percentage = (payload.data.current / payload.data.total) * 100 ;
-            console.log(percentage);
+        let percentage = (payload.data.current / payload.data.total) * 100 ;
+            console.log(percentage,payload.data.current,payload.data.tota);
 
 
         progressElt.style = `width: ${percentage}%`;
     } else if (payload.type === 'message') {
         messageElt.innerHTML = payload.data;
 
+    }else if(payload.type ==="error"){
+        messageElt.innerHTML = payload.data;
     }
 };

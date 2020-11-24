@@ -9,9 +9,17 @@
 
 namespace App\Infrastructure\Data\Membre\Service;
 
+use App\Controller\DefaultController;
+use App\Infrastructure\Data\Event\MailExcelEvent;
 use App\Infrastructure\Data\Membre\Imports\ProfileImport;
 use App\Infrastructure\Data\Membre\Imports\UsersImport;
+use App\Infrastructure\Data\Service\MercureExcel;
+use App\Infrastructure\Data\Traits\HeadingRowExtractorTrait;
+use App\Infrastructure\Data\Traits\ValuesRowExtractorTrait;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Mercure\Update;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -23,11 +31,11 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class MembreImporter implements DataInterface
 {
-    use DataTrait;
+    use HeadingRowExtractorTrait;
+    use ValuesRowExtractorTrait;
     const USERS  ='Users Management';
     const PROFILE='Profile Management';
 
-    private PublisherInterface $mercurePublisher;
     /**
      * @var EntityManagerInterface
      */
@@ -40,51 +48,129 @@ class MembreImporter implements DataInterface
      * @var ProfileImport
      */
     private ProfileImport $profileImport;
+    /**
+     * @var MercureExcel
+     */
+    private MercureExcel $mercureExcel;
 
-    public function __construct(PublisherInterface $mercurePublisher,EntityManagerInterface $entityManager, UsersImport $usersImport ,ProfileImport $profileImport)
+    private  EventDispatcherInterface $eventDispatcher;
+
+    public function __construct(MercureExcel $mercureExcel,EntityManagerInterface $entityManager, UsersImport $usersImport ,ProfileImport $profileImport
+        ,EventDispatcherInterface $eventDispatcher
+    )
     {
-        $this->mercurePublisher = $mercurePublisher;
         $this->entityManager = $entityManager;
         $this->usersImport = $usersImport;
         $this->profileImport = $profileImport;
+        $this->mercureExcel = $mercureExcel;
+        $this->eventDispatcher=$eventDispatcher;
+
     }
 
-    public function import( int $importId, Spreadsheet $spreadsheet)
+    public function import( int $importId, $filePathName)
     {
-
-        $lineCount = $this->countLines($spreadsheet);
+        //TODO CHNAGE THIS PARTIE AND CREATE BUNDLE  tandhim asemi akthir w les commntatire plus khoudh min bundle deja makhdouma
+        ///
+        $spreadsheet = IOFactory::load(DefaultController::uploads . $filePathName);
+        $lineCount = $this->mercureExcel->countLines($spreadsheet);
         $batchSize = 50;
-        try {
-            for($i=0;$i<$spreadsheet->getSheetCount();$i++){
-                $spreadsheet->setActiveSheetIndex($i);
-                $spreadsheet->getActiveSheet()->removeRow(1);
-                $sheetData = $spreadsheet->getActiveSheet()->ToArray(true, true, true);
+        $sheetCount=$spreadsheet->getSheetCount();
+        $this->mercureExcel->publishProgress($importId, 'message', sprintf('Import of CSV with %d lines started.', $lineCount));
+        $lineNumber=0;
+        $lineNumberProgress=0;
+        $list_users=[];
+        $list_profile=[];
+       // try {
+            for ($i = 0; $i < $sheetCount; $i++) {
+                /**
+                 * @var  Worksheet $sheet
+                 */
+                $sheet = $spreadsheet->getSheet($i);
+                $sheet->removeRow(1);
+                $sheetData = $sheet->toArray(null, true, true, true);
                 foreach ($sheetData as $key=> $sheet){
-                    $i==0? $this->entityManager->persist($this->usersImport->model($sheet)):$this->profileImport->model($sheet);
-                    if (0 === ($key % $batchSize)) {
-                        $this->entityManager->flush();
-                        $this->entityManager->clear();
-                        $this->publishProgress($importId, 'progress', [
-                            'current' => $i,
-                            'total' => $lineCount,
-                        ]);
+                        $lineNumber++;
+                        $lineNumberProgress++;
+                        if ($i==0){
+                            if (!is_array($this->usersImport->model($sheet))){
+                                $this->entityManager->persist($this->usersImport->model($sheet));
+                            }else{
+                                $list_users[]=$this->usersImport->model($sheet);
+                            }
+                        }else {
+                            if (!is_array($this->profileImport->model($sheet))){
+                                $this->entityManager->persist($this->profileImport->model($sheet));
+                            }else{
+                                $list_profile[]= $this->profileImport->model($sheet);
+                            }
+                        }
+                        if ($lineNumberProgress == $batchSize) {
+                            $lineNumberProgress=0;
+                            $this->entityManager->flush();
+                            $this->entityManager->clear();
+                            $this->mercureExcel->publishProgress($importId, 'progress', [
+                                'current' => $lineNumber,
+                                'total' => $lineCount,
+                            ]);
+                        }
+
                     }
+
                 }
+
+            $this->eventDispatcher->dispatch(new MailExcelEvent([]));
+            //TODO SERVICE SAVE FILE XITH ARRAY IF EXCIT
+            $list=[$list_users,$list_profile];
+            foreach ($list as $l){
+                return$this->singleExport($l);
+
             }
-        }catch (\Exception $exception){
-            echo  $exception->getMessage();
-        }
 
-        $this->publishProgress($importId, 'message', sprintf('Import of CSV with %d lines finished.', $lineCount));
+        $this->mercureExcel->publishProgress($importId, 'progress', [
+                'current' => $lineNumber,
+                'total' => $lineCount,
+            ]);
+            $this->entityManager->flush();
+            $this->entityManager->clear();
+            $this->mercureExcel->publishProgress($importId, 'message', sprintf('Import of CSV with %d lines finished.', $lineNumber));
+      /*  }catch (\Exception $exception){
+           $this->publishProgress($importId, 'error', sprintf('Import of CSV has error %s ', $exception->getMessage()));
+        }*/
+
     }
+    public function singleExport(array $arrays){
+        if (empty($arrays)) {
+            throw new EmptyValueException('Ce Array is Empty');
+        }
+        $spreadsheet =new Spreadsheet();
+        $sheet= $spreadsheet->setActiveSheetIndex(0);
+        $this->columnSingleNames($arrays, $sheet);
+        $this->columnSingleValues($arrays, $sheet);
+        $spreadsheet->setActiveSheetIndex(0);
+        $filename = 'Membre_EXPORT '.gmdate('d-m-y H:i:s').'.xlsx';
+        $writer   = new Xlsx($spreadsheet);
+        $response = new StreamedResponse();
+        $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        $response->headers->set('Content-Disposition', 'attachment;filename="'.$filename.'"');
+        $response->setPrivate();
+        $response->headers->addCacheControlDirective('no-cache', true);
+        $response->headers->addCacheControlDirective('must-revalidate', true);
+        $response->setCallback(function () use ($writer) {
+            $writer->save('php://output');
+        });
+        $writer->save("./Uploads/Export/{$filename}");
+        return $response;
 
+
+    }
     public function export(array $arrays): StreamedResponse
     {
+
         if (empty($arrays)) {
             throw new EmptyValueException('Ce Array is Empty');
         }
         $namesSheet=[self::USERS, self::PROFILE];
-        try {
+    //    try {
             $spreadsheet =new Spreadsheet();
             for ($i=0; $i < \count($arrays[0]); ++$i) {
                 0 !== $i ? $spreadsheet->createSheet() : null;
@@ -108,39 +194,10 @@ class MembreImporter implements DataInterface
              //TODO Folde ands test if droit d'access and direct mawjoud
             $writer->save("./Export/{$filename}");
             return $response;
-        } catch (\Exception $exception) {
+      /*  } catch (\Exception $exception) {
             throw  new \Exception($exception->getMessage());
-        }
+        }*/
     }
 
-    /**
-     * get count of line.
-     *
-     * @param $objPHPExcel
-     */
-    public function countLines($objPHPExcel): int
-    {
-        $count = 0;
-        for ($i=0; $i < $objPHPExcel->getSheetCount(); ++$i) {
-            $sheet = $objPHPExcel->setActiveSheetIndex($i);
-            $count += $sheet->getHighestRow()-1;
-        }
 
-        return $count;
-    }
-
-    /**
-     * Publish Notfication.
-     *
-     * @param null $data
-     */
-    private function publishProgress(string $importId, string $type, $data = null)
-    {
-        $update = new Update(
-            "csv:$importId",
-            json_encode(['type' => $type, 'data' => $data]),
-        );
-
-        ($this->mercurePublisher)($update);
-    }
 }

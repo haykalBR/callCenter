@@ -31,6 +31,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DefaultController extends AbstractController
 {
+    const uploads= __DIR__ . '/../../public/uploads/';
     private NormalizerInterface $normalizer;
 
     private MembreImporter $membreImporter;
@@ -52,13 +53,17 @@ class DefaultController extends AbstractController
      */
     public function index(PublisherInterface $publisher, RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
-   /*     $users = $userRepository->findAll();
-        $x     =  $this->normalizer->normalize($users, 'export_users');
 
-        return  $this->membreImporter->export($x);*/
+        set_time_limit(20000000000000000);
+    /*
+        $users = $userRepository->findAll();
+             $x     =  $this->normalizer->normalize($users, 'export_users');
+
+             return  $this->membreImporter->export($x);
+             */
 
         /*
-                //TODO nkamil nraka w nsob messanger 3ala redis  w nebda f tandhim
+           $
 
                 $update = new Update(
                     '/test',
@@ -75,12 +80,18 @@ class DefaultController extends AbstractController
              */
          if ($request->isMethod('POST')){
              $file=$request->files->get('db');
-             $type = IOFactory::identify($file->getRealPath());
-             $objReader = IOFactory::createReader($type);
-             $spreadsheet = $objReader->load($file->getRealPath());
+
+           ;  //choose the folder in which the uploaded file will be stored
+
+             $filePathName = md5(uniqid()) . $file->getClientOriginalName();
+             try {
+                 $file->move(self::uploads, $filePathName);
+             } catch (FileException $e) {
+                 dd("ddd",$e);
+             }
              $importId = 123456;
-             //$this->membreImporter->import($importId,$spreadsheet);
-             $this->bus->dispatch(new ExcelsUploaded($importId, $spreadsheet));
+               $this->membreImporter->import($importId,$filePathName);
+             // $this->bus->dispatch(new ExcelsUploaded($importId, $filePathName));
 
 
 
@@ -103,15 +114,5 @@ class DefaultController extends AbstractController
         return $this->render('admin/default/index.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
-    }
-
-    private function publishProgress(string $importId, string $type, $data = null)
-    {
-        $update = new Update(
-            "csv:$importId",
-            json_encode(['type' => $type, 'data' => $data]),
-        );
-
-        ($this->mercurePublisher)($update);
     }
 }
