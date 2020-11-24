@@ -9,6 +9,7 @@
 
 namespace App\Domain\Membre\Entity;
 
+use App\Validator\HasRelationship;
 use Doctrine\ORM\Mapping as ORM;
 use App\Core\Traits\SoftDeleteTrait;
 use Gedmo\Mapping\Annotation as Gedmo;

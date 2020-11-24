@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 interface DataInterface
 {
-    public function import(int $importId, Spreadsheet $spreadsheet);
+    public function import(int $importId, $spreadsheet);
 
     public function export(array $arrays): StreamedResponse;
 }

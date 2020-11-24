@@ -14,6 +14,9 @@ use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 
 class UserNormalizer implements ContextAwareNormalizerInterface
 {
+    const EXPORT_USERS="export_users";
+    const CONTEXT_USER="user_context";
+    const CONTEXT_PROFILE="profile_context";
     /**
      * {@inheritdoc}
      */
@@ -27,6 +30,7 @@ class UserNormalizer implements ContextAwareNormalizerInterface
      */
     public function normalize($object, string $format = null, array $context = []): array
     {
+
         $users_list= [
         'id'                       => $object->getId(),
         'username'                 => $object->getUsername(),
@@ -34,14 +38,14 @@ class UserNormalizer implements ContextAwareNormalizerInterface
         'enabled'                  => $object->getEnabled(),
         'createdAt'                => $object->getCreatedAt(),
         'updatedAt'                => $object->getUpdatedAt(),
-      //  'deletedAt'                => $object->getDeletedAt(),
+        'deletedAt'                => $object->getDeletedAt(),
         'googleAuthenticatorSecret'=> $object->getGoogleAuthenticatorSecret(),
       ];
         $profile_list=[];
         $profile     =$object->getProfile();
         if ($profile) {
             $profile_list=[
-              'Id_user'   => $object->getId(),
+              'Id_user'   => $object->getUsername(),
               'id'        => $profile->getId(),
               'FirstName' => $profile->getFirstName(),
               'LastName'  => $profile->getLastName(),
@@ -54,6 +58,16 @@ class UserNormalizer implements ContextAwareNormalizerInterface
               'UpdatedAt' => $profile->getUpdatedAt(),
           ];
         }
-        return  [$users_list, $profile_list];
+        $response = [$users_list, $profile_list];
+        if (!empty($context)){
+            if ($context[0]==self::CONTEXT_USER){
+                $users_list['error']=$context[1];
+                $response=$users_list;
+            }
+            if ($context[0]==self::CONTEXT_PROFILE){
+                $response=$profile_list;
+            }
+        }
+        return  $response;
     }
 }

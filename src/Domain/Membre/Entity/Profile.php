@@ -10,11 +10,13 @@
 namespace App\Domain\Membre\Entity;
 
 use App\Core\Enum\GenreEnum;
+use App\Validator\HasRelationship;
 use Doctrine\ORM\Mapping as ORM;
 use App\Core\Enum\RelationShipEnum;
 use App\Core\Traits\FileUploadTrait;
 use App\Core\Traits\TimestampableTrait;
 use App\Domain\Membre\Repository\ProfileRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProfileRepository::class)
@@ -91,7 +93,7 @@ class Profile implements \Serializable
      */
     private $codePostal;
     /**
-     * @var User|null
+     * @var User
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="profile", cascade={"persist", "remove"})
      */
     private $user;

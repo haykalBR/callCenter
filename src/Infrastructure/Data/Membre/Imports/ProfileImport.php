@@ -5,9 +5,13 @@ namespace App\Infrastructure\Data\Membre\Imports;
 
 
 use App\Domain\Membre\Entity\Profile;
+use App\Domain\Membre\Repository\ProfileRepository;
 use App\Domain\Membre\Repository\UserRepository;
 use App\Infrastructure\Data\Concerns\ToModel;
 use App\Infrastructure\Data\Exceptions\CastingException;
+use App\Infrastructure\Data\Membre\Normalizer\UserNormalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ProfileImport implements ToModel
 {
@@ -15,10 +19,25 @@ class ProfileImport implements ToModel
      * @var UserRepository
      */
     private UserRepository $userRepository;
+    /**
+     * @var ValidatorInterface
+     */
+    private ValidatorInterface $validator;
+    /**
+     * @var NormalizerInterface
+     */
+    private NormalizerInterface $normalizer;
+    /**
+     * @var ProfileRepository
+     */
+    private ProfileRepository $profileRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository,ValidatorInterface $validator,NormalizerInterface $normalizer,ProfileRepository $profileRepository)
     {
         $this->userRepository = $userRepository;
+        $this->validator = $validator;
+        $this->normalizer = $normalizer;
+        $this->profileRepository = $profileRepository;
     }
 
     /**
@@ -27,17 +46,25 @@ class ProfileImport implements ToModel
     public  function model(array $row)
     {
         try {
-            $profile=new Profile();
-            $profile->setFirstName($row[1]);
-            $profile->setLastName($row[2]);
-            $profile->setAddress($row[3]);
-            $profile->setBirthday(new \DateTime($row[4]));
-            $profile->setCodePostal($row[5]);
-            $profile->setTelephone($row[6]);
-            $profile->setGender($row[7]);
-            $profile->setCreatedAt(new \DateTime($row[8]));
-            $profile->setUpdatedAt(new \DateTime($row[9]));
-            $profile->setUser($this->userRepository->find($row[0]));
+            $user=$this->userRepository->findOneBy(['username'=>trim($row["A"])]);
+            if (!$user)
+                throw new \Exception('Not entity ');
+            $profile= $user->getProfile()??new Profile();
+            $profile->setFirstName(trim($row["C"]));
+            $profile->setLastName(trim($row["D"]));
+            $profile->setAddress(trim($row["E"]));
+            $profile->setBirthday(new \DateTime($row["F"]));
+            $profile->setCodePostal($row["G"]);
+            $profile->setTelephone(trim($row["H"]));
+            $profile->setGender(trim($row["I"]));
+            $profile->setCreatedAt(new \DateTime($row["J"]));
+            $profile->setUpdatedAt(new \DateTime($row["K"]));
+            $profile->setUser($user);
+            $errors=$this->validator->validate($profile);
+            if (count($errors)>0){
+                return $this->normalizer->normalize($this->profileRepository->find($row['B']),
+                    UserNormalizer::EXPORT_USERS,[UserNormalizer::CONTEXT_PROFILE] );
+            }
             return $profile;
         }catch (CastingException $exception){
             echo $exception->getMessage();
