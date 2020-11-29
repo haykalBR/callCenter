@@ -15,6 +15,7 @@ use App\Infrastructure\Data\Membre\Imports\ProfileImport;
 use App\Infrastructure\Data\Membre\Imports\UsersImport;
 use App\Infrastructure\Data\Service\MercureExcel;
 use App\Infrastructure\Data\Traits\HeadingRowExtractorTrait;
+use App\Infrastructure\Data\Traits\SheetTrait;
 use App\Infrastructure\Data\Traits\ValuesRowExtractorTrait;
 use Doctrine\ORM\EntityManagerInterface;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -33,6 +34,7 @@ class MembreImporter implements DataInterface
 {
     use HeadingRowExtractorTrait;
     use ValuesRowExtractorTrait;
+    use SheetTrait;
     const USERS  ='Users Management';
     const PROFILE='Profile Management';
 
@@ -69,8 +71,6 @@ class MembreImporter implements DataInterface
 
     public function import( int $importId, $filePathName)
     {
-        //TODO CHNAGE THIS PARTIE AND CREATE BUNDLE  tandhim asemi akthir w les commntatire plus khoudh min bundle deja makhdouma
-        ///
         $spreadsheet = IOFactory::load(DefaultController::uploads . $filePathName);
         $lineCount = $this->mercureExcel->countLines($spreadsheet);
         $batchSize = 50;
@@ -78,30 +78,25 @@ class MembreImporter implements DataInterface
         $this->mercureExcel->publishProgress($importId, 'message', sprintf('Import of CSV with %d lines started.', $lineCount));
         $lineNumber=0;
         $lineNumberProgress=0;
-        $list_users=[];
-        $list_profile=[];
+        $users_error=[];
+        $profile_error=[];
        // try {
             for ($i = 0; $i < $sheetCount; $i++) {
-                /**
-                 * @var  Worksheet $sheet
-                 */
-                $sheet = $spreadsheet->getSheet($i);
-                $sheet->removeRow(1);
-                $sheetData = $sheet->toArray(null, true, true, true);
-                foreach ($sheetData as $key=> $sheet){
+                foreach ($this->getsheetData($spreadsheet,$i) as $key=> $sheet)
+                {
                         $lineNumber++;
                         $lineNumberProgress++;
                         if ($i==0){
                             if (!is_array($this->usersImport->model($sheet))){
                                 $this->entityManager->persist($this->usersImport->model($sheet));
                             }else{
-                                $list_users[]=$this->usersImport->model($sheet);
+                                $users_error[]=$this->usersImport->model($sheet);
                             }
-                        }else {
+                        }else{
                             if (!is_array($this->profileImport->model($sheet))){
                                 $this->entityManager->persist($this->profileImport->model($sheet));
                             }else{
-                                $list_profile[]= $this->profileImport->model($sheet);
+                                $profile_error[]= $this->profileImport->model($sheet);
                             }
                         }
                         if ($lineNumberProgress == $batchSize) {
