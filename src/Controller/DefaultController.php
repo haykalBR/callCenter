@@ -28,6 +28,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 use App\Infrastructure\Data\Membre\Service\MembreImporter;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Polyfill\Uuid\Uuid;
 
 class DefaultController extends AbstractController
 {
@@ -78,6 +79,7 @@ class DefaultController extends AbstractController
                     return preg_match('/admin_/', $v);
                 });
              */
+        $uuid = uuid_create();
          if ($request->isMethod('POST')){
              $file=$request->files->get('db');
 

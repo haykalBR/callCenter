@@ -49,9 +49,9 @@ export default class UsersController{
                 "render": function ( data, type, full, meta ) {
 
                     let ch="";
-                     ch+= '<a class="btn btn-info"  href="'+Routing.generate('admin_edit_users',{id:data})+'">Edit</a> ';
-                     ch+= '<a class="btn btn-info delete_user" data-user="'+full.t_email+'"  href="'+Routing.generate('admin_remove_users',{id:data})+'">DELETE</a> ';
-                     ch+= '<a class="btn btn-info password_user"  data-user="'+full.t_email+'" href="'+Routing.generate('admin_generate_password_users',{id:data})+'">Password</a> ';
+                     ch+= '<a data-toggle="tooltip" title="edit user " href="'+Routing.generate('admin_edit_users',{id:data})+'"><i class="fa fa-edit "></i></a> ';
+                     ch+= '<a data-toggle="tooltip" title="remove user "  class="delete_user" data-user="'+full.t_email+'"  href="'+Routing.generate('admin_remove_users',{id:data})+'"><i class="fa fa-trash"></i></a> ';
+                     ch+= '<a data-toggle="tooltip" title="regnreate password "  class="password_user" data-user="'+full.t_email+'" href="'+Routing.generate('admin_generate_password_users',{id:data})+'"><i class="fa fa-key"></i></a> ';
                      ch+='<input type="checkbox"  class="state_user" data-user="'+full.t_email+'"  data-toggle="switchbutton"  href="'+Routing.generate('admin_state_users',{id:data})+'" checked data-size="xs">';
                     return ch;
                 }
