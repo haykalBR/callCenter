@@ -6,10 +6,7 @@ import "datatables.net-scroller";
 import "datatables.net-buttons";
 import 'bootstrap-switch-button';
 
-var groupColumn = 2;
-
-export default {
-    
+export default {    
     "dom": 'Bfrtip',
     "buttons": [
         'copy', 'csv', 'excel', 'pdf'
@@ -25,7 +22,7 @@ export default {
     "pageLength": 50,
     "length": 40,
     "deferRender": true,
-    "scrollY": 500,
+    "scrollY": "500",
     "scrollCollapse": true,
     "scrollX":     false,
     "scroller": {
