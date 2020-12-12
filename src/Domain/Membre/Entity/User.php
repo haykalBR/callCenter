@@ -61,10 +61,7 @@ class User implements UserInterface, TwoFactorInterface
      */
     private bool  $enabled;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private array $roles = [];
+  
 
     /**
      * @var string The hashed password
@@ -88,9 +85,19 @@ class User implements UserInterface, TwoFactorInterface
      */
     private Collection $loginAttempts;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Roles::class, mappedBy="users")
+     */
+    private $accessRoles;
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
     public function __construct()
     {
         $this->loginAttempts = new ArrayCollection();
+        $this->accessRoles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,24 +134,7 @@ class User implements UserInterface, TwoFactorInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
 
     /**
      * @see UserInterface
@@ -277,6 +267,52 @@ class User implements UserInterface, TwoFactorInterface
                 $loginAttempt->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Roles[]
+     */
+    public function getAccessRoles(): Collection
+    {
+        return $this->accessRoles;
+    }
+
+    public function addAccessRoles(Roles $accessRoles): self
+    {
+        if (!$this->accessRoles->contains($accessRoles)) {
+            $this->accessRoles[] = $accessRoles;
+            $accessRoles->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccessRoles(Roles $accessRoles): self
+    {
+        if ($this->accessRoles->contains($accessRoles)) {
+            $this->accessRoles->removeElement($accessRoles);
+            $accessRoles->removeUser($this);
+        }
+
+        return $this;
+    }
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }

@@ -28,7 +28,7 @@ services:
     environment:
       POSTGRES_PASSWORD: haikel
       POSTGRES_USER: haikel
-      POSTGRES_DB: grafikart
+      POSTGRES_DB: football
       TZ: Europe/Paris
       PGTZ: Europe/Paris
     ports:
