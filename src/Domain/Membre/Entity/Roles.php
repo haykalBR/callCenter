@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Domain\Membre\Entity;
+use App\Core\Traits\SoftDeleteTrait;
+use App\Core\Traits\TimestampableTrait;
 use App\Domain\Membre\Repository\RolesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -8,16 +10,21 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=RolesRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
-class Roles
+class Roles implements RoleInterface
 {
+    use TimestampableTrait,SoftDeleteTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
-
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $name;
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -64,7 +71,7 @@ class Roles
         return $this->roleHasPermissions;
     }
 
-    public function addRoleHasPermission(Permissions $roleHasPermission): self
+    public function grantPermission(Permissions $roleHasPermission): self
     {
         if (!$this->roleHasPermissions->contains($roleHasPermission)) {
             $this->roleHasPermissions[] = $roleHasPermission;
@@ -73,7 +80,7 @@ class Roles
         return $this;
     }
 
-    public function removeRoleHasPermission(Permissions $roleHasPermission): self
+    public function revokePermission(Permissions $roleHasPermission): self
     {
         if ($this->roleHasPermissions->contains($roleHasPermission)) {
             $this->roleHasPermissions->removeElement($roleHasPermission);
@@ -107,4 +114,33 @@ class Roles
 
         return $this;
     }
+
+    public function hasPermission($permission)
+    {
+        return $this->getRoleHasPermissions()->exists(function($key, $value) use ($permission){
+            return $value->getGuardName() === $permission;
+        });
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->getGuardName() === static::ROLE_SUPER_ADMIN;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+
 }

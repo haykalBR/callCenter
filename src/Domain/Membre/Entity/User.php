@@ -18,7 +18,6 @@ use Doctrine\Common\Collections\Collection;
 use App\Domain\Membre\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -31,10 +30,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(fields={"username"}, message="Cet utilisateur existe déjà")
  * @UniqueEntity(fields={"email"}, message="Cette addresse mail déjà existe")
  */
-class User implements UserInterface, TwoFactorInterface
+class User extends UserInterface  implements  TwoFactorInterface
 {
-    use  TimestampableTrait;
-    use SoftDeleteTrait;
+    use TimestampableTrait,SoftDeleteTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -303,17 +302,46 @@ class User implements UserInterface, TwoFactorInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roleNames = [];
+        $roles = $this->getAccessRoles();
 
-        return array_unique($roles);
+        foreach ($roles as $role) {
+            $roleNames[] = $role->getGuardName();
+        }
+
+        return array_unique($roleNames);
     }
 
     public function setRoles(array $roles): self
     {
-        $this->roles = $roles;
-
-        return $this;
+        foreach ($roles as $role) {
+            $this->addAccessRoles($role);
+        }
     }
+
+    public function hasPermission($permission)
+    {
+        $hasPermission = false;
+        foreach ($this->getAccessRoles() as $role) {
+            if ( $role->hasPermission($permission)) {
+                return true;
+            }
+        }
+        return $hasPermission;
+    }
+    function isSuperAdmin(){
+        $isSuperAdmin = false;
+        foreach ($this->getAccessRoles() as $role) {
+            if ($role->isSuperAdmin()) {
+                return true;
+            }
+        }
+        return $isSuperAdmin;
+    }
+
+    public function hasRole(RoleInterface $role)
+    {
+        return $this->getAccessRoles->contains($role);
+    }
+
 }

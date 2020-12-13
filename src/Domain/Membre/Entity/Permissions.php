@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Domain\Membre\Entity;
+use App\Core\Traits\SoftDeleteTrait;
+use App\Core\Traits\TimestampableTrait;
 use App\Domain\Membre\Repository\PermissionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -8,9 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=PermissionsRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Permissions
 {
+    use TimestampableTrait,SoftDeleteTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
