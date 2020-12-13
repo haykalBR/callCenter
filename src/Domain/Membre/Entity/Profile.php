@@ -24,9 +24,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Profile implements \Serializable
 {
-    use FileUploadTrait;
+    use FileUploadTrait,TimestampableTrait;
 
-    use TimestampableTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

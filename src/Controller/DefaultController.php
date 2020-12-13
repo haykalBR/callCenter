@@ -9,7 +9,11 @@
 
 namespace App\Controller;
 
+use App\Domain\Membre\Entity\Permissions;
+use App\Domain\Membre\Entity\Roles;
 use App\Domain\Membre\Entity\User;
+use App\Domain\Membre\Repository\PermissionsRepository;
+use App\Domain\Membre\Repository\RolesRepository;
 use App\Infrastructure\Data\Membre\Imports\UsersImport;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Mercure\Update;
@@ -52,10 +56,36 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="default")
      */
-    public function index(PublisherInterface $publisher, RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    public function index(PermissionsRepository $permissionsRepository,RolesRepository $rolesRepository,PublisherInterface $publisher, RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
+        $this->denyAccessUnlessGranted("");
 
-        set_time_limit(20000000000000000);
+        $result = array_filter(array_keys($router->getRouteCollection()->all()), function ($v) {
+            return preg_match('/admin_/', $v);
+        });
+       /*  foreach ( $result as $r){
+             $permession=new Permissions();
+             $permession->setGuardName($r);
+             $entityManager->persist($permession);
+         }*/
+      /*  $permissions=$permissionsRepository->findAll();
+        $role=new Roles();
+        $role->setGuardName('ROLE_USER');
+        foreach ($permissions as $permission){
+            $role->addRoleHasPermission($permission);
+        }
+        $entityManager->persist($role);
+
+         $entityManager->flush();*/
+        $user=$this->getUser();
+    /*    $role=$rolesRepository->find(1);
+        $user->addAccessRoles($role);
+        $entityManager->flush();
+    ->first
+    */
+    //    dd($user->getRoles());
+     //   dd($user->getAccessRoles()->toArray()[0]->hasPermission('admin_otp'));
+       // set_time_limit(20000000000000000);
     /*
         $users = $userRepository->findAll();
              $x     =  $this->normalizer->normalize($users, 'export_users');
