@@ -2,8 +2,8 @@ import * as moment from 'moment'
 import 'bootstrap-switch-button';
 const routes = require('../../../public/js/fos_js_routes.json');
 import * as  Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
-import {randomString} from "../functions/Strings";
 Routing.setRoutingData(routes);
+import {randomString} from "../functions/Strings";
 
 export default class UsersController{
 

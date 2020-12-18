@@ -9,11 +9,13 @@
 
 namespace App\Controller;
 
+use App\Core\Services\PermessionService;
 use App\Domain\Membre\Entity\Permissions;
 use App\Domain\Membre\Entity\Roles;
 use App\Domain\Membre\Entity\User;
 use App\Domain\Membre\Repository\PermissionsRepository;
 use App\Domain\Membre\Repository\RolesRepository;
+use App\Http\Subscriber\PermissionSubscriber;
 use App\Infrastructure\Data\Membre\Imports\UsersImport;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Mercure\Update;
@@ -44,13 +46,18 @@ class DefaultController extends AbstractController
     private PublisherInterface $mercurePublisher;
 
     private MessageBusInterface $bus;
+    /**
+     * @var PermessionService
+     */
+    private PermessionService $permessionService;
 
-    public function __construct(NormalizerInterface $normalizer, MembreImporter $membreImporter, PublisherInterface $mercurePublisher, MessageBusInterface $bus)
+    public function __construct(PermessionService $permessionService,UserRepository $userRepository ,NormalizerInterface $normalizer, MembreImporter $membreImporter, PublisherInterface $mercurePublisher, MessageBusInterface $bus)
     {
         $this->normalizer       = $normalizer;
         $this->membreImporter   = $membreImporter;
         $this->mercurePublisher = $mercurePublisher;
         $this->bus              = $bus;
+        $this->permessionService = $permessionService;
     }
 
     /**
@@ -58,16 +65,11 @@ class DefaultController extends AbstractController
      */
     public function index(PermissionsRepository $permissionsRepository,RolesRepository $rolesRepository,PublisherInterface $publisher, RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
-        $this->denyAccessUnlessGranted("");
+        $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS);
 
-        $result = array_filter(array_keys($router->getRouteCollection()->all()), function ($v) {
-            return preg_match('/admin_/', $v);
-        });
-       /*  foreach ( $result as $r){
-             $permession=new Permissions();
-             $permession->setGuardName($r);
-             $entityManager->persist($permession);
-         }*/
+        // $this->denyAccessUnlessGranted("");
+        $user=$userRepository->find(92);
+         //   $this->permessionService->load();
       /*  $permissions=$permissionsRepository->findAll();
         $role=new Roles();
         $role->setGuardName('ROLE_USER');

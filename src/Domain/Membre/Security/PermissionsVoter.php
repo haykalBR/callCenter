@@ -5,6 +5,7 @@ namespace App\Domain\Membre\Security;
 
 
 use App\Domain\Membre\Entity\User;
+use App\Http\Subscriber\PermissionSubscriber;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -25,7 +26,9 @@ class PermissionsVoter extends Voter
     }
     protected function supports(string $attribute, $subject)
     {
-       if (!$this->security->getUser() instanceof User){
+
+        if (!$this->security->getUser() instanceof User || $attribute !== PermissionSubscriber::PERRMESTION_ACCESS){
+
            return false;
        }
        return true;
