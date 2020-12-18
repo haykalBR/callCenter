@@ -2,9 +2,11 @@
 
 namespace App\Domain\Membre\Repository;
 
+use App\Core\Repository\BaseRepositoryTrait;
 use App\Domain\Membre\Entity\Permissions;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * @method Permissions|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +16,17 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PermissionsRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    use BaseRepositoryTrait;
+
+    /**
+     * @var RequestStack
+     */
+    private RequestStack $requestStack;
+
+    public function __construct(ManagerRegistry $registry, RequestStack $requestStack)
     {
         parent::__construct($registry, Permissions::class);
+        $this->requestStack = $requestStack;
     }
 
     // /**
@@ -47,4 +57,13 @@ class PermissionsRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+     * find all name of guard
+     */
+    public function findGuardName(){
+        return $this->createQueryBuilder('p')
+               ->select('p.guardName')
+               ->getQuery()
+               ->getArrayResult();
+    }
 }

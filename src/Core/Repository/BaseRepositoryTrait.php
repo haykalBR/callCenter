@@ -86,12 +86,14 @@ trait BaseRepositoryTrait
          */
         $searchlist = [];
         if (isset($columns) and isset($search) and '' !== $search['value']) {
+
             foreach ($columns as $column) {
                 if ('true' === $column['searchable']) {
                     $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.trim($search['value']).'%\''
                     );
                 }
             }
+
             foreach ($hiddenColumn as $column) {
                 $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.trim($search['value']).'%\'');
             }
@@ -125,7 +127,7 @@ trait BaseRepositoryTrait
         /*
          *  if list search not empty serach
          */
-        if (!empty($searchlist)) {
+        if (count($searchlist) != 0) {
             $qb->andWhere(new Expr\Andx($searchlist));
             $FilteredTotal->andWhere(new Expr\Andx($searchlist));
         }
@@ -145,6 +147,7 @@ trait BaseRepositoryTrait
         } catch (NonUniqueResultException $e) {
             $recordsFiltered = 0;
         }
+
 
         return [
             'draw'            => $draw,

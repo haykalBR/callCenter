@@ -27,7 +27,8 @@ security:
                     - App\Domain\Membre\Security\LoginAuthenticator
             logout:
                 path: admin_app_logout
-                # where to redirect after logout
+
+              # where to redirect after logout
                 # target: app_any_route
 
             # activate different ways to authenticate
