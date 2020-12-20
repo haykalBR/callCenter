@@ -8,7 +8,6 @@ export default class PermissonEvent{
     private permissonController:PermissonController;
 
     constructor(){
-        console.warn(544554)
         this.permissonController= new PermissonController();
         var dataTable = $('#permission_table').DataTable(this.setDatatableConfig());
     }
@@ -26,6 +25,12 @@ export default class PermissonEvent{
         $('#permission_refresh').on('click',()=>{
             this.permissonController.refresh();
         });
+    }
+    addNewPerlission(){
+        $('#add_new_permission').on('click',()=>{
+            this.permissonController.addNewPerlission();
+        });
+
     }
 
 

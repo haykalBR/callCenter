@@ -8,6 +8,7 @@ use App\Core\Enum\RelationShipEnum;
 use App\Core\Services\PermessionService;
 use App\Domain\Membre\Entity\Permissions;
 use App\Domain\Membre\Repository\PermissionsRepository;
+use App\Domain\Membre\Subscriber\PermissionsFormSubscriber;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -22,56 +23,34 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PermissionType extends AbstractType
 {
+
     /**
      * @var PermessionService
      */
     private PermessionService $permessionService;
     /**
-     * @var SelectTransformer
+     * @var PermissionsFormSubscriber
      */
-    private SelectTransformer $selectTransformer;
-    /**
-     * @var RequestStack
-     */
-    private RequestStack $requestStack;
+    private PermissionsFormSubscriber $permissionsFormSubscriber;
 
-    public function __construct(PermessionService $permessionService,RequestStack $requestStack)
+    public function __construct(PermessionService $permessionService,PermissionsFormSubscriber $permissionsFormSubscriber)
     {
         $this->permessionService = $permessionService;
-        $this->requestStack = $requestStack;
+        $this->permissionsFormSubscriber = $permissionsFormSubscriber;
     }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class)
             ->add('guardName', ChoiceType::class, [
                 'choices'      => $this->permessionService->findNewGuardName(),
-
                 'choice_label' => function ($choice) {
                     return $choice;
                 },
                 'multiple' => false,
 
             ]);
-         $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSet']);
-    }
-
-    public function onPreSet(FormEvent $event)
-    {
-        $form=$event->getForm();
-        $item=$this->requestStack->getCurrentRequest()->request->all()['permission']['guardName'];
-        $guradName = $this->permessionService->findNewGuardName();
-        if (!in_array($item,$guradName)){
-           array_push($guradName,$item);
-        }
-        $form->add('guardName', ChoiceType::class, [
-        'choices'      => $guradName,
-        'choice_label' => function ($choice) {
-            return $choice;
-        },
-        'multiple' => false,
-    ]);
+         $builder->addEventSubscriber($this->permissionsFormSubscriber);
     }
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -80,4 +59,6 @@ class PermissionType extends AbstractType
 
         ]);
     }
+
+
 }

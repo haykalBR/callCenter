@@ -85,7 +85,8 @@ class User extends UserInterface  implements  TwoFactorInterface
     private Collection $loginAttempts;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Roles::class, mappedBy="users")
+     * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="users",cascade={"persist"})
+     * @Assert\Count(min="1")
      */
     private $accessRoles;
     /**
@@ -275,11 +276,13 @@ class User extends UserInterface  implements  TwoFactorInterface
      */
     public function getAccessRoles(): Collection
     {
+
         return $this->accessRoles;
     }
 
     public function addAccessRoles(Roles $accessRoles): self
     {
+
         if (!$this->accessRoles->contains($accessRoles)) {
             $this->accessRoles[] = $accessRoles;
             $accessRoles->addUser($this);
@@ -310,6 +313,9 @@ class User extends UserInterface  implements  TwoFactorInterface
         }
 
         return array_unique($roleNames);
+    }
+    public function setAccessRoles(Collection $roles){
+        $this->accessRoles=$roles;
     }
 
     public function setRoles(array $roles): self

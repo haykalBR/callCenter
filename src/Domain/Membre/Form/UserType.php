@@ -9,7 +9,12 @@
 
 namespace App\Domain\Membre\Form;
 
+use App\Domain\Membre\Entity\Roles;
 use App\Domain\Membre\Entity\User;
+use App\Domain\Membre\Repository\RolesRepository;
+use App\Domain\Membre\Subscriber\UserFormSubscriber;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
@@ -27,13 +32,16 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class UserType extends AbstractType
 {
-    const EDIT_ROUTE= 'admin_edit_users';
 
-    private RequestStack $requestStack;
 
-    public function __construct(RequestStack $requestStack)
+    /**
+     * @var UserFormSubscriber
+     */
+    private UserFormSubscriber $userFormSubscriber;
+
+    public function __construct(UserFormSubscriber $userFormSubscriber)
     {
-        $this->requestStack = $requestStack;
+        $this->userFormSubscriber = $userFormSubscriber;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -46,38 +54,30 @@ class UserType extends AbstractType
                     'checked'   => 'checked',
                 ],
             ])
-            ->add('profile', ProfileType::class);
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'showPassword']);
+            ->add('accessRoles', EntityType::class, [
+                'class' => Roles::class,
+                'choice_label' => 'name',
+                'multiple'=>true,
+                'by_reference' => false,
+                'required' => true,
+                'query_builder' => function (RolesRepository $repository) {
+                    return $repository->getRolesWithoutAdmin();
+                },
+            ])
+            ->add('profile', ProfileType::class)
+            ->add('grantPermission', ChoiceType::class,[
+                'mapped'=>false,
+                'required' => false,
+                'multiple'=>true,
+            ])
+            ->add('revokePermission', ChoiceType::class,[
+                'mapped'=>false,
+                'required' => false,
+                'multiple'=>true,
+            ])
+        ;
+        $builder->addEventSubscriber($this->userFormSubscriber);
     }
-
-    public function showPassword(FormEvent $event)
-    {
-        $form=$event->getForm();
-        if (self::EDIT_ROUTE !== $this->requestStack->getCurrentRequest()->get('_route')) {
-            $form->add('plainPassword', RepeatedType::class, [
-                'type'        => PasswordType::class,
-                'mapped'      => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min'        => 10,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        'max'        => 4096,
-                    ]),
-                    new Regex([
-                        'pattern' => '/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@$!%*#?&]).{7,}/',
-                        'message' => ' password not in  pattern one letter, one lettre maj , one number and one special character ',
-                    ]),
-                ],
-                'first_options'   => ['label' => 'Password'],
-                'second_options'  => ['label' => 'Confirm Password'],
-                'invalid_message' => 'Your password does not match the confirmation.',
-            ]);
-        }
-    }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

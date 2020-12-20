@@ -30,9 +30,18 @@ class PermessionService
         $this->router = $router;
         $this->permissionsRepository = $permissionsRepository;
     }
+    /**
+     * Laod and save all permissions in database
+     */
     public function load():void{
-
-        foreach ($this->allGuardRoute() as $item){
+        $this->savePermission($this->allGuardRoute());
+    }
+    /**
+     * Creation permissions
+     * @param $permissions
+     */
+    public function savePermission($permissions):void{
+        foreach ($permissions as $item){
             $permession=new Permissions();
             $permession->setGuardName($item);
             $permession->setName( str_replace('_', ' ', $item));
@@ -40,22 +49,20 @@ class PermessionService
         }
         $this->entityManager->flush();
     }
-
     /**
      * get all guard name
      * @return array
      */
-    public function allGuardRoute(){
+    public function allGuardRoute():array{
         return array_filter(array_keys($this->router->getRouteCollection()->all()), function ($value) {
             return preg_match('/admin_/', $value);
         });
     }
-
     /**
      * get new guard name
      * @return array
      */
-    public function findNewGuardName(){
+    public function findNewGuardName():array{
         $new_guard=[];
         foreach ($this->permissionsRepository->findGuardName() as $guard){
             $new_guard[]=$guard['guardName'];

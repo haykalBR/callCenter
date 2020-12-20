@@ -65,7 +65,9 @@ class DefaultController extends AbstractController
      */
     public function index(PermissionsRepository $permissionsRepository,RolesRepository $rolesRepository,PublisherInterface $publisher, RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
-        $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS);
+    //    $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS, 'admin_profile_edit');
+
+      //  $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS);
 
         // $this->denyAccessUnlessGranted("");
         $user=$userRepository->find(92);

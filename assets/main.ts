@@ -9,12 +9,15 @@ let permissonEvent= new PermissonEvent();
 usersEvent.generatePassword();
 usersEvent.deleteUser();
 usersEvent.passwordUser();
+usersEvent.reloadPermissions();
+usersEvent.permissionsGrantAndRevoke();
 let profileEvent = new ProfileEvent();
 profileEvent.googleAuthFormStat();
 permissonEvent.refresh();
+permissonEvent.addNewPerlission();
 const $ = require('jquery');
 import 'select2';
-
+//console.warn(checkPermection('admin_profile_edit'));
 
 /*const url :any = new URL('http://www.mercure.local.com:8001/.well-known/mercure');
 url.searchParams.append('topic', '/test');
@@ -28,6 +31,16 @@ $(() => {
         width: 'resolve',
         tags: true
     });
+    $('#user_accessRoles').select2({
+        width: 'resolve',
+    });
+    $('#user_grantPermission').select2({
+        width: 'resolve',
+    });
+    $('#user_revokePermission').select2({
+        width: 'resolve',
+    });
+
 });
 const url:any = new URL('http://www.mercure.local.com:8001/.well-known/mercure');
 url.searchParams.append('topic', 'csv:123456');

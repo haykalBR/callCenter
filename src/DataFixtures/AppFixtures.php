@@ -42,7 +42,7 @@ class AppFixtures extends Fixture
         $role->setGuardName(RoleInterface::ROLE_SUPER_ADMIN);
         $role->setName('ROLE Super Admin');
         $manager->persist($role);
-        for ($i = 10; $i < 20; ++$i) {
+        for ($i = 10; $i < 150; ++$i) {
             /**
              * @var $user User
              */

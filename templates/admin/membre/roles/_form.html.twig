@@ -1,4 +1,3 @@
-
 {{ form_start(form) }}
 <div class="row">
     <div class="col-md-6">
@@ -10,21 +9,15 @@
             </small>
         </div>
     </div>
-    <div class="form-group">
-        <label> Cuard Name </label>
-        <div class="row" >
-            <div class="col-md-10" >
-                {{ form_widget(form.guardName, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="col-md-2" >
-                <button id="permission_refresh" type="button" class="btn btn-info"><i class="fa fa-sync" aria-hidden="true"></i></button>
-            </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>GuardName</label>
+            {{ form_widget(form.guardName, {'attr': {'class': 'form-control'}}) }}
+            <small id="" class="text-danger">
+                {{ form_errors(form.guardName) }}
+            </small>
         </div>
-        <small id="" class="text-danger">
-            {{ form_errors(form.guardName)}}
-        </small>
     </div>
-
 {{ form_rest(form) }}
 <div class="col-md-12">
     <a href="{{path('admin_users')}}" class="btn btn-info float-left" type="button"> Retour a la liste </a>
