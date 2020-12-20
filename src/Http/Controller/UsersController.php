@@ -11,6 +11,8 @@ namespace App\Http\Controller;
 
 use App\Domain\Membre\Entity\User;
 use App\Domain\Membre\Form\UserType;
+use App\Domain\Membre\Repository\PermissionsRepository;
+use App\Domain\Membre\Repository\RolesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Domain\Membre\Form\SearchUsersType;
 use App\Domain\Membre\Event\MailAddUserEvent;
@@ -36,14 +38,24 @@ class UsersController extends AbstractController
     private UserPasswordEncoderInterface $passwordEncoder;
 
     private EventDispatcherInterface $eventDispatcher;
+    /**
+     * @var RolesRepository
+     */
+    private RolesRepository $rolesRepository;
+    /**
+     * @var PermissionsRepository
+     */
+    private PermissionsRepository $permissionsRepository;
 
     public function __construct(UserRepository $userRepository,EntityManagerInterface $entityManager,UserPasswordEncoderInterface $passwordEncoder,
-                                    EventDispatcherInterface $eventDispatcher)
+                                    EventDispatcherInterface $eventDispatcher,RolesRepository $rolesRepository,PermissionsRepository $permissionsRepository)
     {
         $this->userRepository  = $userRepository;
         $this->entityManager   = $entityManager;
         $this->passwordEncoder = $passwordEncoder;
         $this->eventDispatcher = $eventDispatcher;
+        $this->rolesRepository = $rolesRepository;
+        $this->permissionsRepository = $permissionsRepository;
     }
 
     /**
@@ -51,9 +63,10 @@ class UsersController extends AbstractController
      */
     public function index(Request $request): Response
     {
+
         $form   = $this->createForm(SearchUsersType::class, null);
         if ($request->isXmlHttpRequest()) {
-            return $this->json($this->userRepository->dataTable(), 200);
+            return $this->json($this->userRepository->datatable(), 200);
         }
 
         return $this->render('admin/membre/users/index.html.twig', ['form' => $form->createView()]);
@@ -64,7 +77,7 @@ class UsersController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $user   =new User();
+            $user   =new User();
         $form   = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -160,5 +173,16 @@ class UsersController extends AbstractController
         }
 
         return  $this->redirectToRoute('admin_users');
+    }
+    /**
+     * @Route("/permissionsroles", name="permissions_roles", methods={"GET","POST"},options={"expose"=true})
+     */
+    public function getPermissionFromRoles(Request $request){
+        if ($request->isXmlHttpRequest()){
+            $roles=json_decode($request->getContent(), true)['roles'];
+            $permissions=$this->permissionsRepository->getPermissionFromRoles($roles);
+            return $this->json($permissions,200);
+        }
+       return $this->json('not found',400);
     }
 }

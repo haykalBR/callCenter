@@ -32,9 +32,8 @@ export default class PermissonController{
                 'data':'t_id',
                 "render": function ( data, type, full, meta ) {
                     let ch="";
-
+                    ch+= '<a data-toggle="tooltip" title="edit permission " href="'+Routing.generate('admin_edit_permission',{id:data})+'"><i class="fa fa-edit "></i></a> ';
                     return ch;
-
                 }
             }
 
@@ -56,7 +55,7 @@ export default class PermissonController{
      */
     refresh(){
         axios({
-            method: 'post',
+            method: 'GET',
             url: Routing.generate('admin_load_route'),
         }).then((data) => {
             var routes = Object.values(data);
@@ -65,6 +64,16 @@ export default class PermissonController{
             routes.forEach(function(route) {
                 list_route.append('<option value="' + route + '">' + route+ '</option>');
             });
+        }, (error) => {
+            console.error(error);
+        });
+    }
+    addNewPerlission(){
+        axios({
+            method: 'post',
+            url: Routing.generate('admin_add_new_permission'),
+        }).then((data) => {
+            console.log(data);
         }, (error) => {
             console.error(error);
         });

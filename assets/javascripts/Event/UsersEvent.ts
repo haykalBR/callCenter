@@ -4,6 +4,7 @@ import 'bootstrap-switch-button';
 import {deleterecord, userpassword} from "../functions/sweetalert2";
 
 const $ = require('jquery');
+import 'select2';
 export default class UsersEvent{
     private usersController:UsersController ;
 
@@ -41,11 +42,11 @@ export default class UsersEvent{
             const email = $(this).attr('data-user');
             const url = this.href;
             deleterecord(email,url);
-
         });
     }
     passwordUser(){
-        $("#users_table").on('click', '.password_user', function (event) {
+
+        $("#users_table").on('click', '.password_user', function () {
             event.preventDefault();
             const email = $(this).attr('data-user');
             const url = this.href;
@@ -55,10 +56,27 @@ export default class UsersEvent{
     changeStateUser(){
         $("#users_table").on('change', '.state_user', function (event) {
             event.preventDefault();
-            console.log(159258)
          /*   const email = $(this).attr('data-user');
             const url = this.href;
             userpassword(email,url);*/
+        });
+    }
+    reloadPermissions(){
+        $('#user_accessRoles').on('change',()=>{
+            var Selection =$('#user_accessRoles').select2('data').map(o => parseInt(o['id']));
+            this.usersController.reloadPermissions(Selection);
+        });
+    }
+    permissionsGrantAndRevoke(){
+        $('#user_grantPermission').on('change',(e)=>{
+            var val = $(e.currentTarget).val();
+            var current_val=val[val.length-1];
+            this.usersController.grantPermission(current_val);
+        });
+        $('#user_revokePermission').on('change',(e)=>{
+            var val = $(e.currentTarget).val();
+            var current_val=val[val.length-1];
+            this.usersController.revokePermission();
         });
     }
 

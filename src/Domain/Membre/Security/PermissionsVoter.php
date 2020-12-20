@@ -27,6 +27,7 @@ class PermissionsVoter extends Voter
     protected function supports(string $attribute, $subject)
     {
 
+
         if (!$this->security->getUser() instanceof User || $attribute !== PermissionSubscriber::PERRMESTION_ACCESS){
 
            return false;
@@ -36,6 +37,7 @@ class PermissionsVoter extends Voter
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token)
     {
+
         $user = $token->getUser();
         if (!$user instanceof User ) {
             return false;
@@ -44,6 +46,10 @@ class PermissionsVoter extends Voter
             return true;
         }
         $current_route=$this->requestStack->getCurrentRequest()->get('_route');
+        if ($subject != null){
+            $current_route=$subject;
+        }
+
         if (!$user->hasPermission($current_route)){
             return false;
         }

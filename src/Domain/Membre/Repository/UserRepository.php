@@ -78,4 +78,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
     */
+  //  public function Datatable(){
+      //  $result=$this->databale();
+
+      /*  $arrar=[];
+        foreach ($qb->getQuery()->getScalarResult() as $item){
+            $ch="";
+            $ch.= '<a data-toggle="tooltip" title="edit user " href=""><i class="fa fa-edit "></i></a> ';
+            $ch.= '<a data-toggle="tooltip" title="remove user "  class="delete_user"  href=""><i class="fa fa-trash"></i></a> ';
+            $ch.= '<a data-toggle="tooltip" title="regnreate password "  class="password_user" data-user=""><i class="fa fa-key"></i></a> ';
+            $ch.='<input type="checkbox"  class="state_user" data-user=""  data-toggle="switchbutton"  href="" checked data-size="xs">';
+
+            $item['t_options']=$ch;
+            $arrar[]=$item;
+        }*/
+  //  }
 }

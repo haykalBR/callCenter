@@ -28,42 +28,27 @@ class PermissionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Permissions::class);
         $this->requestStack = $requestStack;
     }
-
-    // /**
-    //  * @return Permissions[] Returns an array of Permissions objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Permissions
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
     /**
-     * find all name of guard
+     * get all name of guard
      */
     public function findGuardName(){
         return $this->createQueryBuilder('p')
                ->select('p.guardName')
                ->getQuery()
                ->getArrayResult();
+    }
+    /**
+     * get Permission from roles
+     * @param array $roles
+     * @return int|mixed|string
+     */
+    public function getPermissionFromRoles(array $roles){
+        return $this->createQueryBuilder('p')
+            ->select('p.guardName,p.id')
+            ->innerJoin('p.roles','r')
+            ->andWhere('r.id IN (:ids)')
+            ->setParameter('ids', $roles)
+            ->getQuery()->getResult();
+
     }
 }

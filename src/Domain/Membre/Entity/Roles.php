@@ -36,7 +36,7 @@ class Roles implements RoleInterface
     private $roleHasPermissions;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="roles")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="roles")
      */
     private $users;
 

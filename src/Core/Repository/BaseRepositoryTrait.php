@@ -25,12 +25,16 @@ trait BaseRepositoryTrait
         $orders       = $request->query->all()['order'];
         $columns      = $request->query->all()['columns'];
         $hiddenColumn = $request->query->all('hiddenColumn');
+
         if (isset($columns)) {
             $column = '';
             foreach ($columns as $colums) {
-                if ('true' === $colums['searchable'] and false === mb_strpos($column, $colums['name'])) {
-                    $column .= $colums['name'].' AS '.$colums['data'].',';
-                }
+           //     if ($colums['data']!="t_options"){
+                    if ('true' === $colums['searchable'] and false === mb_strpos($column, $colums['name'])) {
+                        $column .= $colums['name'].' AS '.$colums['data'].',';
+                    }
+             //   }
+
             }
         } else {
             $column = 't';
@@ -148,12 +152,23 @@ trait BaseRepositoryTrait
             $recordsFiltered = 0;
         }
 
+  /*      $arrar=[];
+        foreach (as $item){
+            $ch="";
+                     $ch.= '<a data-toggle="tooltip" title="edit user " href=""><i class="fa fa-edit "></i></a> ';
+                     $ch.= '<a data-toggle="tooltip" title="remove user "  class="delete_user"  href=""><i class="fa fa-trash"></i></a> ';
+                     $ch.= '<a data-toggle="tooltip" title="regnreate password "  class="password_user" data-user=""><i class="fa fa-key"></i></a> ';
+                     $ch.='<input type="checkbox"  class="state_user" data-user=""  data-toggle="switchbutton"  href="" checked data-size="xs">';
+
+            $item['t_options']=$ch;
+            $arrar[]=$item;
+        }*/
 
         return [
             'draw'            => $draw,
             'recordsTotal'    => $recordsTotal,
             'recordsFiltered' => $recordsFiltered,
-            'data'            => $qb->getQuery()->getScalarResult(),
+            'data'            => $qb->getQuery()->getScalarResult() ,
         ];
     }
 }
