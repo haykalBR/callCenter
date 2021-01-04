@@ -4,7 +4,10 @@
 namespace App\Domain\Membre\Subscriber;
 
 
+use App\Domain\Membre\Entity\User;
+use App\Domain\Membre\Repository\PermissionsRepository;
 use App\Domain\Membre\Service\UserPermissionsService;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -29,11 +32,16 @@ class UserFormSubscriber implements EventSubscriberInterface
      * @var UserPermissionsService
      */
     private UserPermissionsService $userPermissionsService;
+    /**
+     * @var PermissionsRepository
+     */
+    private PermissionsRepository $permissionsRepository;
 
-    public function __construct(RequestStack $requestStack,UserPermissionsService $userPermissionsService)
+    public function __construct(RequestStack $requestStack,UserPermissionsService $userPermissionsService,PermissionsRepository $permissionsRepository)
     {
         $this->requestStack = $requestStack;
         $this->userPermissionsService = $userPermissionsService;
+        $this->permissionsRepository = $permissionsRepository;
     }
 
     public static function getSubscribedEvents()
@@ -41,11 +49,12 @@ class UserFormSubscriber implements EventSubscriberInterface
         return [
             FormEvents::PRE_SET_DATA => 'showPassword',
             FormEvents::PRE_SUBMIT=>'onPermissionForm',
-            FormEvents::PRE_SET_DATA=>'test',
+         //   FormEvents::PRE_SET_DATA=>'test',
             ];
     }
     public function showPassword(FormEvent $event)
     {
+
         $form=$event->getForm();
         if (self::EDIT_ROUTE !== $this->requestStack->getCurrentRequest()->get('_route')) {
             $form->add('plainPassword', RepeatedType::class, [
@@ -70,6 +79,7 @@ class UserFormSubscriber implements EventSubscriberInterface
                 'invalid_message' => 'Your password does not match the confirmation.',
             ]);
         }
+        $this->test($event);
     }
     public function onPermissionForm(FormEvent $event){
 
@@ -107,34 +117,45 @@ class UserFormSubscriber implements EventSubscriberInterface
         ]);
     }
     public function test(FormEvent $event){
-        $form=$event->getForm();
-        $data=$event->getData();
-        if (self::EDIT_ROUTE == $this->requestStack->getCurrentRequest()->get('_route')) {
-            $userPermissions=$this->userPermissionsService->getGrantPermissionn($data);
-            $getRevokePermission=$this->userPermissionsService->getRevokePermission($data);
-            $form->add('grantPermission', ChoiceType::class, [
-                'choices'      => $userPermissions,
-                'choice_label' => function ($choice) {
-                    return $choice['id'];
-                },
-                'required' => false,
-                'multiple'=>true,
-            ]);
-            $x=array_filter(array_keys($this->router->getRouteCollection()->all()), function ($value) {
-                return 1;
+
+        if (self::EDIT_ROUTE == $this->requestStack->getCurrentRequest()->get('_route') ) {
+            $form=$event->getForm();
+            /**
+             * @var $data  User
+             */
+            $data=$event->getData();
+            $rolesIds = $data->getAccessRoles()->map(function($value)  {
+                return $value->getid();
             });
-           dd($x);
-
+            $userGrantPermissions=$this->mappedArray($this->permissionsRepository->getPermissionNotFromRoles($rolesIds->toArray()),'guardName');
+            $userRevokePermissions=$this->mappedArray($this->permissionsRepository->getPermissionFromRoles($rolesIds->toArray()),'guardName');
             $form->add('grantPermission', ChoiceType::class, [
-                'choices'      => $span,
-                'choice_label' => function ($choice) {
-
-                    return $choice;
+                'choices'      => $userGrantPermissions,
+                'choice_label' => function ($userGrantPermissions) {
+                    return $userGrantPermissions;
                 },
                 'required' => false,
                 'multiple'=>true,
+                'data' => $this->mappedArray($this->userPermissionsService->getGrantPermissionn($data),'guardName')
+            ]);
+
+            $form->add('revokePermission', ChoiceType::class, [
+                'choices'      => $userRevokePermissions,
+                'choice_label' => function ($userRevokePermissions) {
+                    return $userRevokePermissions;
+                },
+                'required' => false,
+                'multiple'=>true,
+                'data' => $this->mappedArray($this->userPermissionsService->getRevokePermission($data),'guardName')
             ]);
 
         }
+    }
+    private function mappedArray(array $data,string $key):array{
+        $collection=new ArrayCollection($data);
+        $mappedCollection = $collection->map(function($value) use ($key) {
+            return $value[$key];
+        });
+        return $mappedCollection->toArray();
     }
 }
