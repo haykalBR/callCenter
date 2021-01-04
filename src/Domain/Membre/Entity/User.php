@@ -60,8 +60,6 @@ class User extends UserInterface  implements  TwoFactorInterface
      */
     private bool  $enabled;
 
-  
-
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
@@ -83,7 +81,10 @@ class User extends UserInterface  implements  TwoFactorInterface
      * @ORM\OneToMany(targetEntity=LoginAttempt::class, mappedBy="user")
      */
     private Collection $loginAttempts;
-
+    /**
+     * @ORM\OneToMany(targetEntity=UserPermission::class, mappedBy="user")
+     */
+    private Collection $userPermissions;
     /**
      * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="users",cascade={"persist"})
      * @Assert\Count(min="1")
@@ -94,10 +95,14 @@ class User extends UserInterface  implements  TwoFactorInterface
      */
     private $roles = [];
 
+    private $grantPermission;
+    private $revokePermission;
+
     public function __construct()
     {
         $this->loginAttempts = new ArrayCollection();
         $this->accessRoles = new ArrayCollection();
+        $this->userPermissions= new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -349,7 +354,70 @@ class User extends UserInterface  implements  TwoFactorInterface
 
     public function hasRole(RoleInterface $role)
     {
-        return $this->getAccessRoles->contains($role);
+        return $this->getAccessRoles()->contains($role);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGrantPermission()
+    {
+        return $this->grantPermission;
+    }
+
+    /**
+     * @param mixed $grantPermission
+     */
+    public function setGrantPermission($grantPermission): void
+    {
+        $this->grantPermission = $grantPermission;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRevokePermission()
+    {
+        return $this->revokePermission;
+    }
+
+    /**
+     * @param mixed $revokePermission
+     */
+    public function setRevokePermission($revokePermission): void
+    {
+        $this->revokePermission = $revokePermission;
+    }
+
+    /**
+     * @return Collection|UserPermission[]
+     */
+    public function getUserPermissions(): Collection
+    {
+        return $this->userPermissions;
+    }
+
+    public function addUserPermission(UserPermission $userPermission): self
+    {
+        if (!$this->userPermissions->contains($userPermission)) {
+            $this->userPermissions[] = $userPermission;
+            $userPermission->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserPermission(UserPermission $userPermission): self
+    {
+        if ($this->userPermissions->contains($userPermission)) {
+            $this->userPermissions->removeElement($userPermission);
+            // set the owning side to null (unless already changed)
+            if ($userPermission->getUser() === $this) {
+                $userPermission->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 }

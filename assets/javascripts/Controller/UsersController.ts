@@ -95,30 +95,12 @@ export default class UsersController{
         }).then((response) => {
             this.addPermissionToSelect( Object.values(response.data))
         }, (error) => {
+            console.error(error)
         });
     }
-    grantPermission(current_val){
-        var revokePermission =$('#user_revokePermission').select2('data').map(o => parseInt(o['id']));
-        var n = this.inArray(current_val,revokePermission);
-        //TODO TEst In array and remove from array
-            revokePermission.remove(current_val);
-            console.table(revokePermission);
-            this.addRevokePermissionToSelect(revokePermission)
-    }
-    revokePermission(){
-
-    }
-     inArray(value, array) {
-         array.forEach(function(number) {
-            if (number==value) {
-               return true
-            }
-         });
-         return false;
-    }
     private addPermissionToSelect(routes){
-        this.addGrantPermissionToSelect(routes)
-        this.addRevokePermissionToSelect(routes)
+        this.addGrantPermissionToSelect(routes[0])
+        this.addRevokePermissionToSelect(routes[1])
     }
     private addGrantPermissionToSelect(routes){
         var grantPermission = $("#user_grantPermission");

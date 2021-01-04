@@ -9,6 +9,7 @@
 
 namespace App\Domain\Membre\Form;
 
+use App\Domain\Membre\DataTransformer\PermissionTransformer;
 use App\Domain\Membre\Entity\Roles;
 use App\Domain\Membre\Entity\User;
 use App\Domain\Membre\Repository\RolesRepository;
@@ -38,10 +39,15 @@ class UserType extends AbstractType
      * @var UserFormSubscriber
      */
     private UserFormSubscriber $userFormSubscriber;
+    /**
+     * @var PermissionTransformer
+     */
+    private PermissionTransformer $permissionTransformer;
 
-    public function __construct(UserFormSubscriber $userFormSubscriber)
+    public function __construct(UserFormSubscriber $userFormSubscriber,PermissionTransformer $permissionTransformer)
     {
         $this->userFormSubscriber = $userFormSubscriber;
+        $this->permissionTransformer = $permissionTransformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -66,16 +72,13 @@ class UserType extends AbstractType
             ])
             ->add('profile', ProfileType::class)
             ->add('grantPermission', ChoiceType::class,[
-                'mapped'=>false,
                 'required' => false,
                 'multiple'=>true,
             ])
             ->add('revokePermission', ChoiceType::class,[
-                'mapped'=>false,
                 'required' => false,
                 'multiple'=>true,
-            ])
-        ;
+            ]);
         $builder->addEventSubscriber($this->userFormSubscriber);
     }
     public function configureOptions(OptionsResolver $resolver): void

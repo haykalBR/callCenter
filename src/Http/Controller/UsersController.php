@@ -77,7 +77,7 @@ class UsersController extends AbstractController
      */
     public function new(Request $request): Response
     {
-            $user   =new User();
+        $user   =new User();
         $form   = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -180,8 +180,9 @@ class UsersController extends AbstractController
     public function getPermissionFromRoles(Request $request){
         if ($request->isXmlHttpRequest()){
             $roles=json_decode($request->getContent(), true)['roles'];
-            $permissions=$this->permissionsRepository->getPermissionFromRoles($roles);
-            return $this->json($permissions,200);
+            $permissionsGrant=$this->permissionsRepository->getPermissionNotFromRoles($roles);
+            $permissionsRevoke=$this->permissionsRepository->getPermissionFromRoles($roles);
+            return $this->json(['grant'=>$permissionsGrant,'revoke'=>$permissionsRevoke],200);
         }
        return $this->json('not found',400);
     }
