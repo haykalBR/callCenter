@@ -37,6 +37,7 @@ class UserPermissionsService
             $this->createGrantPermissionn($user,$data['grantPermission']);
         }
         if (!empty($data['revokePermission'])){
+
             $this->createRevokePermission($user,$data['revokePermission']);
 
         }
@@ -44,9 +45,14 @@ class UserPermissionsService
      //   $userPermission= new UserPermission();
      }
      private function createGrantPermissionn(User  $user,array $date){
+
         foreach ($date as $item){
+            $permission=$this->permissionsRepository->findOneBy(['guardName'=>$item]);
+            if (!$permission){
+                $permission=$this->permissionsRepository->find($item);
+            }
             $userPermission= new UserPermission();
-            $userPermission->setPermission($this->permissionsRepository->find($item));
+            $userPermission->setPermission($permission);
             $userPermission->setUser($user);
             $userPermission->setStatus(UserPermission::GRANT);
             $this->manager->persist($userPermission);
@@ -55,11 +61,16 @@ class UserPermissionsService
      private function createRevokePermission(User  $user,array $data){
         foreach ($data as $item)
         {
-         $userPermission= new UserPermission();
-         $userPermission->setPermission($this->permissionsRepository->find($item));
-         $userPermission->setUser($user);
-         $userPermission->setStatus(UserPermission::REVOKE);
-         $this->manager->persist($userPermission);
+            //TODO a Corrigie
+            $permission=$this->permissionsRepository->findOneBy(['guardName'=>$item]);
+            if (!$permission){
+                $permission=$this->permissionsRepository->find($item);
+            }
+             $userPermission= new UserPermission();
+             $userPermission->setPermission($permission);
+             $userPermission->setUser($user);
+             $userPermission->setStatus(UserPermission::REVOKE);
+             $this->manager->persist($userPermission);
          }
      }
      public function removeUserPermissions(User $user){
