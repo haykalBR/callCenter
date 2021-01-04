@@ -68,16 +68,7 @@ export default class UsersEvent{
         });
     }
     permissionsGrantAndRevoke(){
-        $('#user_grantPermission').on('change',(e)=>{
-            var val = $(e.currentTarget).val();
-            var current_val=val[val.length-1];
-            this.usersController.grantPermission(current_val);
-        });
-        $('#user_revokePermission').on('change',(e)=>{
-            var val = $(e.currentTarget).val();
-            var current_val=val[val.length-1];
-            this.usersController.revokePermission();
-        });
+
     }
 
 }

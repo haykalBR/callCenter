@@ -10,6 +10,7 @@
 namespace App\Domain\Membre\Repository;
 
 use App\Domain\Membre\Entity\User;
+use App\Domain\Membre\Entity\UserPermission;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Core\Repository\BaseRepositoryTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -49,48 +50,29 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->persist($user);
         $this->_em->flush();
     }
-
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
+    public function getGrantPermissionByUser(User $user){
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+            ->select('up.id,p.guardName')
+            ->innerJoin('u.userPermissions','up')
+            ->innerJoin('up.permission','p')
+            ->Where('u.id = up.user')
+            ->andWhere('u.id = :id')
+            ->andWhere('up.status = :status')
+            ->setParameter('id', $user->getId())
+            ->setParameter('status', UserPermission::GRANT)
+            ->getQuery()->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?User
-    {
+    public function getRevokePermissionByUser(UserInterface $user){
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->select('up.id,p.guardName')
+            ->innerJoin('u.userPermissions','up')
+            ->innerJoin('up.permission','p')
+            ->Where('u.id = up.user')
+            ->andWhere('u.id = :id')
+            ->andWhere('up.status = :status')
+            ->setParameter('id', $user->getId())
+            ->setParameter('status', UserPermission::REVOKE)
+            ->getQuery()->getResult();
     }
-    */
-  //  public function Datatable(){
-      //  $result=$this->databale();
 
-      /*  $arrar=[];
-        foreach ($qb->getQuery()->getScalarResult() as $item){
-            $ch="";
-            $ch.= '<a data-toggle="tooltip" title="edit user " href=""><i class="fa fa-edit "></i></a> ';
-            $ch.= '<a data-toggle="tooltip" title="remove user "  class="delete_user"  href=""><i class="fa fa-trash"></i></a> ';
-            $ch.= '<a data-toggle="tooltip" title="regnreate password "  class="password_user" data-user=""><i class="fa fa-key"></i></a> ';
-            $ch.='<input type="checkbox"  class="state_user" data-user=""  data-toggle="switchbutton"  href="" checked data-size="xs">';
-
-            $item['t_options']=$ch;
-            $arrar[]=$item;
-        }*/
-  //  }
 }
