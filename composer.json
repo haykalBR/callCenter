@@ -16,6 +16,7 @@
         "doctrine/orm": "^2.7",
         "friendsofsymfony/jsrouting-bundle": "^2.6",
         "google/recaptcha": "^1.2",
+        "illuminate/collections": "^8.21",
         "lexik/jwt-authentication-bundle": "^2.9",
         "nelmio/cors-bundle": "^2.1",
         "oro/doctrine-extensions": "^1.3",

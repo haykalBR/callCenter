@@ -47,14 +47,20 @@ class UserFormSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            FormEvents::PRE_SET_DATA => 'showPassword',
+            FormEvents::PRE_SET_DATA => 'onPreSetData',
             FormEvents::PRE_SUBMIT=>'onPermissionForm',
-         //   FormEvents::PRE_SET_DATA=>'test',
             ];
     }
-    public function showPassword(FormEvent $event)
+    /**
+     * On Pre Set Data
+     * @param FormEvent $event
+     */
+    public function onPreSetData(FormEvent $event){
+        $this->showPassword($event);
+        $this->userPermission($event);
+    }
+    private function showPassword(FormEvent $event)
     {
-
         $form=$event->getForm();
         if (self::EDIT_ROUTE !== $this->requestStack->getCurrentRequest()->get('_route')) {
             $form->add('plainPassword', RepeatedType::class, [
@@ -69,54 +75,18 @@ class UserFormSubscriber implements EventSubscriberInterface
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         'max'        => 4096,
                     ]),
-                 /*   new Regex([
-                        'pattern' => '/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@$!%*#?&]).{7,}/',
-                        'message' => ' password not in  pattern one letter, one lettre maj , one number and one special character ',
-                    ]),*/
+                    /*   new Regex([
+                           'pattern' => '/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@$!%*#?&]).{7,}/',
+                           'message' => ' password not in  pattern one letter, one lettre maj , one number and one special character ',
+                       ]),*/
                 ],
                 'first_options'   => ['label' => 'Password'],
                 'second_options'  => ['label' => 'Confirm Password'],
                 'invalid_message' => 'Your password does not match the confirmation.',
             ]);
         }
-        $this->test($event);
     }
-    public function onPermissionForm(FormEvent $event){
-
-        $form=$event->getForm();
-        $grantPermission=[];
-        $data = $event->getData();
-        if (array_key_exists('grantPermission',$data)){
-           $grantPermission=$this->requestStack->getCurrentRequest()->request->all()['user']['grantPermission'];
-       }
-        $revokePermission=[];
-        if (array_key_exists('revokePermission',$data)){
-            $revokePermission=$this->requestStack->getCurrentRequest()->request->all()['user']['revokePermission'];
-        }
-        $this->grantPermission($form,$grantPermission);
-        $this->revokePermission($form,$revokePermission);
-    }
-    private function grantPermission($form ,$grantPermission ){
-        $form->add('grantPermission', ChoiceType::class, [
-            'choices'      => $grantPermission,
-            'choice_label' => function ($choice) {
-                return $choice;
-            },
-            'required' => false,
-            'multiple'=>true,
-        ]);
-    }
-    private function revokePermission($form ,$revokePermission ){
-        $form->add('revokePermission', ChoiceType::class, [
-            'choices'      => $revokePermission,
-            'choice_label' => function ($choice) {
-                return $choice;
-            },
-            'required' => false,
-            'multiple'=>true,
-        ]);
-    }
-    public function test(FormEvent $event){
+    private function userPermission(FormEvent $event){
 
         if (self::EDIT_ROUTE == $this->requestStack->getCurrentRequest()->get('_route') ) {
             $form=$event->getForm();
@@ -158,4 +128,40 @@ class UserFormSubscriber implements EventSubscriberInterface
         });
         return $mappedCollection->toArray();
     }
+    public function onPermissionForm(FormEvent $event){
+
+        $form=$event->getForm();
+        $grantPermission=[];
+        $data = $event->getData();
+        if (array_key_exists('grantPermission',$data)){
+           $grantPermission=$this->requestStack->getCurrentRequest()->request->all()['user']['grantPermission'];
+       }
+        $revokePermission=[];
+        if (array_key_exists('revokePermission',$data)){
+            $revokePermission=$this->requestStack->getCurrentRequest()->request->all()['user']['revokePermission'];
+        }
+        $this->grantPermission($form,$grantPermission);
+        $this->revokePermission($form,$revokePermission);
+    }
+    private function grantPermission($form ,$grantPermission ){
+        $form->add('grantPermission', ChoiceType::class, [
+            'choices'      => $grantPermission,
+            'choice_label' => function ($choice) {
+                return $choice;
+            },
+            'required' => false,
+            'multiple'=>true,
+        ]);
+    }
+    private function revokePermission($form ,$revokePermission ){
+        $form->add('revokePermission', ChoiceType::class, [
+            'choices'      => $revokePermission,
+            'choice_label' => function ($choice) {
+                return $choice;
+            },
+            'required' => false,
+            'multiple'=>true,
+        ]);
+    }
+
 }

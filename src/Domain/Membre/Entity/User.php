@@ -330,16 +330,45 @@ class User extends UserInterface  implements  TwoFactorInterface
         }
     }
 
-    public function hasPermission($permission)
+    public function hasPermission($permissionName) :bool
     {
         $hasPermission = false;
+        $collection = collect($this->getUserPermissions()->toArray());
         foreach ($this->getAccessRoles() as $role) {
-            if ( $role->hasPermission($permission)) {
-                return true;
+            if ( $role->hasPermission($permissionName)) {
+
+                $hasPermission= true;
             }
         }
-
-        //TODO USRR PERMMESION  REVOQUE GRANT array push array diff
+        /**
+         * if user has custom permission
+         */
+        if ($collection->count()>0){
+            $grantPermission = $collection->filter(function ($item){
+                return $item->getStatus()==UserPermission::GRANT;
+            });
+            /**
+             * if user has grant permission
+             */
+             if ($grantPermission->count()>0){
+                 $grantPermissionArrayCollection=new ArrayCollection($grantPermission->toArray());
+                 $hasPermission= $grantPermissionArrayCollection->exists(function($key, $value) use ($permissionName){
+                     return $value->hasPermission($permissionName) === true;
+                 });
+             }
+            $revokePermission = $collection->filter(function ($item){
+                return $item->getStatus()==UserPermission::REVOKE;
+            });
+            /**
+             * if user has revoke permission
+             */
+            if ($revokePermission->count()>0){
+                $grantPermissionArrayCollection=new ArrayCollection($revokePermission->toArray());
+                $hasPermission= $grantPermissionArrayCollection->exists(function($key, $value) use ($permissionName){
+                    return $value->hasPermission($permissionName) === false;
+                });
+            }
+        }
         return $hasPermission;
     }
     function isSuperAdmin(){
