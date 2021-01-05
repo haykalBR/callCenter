@@ -336,10 +336,10 @@ class User extends UserInterface  implements  TwoFactorInterface
         $collection = collect($this->getUserPermissions()->toArray());
         foreach ($this->getAccessRoles() as $role) {
             if ( $role->hasPermission($permissionName)) {
-
                 $hasPermission= true;
             }
         }
+
         /**
          * if user has custom permission
          */
@@ -347,14 +347,20 @@ class User extends UserInterface  implements  TwoFactorInterface
             $grantPermission = $collection->filter(function ($item){
                 return $item->getStatus()==UserPermission::GRANT;
             });
+
             /**
              * if user has grant permission
              */
-             if ($grantPermission->count()>0){
+            if ($grantPermission->count()>0){
                  $grantPermissionArrayCollection=new ArrayCollection($grantPermission->toArray());
-                 $hasPermission= $grantPermissionArrayCollection->exists(function($key, $value) use ($permissionName){
-                     return $value->hasPermission($permissionName) === true;
+                $isGrantPermission = $grantPermissionArrayCollection->map(function($value) use ($permissionName,$hasPermission){
+                    if ($value->hasPermission($permissionName)){
+                        return $value;
+                     }
                  });
+                if (!is_null($isGrantPermission->current())){
+                    $hasPermission=true;
+                }
              }
             $revokePermission = $collection->filter(function ($item){
                 return $item->getStatus()==UserPermission::REVOKE;
@@ -364,14 +370,19 @@ class User extends UserInterface  implements  TwoFactorInterface
              */
             if ($revokePermission->count()>0){
                 $grantPermissionArrayCollection=new ArrayCollection($revokePermission->toArray());
-                $hasPermission= $grantPermissionArrayCollection->exists(function($key, $value) use ($permissionName){
-                    return $value->hasPermission($permissionName) === false;
+                $isRevokePermission= $grantPermissionArrayCollection->map(function($value) use ($permissionName,$hasPermission){
+                    if ($value->hasPermission($permissionName)){
+                        return $value;
+                    }
                 });
+                if (!is_null($isRevokePermission->current())){
+                    $hasPermission=false;
+                }
             }
         }
         return $hasPermission;
     }
-    function isSuperAdmin(){
+    public function isSuperAdmin(){
         $isSuperAdmin = false;
         foreach ($this->getAccessRoles() as $role) {
             if ($role->isSuperAdmin()) {
