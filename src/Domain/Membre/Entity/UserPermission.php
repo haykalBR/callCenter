@@ -76,7 +76,7 @@ class UserPermission
     /**
      * @return bool
      */
-    public function isStatus(): bool
+    public function getStatus(): bool
     {
         return $this->status;
     }
@@ -87,6 +87,11 @@ class UserPermission
     public function setStatus(bool $status): void
     {
         $this->status = $status;
+    }
+    public function hasPermission($permission)
+    {
+       // dd($this->permission->getGuardName(),2);
+       return $this->permission->getGuardName() === $permission;
     }
 
 }

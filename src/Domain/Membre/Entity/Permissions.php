@@ -37,7 +37,7 @@ class Permissions
      */
     private $roles;
     /**
-     * @ORM\OneToMany(targetEntity=UserPermission::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=UserPermission::class, mappedBy="permission")
      */
     private Collection $userPermissions;
     public function __construct()

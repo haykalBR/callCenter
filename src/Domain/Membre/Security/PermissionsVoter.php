@@ -26,8 +26,6 @@ class PermissionsVoter extends Voter
     }
     protected function supports(string $attribute, $subject)
     {
-
-
         if (!$this->security->getUser() instanceof User || $attribute !== PermissionSubscriber::PERRMESTION_ACCESS){
 
            return false;
@@ -49,11 +47,9 @@ class PermissionsVoter extends Voter
         if ($subject != null){
             $current_route=$subject;
         }
-
         if (!$user->hasPermission($current_route)){
             return false;
         }
-
         return true;
     }
 }

@@ -13,6 +13,7 @@ use App\Core\Services\PermessionService;
 use App\Domain\Membre\Entity\Permissions;
 use App\Domain\Membre\Entity\Roles;
 use App\Domain\Membre\Entity\User;
+use App\Domain\Membre\Entity\UserPermission;
 use App\Domain\Membre\Repository\PermissionsRepository;
 use App\Domain\Membre\Repository\RolesRepository;
 use App\Http\Subscriber\PermissionSubscriber;
@@ -65,6 +66,39 @@ class DefaultController extends AbstractController
      */
     public function index(PermissionsRepository $permissionsRepository,RolesRepository $rolesRepository,PublisherInterface $publisher, RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
+      //  dd($this->getUser()->getAccessRoles()->toArray());
+        $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS);
+        dd('GOOD !! ');
+        /**
+         * @var $user User
+         */
+        $user=$this->getUser();
+        $current_route=$request->get('_route');
+        $hasPermission = false;
+        $collection = collect($user->getUserPermissions()->toArray());
+
+
+        $hasPermission=$collection->filter(function ($item){
+            return $item->getStatus()==UserPermission::GRANT;
+        })->contains(function ($permission) use ($current_route) {
+            if ($permission->hasPermission($current_route)){
+                return true;
+            }
+        });
+
+        $hasPermission=$collection->filter(function ($item){
+            return $item->getStatus()==UserPermission::REVOKE;
+        })->contains(function ($permission) use ($current_route) {
+            if ($permission->hasPermission($current_route)){
+                return false;
+            }
+        });
+
+
+        dd($hasPermission);
+
+
+
     //    $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS, 'admin_profile_edit');
 
       //  $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS);
