@@ -9,7 +9,6 @@
 
 namespace App\Domain\Membre\Entity;
 
-use App\Validator\HasRelationship;
 use Doctrine\ORM\Mapping as ORM;
 use App\Core\Traits\SoftDeleteTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -30,9 +29,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(fields={"username"}, message="Cet utilisateur existe déjà")
  * @UniqueEntity(fields={"email"}, message="Cette addresse mail déjà existe")
  */
-class User extends UserInterface  implements  TwoFactorInterface
+class User extends UserInterface implements TwoFactorInterface
 {
-    use TimestampableTrait,SoftDeleteTrait;
+    use TimestampableTrait;
+    use SoftDeleteTrait;
 
     /**
      * @ORM\Id
@@ -100,8 +100,8 @@ class User extends UserInterface  implements  TwoFactorInterface
 
     public function __construct()
     {
-        $this->loginAttempts = new ArrayCollection();
-        $this->accessRoles = new ArrayCollection();
+        $this->loginAttempts  = new ArrayCollection();
+        $this->accessRoles    = new ArrayCollection();
         $this->userPermissions= new ArrayCollection();
     }
 
@@ -138,8 +138,6 @@ class User extends UserInterface  implements  TwoFactorInterface
 
         return $this;
     }
-
-
 
     /**
      * @see UserInterface
@@ -281,13 +279,11 @@ class User extends UserInterface  implements  TwoFactorInterface
      */
     public function getAccessRoles(): Collection
     {
-
         return $this->accessRoles;
     }
 
     public function addAccessRoles(Roles $accessRoles): self
     {
-
         if (!$this->accessRoles->contains($accessRoles)) {
             $this->accessRoles[] = $accessRoles;
             $accessRoles->addUser($this);
@@ -305,13 +301,14 @@ class User extends UserInterface  implements  TwoFactorInterface
 
         return $this;
     }
+
     /**
      * @see UserInterface
      */
     public function getRoles(): array
     {
         $roleNames = [];
-        $roles = $this->getAccessRoles();
+        $roles     = $this->getAccessRoles();
 
         foreach ($roles as $role) {
             $roleNames[] = $role->getGuardName();
@@ -319,7 +316,9 @@ class User extends UserInterface  implements  TwoFactorInterface
 
         return array_unique($roleNames);
     }
-    public function setAccessRoles(Collection $roles){
+
+    public function setAccessRoles(Collection $roles)
+    {
         $this->accessRoles=$roles;
     }
 
@@ -330,65 +329,70 @@ class User extends UserInterface  implements  TwoFactorInterface
         }
     }
 
-    public function hasPermission($permissionName) :bool
+    public function hasPermission($permissionName): bool
     {
         $hasPermission = false;
-        $collection = collect($this->getUserPermissions()->toArray());
+        $collection    = collect($this->getUserPermissions()->toArray());
         foreach ($this->getAccessRoles() as $role) {
-            if ( $role->hasPermission($permissionName)) {
+            if ($role->hasPermission($permissionName)) {
                 $hasPermission= true;
             }
         }
 
-        /**
+        /*
          * if user has custom permission
          */
-        if ($collection->count()>0){
-            $grantPermission = $collection->filter(function ($item){
-                return $item->getStatus()==UserPermission::GRANT;
+        if ($collection->count() > 0) {
+            $grantPermission = $collection->filter(function ($item) {
+                return UserPermission::GRANT == $item->getStatus();
             });
-
-            /**
+            /*
              * if user has grant permission
              */
-            if ($grantPermission->count()>0){
-                 $grantPermissionArrayCollection=new ArrayCollection($grantPermission->toArray());
-                $isGrantPermission = $grantPermissionArrayCollection->map(function($value) use ($permissionName,$hasPermission){
-                    if ($value->hasPermission($permissionName)){
-                        return $value;
-                     }
-                 });
-                if (!is_null($isGrantPermission->current())){
-                    $hasPermission=true;
-                }
-             }
-            $revokePermission = $collection->filter(function ($item){
-                return $item->getStatus()==UserPermission::REVOKE;
-            });
-            /**
-             * if user has revoke permission
-             */
-            if ($revokePermission->count()>0){
-                $grantPermissionArrayCollection=new ArrayCollection($revokePermission->toArray());
-                $isRevokePermission= $grantPermissionArrayCollection->map(function($value) use ($permissionName,$hasPermission){
-                    if ($value->hasPermission($permissionName)){
+            if ($grantPermission->count() > 0) {
+                $grantPermissionArrayCollection=new ArrayCollection($grantPermission->toArray());
+                $isGrantPermission             = $grantPermissionArrayCollection->map(function ($value) use ($permissionName,$hasPermission) {
+                    if ($value->hasPermission($permissionName)) {
                         return $value;
                     }
                 });
-                if (!is_null($isRevokePermission->current())){
+
+                if (null !== $isGrantPermission->current()) {
+                    $hasPermission=true;
+                }
+            }
+            $revokePermission = $collection->filter(function ($item) {
+                return UserPermission::REVOKE == $item->getStatus();
+            });
+
+            /*
+             * if user has revoke permission
+             */
+            if ($revokePermission->count() > 0) {
+                $grantPermissionArrayCollection=new ArrayCollection($revokePermission->toArray());
+                $isRevokePermission            = $grantPermissionArrayCollection->map(function ($value) use ($permissionName,$hasPermission) {
+                    if ($value->hasPermission($permissionName)) {
+                        return $value;
+                    }
+                });
+                if (null !== $isRevokePermission->current()) {
                     $hasPermission=false;
                 }
             }
         }
+
         return $hasPermission;
     }
-    public function isSuperAdmin(){
+
+    public function isSuperAdmin()
+    {
         $isSuperAdmin = false;
         foreach ($this->getAccessRoles() as $role) {
             if ($role->isSuperAdmin()) {
                 return true;
             }
         }
+
         return $isSuperAdmin;
     }
 
@@ -397,33 +401,21 @@ class User extends UserInterface  implements  TwoFactorInterface
         return $this->getAccessRoles()->contains($role);
     }
 
-    /**
-     * @return mixed
-     */
     public function getGrantPermission()
     {
         return $this->grantPermission;
     }
 
-    /**
-     * @param mixed $grantPermission
-     */
     public function setGrantPermission($grantPermission): void
     {
         $this->grantPermission = $grantPermission;
     }
 
-    /**
-     * @return mixed
-     */
     public function getRevokePermission()
     {
         return $this->revokePermission;
     }
 
-    /**
-     * @param mixed $revokePermission
-     */
     public function setRevokePermission($revokePermission): void
     {
         $this->revokePermission = $revokePermission;
@@ -459,5 +451,4 @@ class User extends UserInterface  implements  TwoFactorInterface
 
         return $this;
     }
-
 }
