@@ -278,4 +278,12 @@ class Profile implements \Serializable
     {
         // TODO: Implement unserialize() method.
     }
+    public function getNamer(){
+        return $this->user->getId().'-'.$this->createdAt->format('Y-m-d H:i:s');
+    }
+    public function getAllowedTypes()
+    {
+        return ['image/jpeg', 'image/png'];
+    }
+
 }

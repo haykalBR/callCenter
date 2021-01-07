@@ -40,10 +40,15 @@ class Permissions
      * @ORM\OneToMany(targetEntity=UserPermission::class, mappedBy="permission")
      */
     private Collection $userPermissions;
+    /**
+     * @ORM\ManyToMany(targetEntity=Resources::class, mappedBy="permissions")
+     */
+    private $resources;
     public function __construct()
     {
         $this->roles = new ArrayCollection();
         $this->userPermissions= new ArrayCollection();
+        $this->resources=new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -138,6 +143,28 @@ class Permissions
             }
         }
 
+        return $this;
+    }
+    /**
+     * @return Collection|Resources[]
+     */
+    public function getResources(): Collection
+    {
+        return $this->resources;
+    }
+    public function addResource(Resources $resource): self
+    {
+        if (!$this->resources->contains($resource)) {
+            $this->resources[] = $resource;
+        }
+
+        return $this;
+    }
+    public function removeResource(Resources $resource): self
+    {
+        if ($this->roles->contains($resource)) {
+            $this->roles->removeElement($resource);
+        }
         return $this;
     }
 }

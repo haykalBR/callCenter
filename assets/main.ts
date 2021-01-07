@@ -11,6 +11,7 @@ usersEvent.deleteUser();
 usersEvent.passwordUser();
 usersEvent.reloadPermissions();
 usersEvent.permissionsGrantAndRevoke();
+usersEvent.getRoles();
 let profileEvent = new ProfileEvent();
 profileEvent.googleAuthFormStat();
 permissonEvent.refresh();

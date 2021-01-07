@@ -9,6 +9,7 @@
 
 namespace App\Core\Repository;
 
+use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\Expr;
 use App\Core\Enum\DataTableEnum;
 use Doctrine\ORM\NonUniqueResultException;
@@ -60,11 +61,22 @@ trait BaseRepositoryTrait
         $FilteredTotal = clone $total;
         if (isset($request->query->all()['join'])) {
             $joins = $request->query->all()['join'];
+
             foreach ($joins as $join) {
-                $qb->leftJoin($join['join'], $join['alias'], Expr\Join::WITH, $join['condition']);
-                $FilteredTotal->leftJoin($join['join'], $join['alias'], Expr\Join::WITH, $join['condition']);
+                if ($join['type']!=""){
+                 //   $qb->innerJoin($join['join'], $join['alias']);
+                 /*  $qb ->innerJoin("t.accessRoles", "r")
+                        ->addSelect('r');*/
+
+                }else{
+                    $qb->leftJoin($join['join'], $join['alias'], Expr\Join::WITH, $join['condition']);
+                    $FilteredTotal->leftJoin($join['join'], $join['alias'], Expr\Join::WITH, $join['condition']);
+                }
+
             }
         }
+       // dd($joins,$qb->getQuery()->getDQL());
+
         /*
          *  Set Start item
          */
@@ -80,11 +92,11 @@ trait BaseRepositoryTrait
         /*
          *  Set Ordred By cloumn
          */
-        if (isset($orders)) {
+     /*   if (isset($orders)) {
             foreach ($orders as $order) {
                 $qb->addOrderBy($columns[$order['column']]['name'], $order['dir']);
             }
-        }
+        }*/
         /**
          *  Get List of search.
          */
@@ -102,6 +114,7 @@ trait BaseRepositoryTrait
                 $searchlist[] = $qb->expr()->like('CAST('.$column['name'].' as text)', '\'%'.trim($search['value']).'%\'');
             }
         }
+
         /*
          *  Custom Search
          */
@@ -163,7 +176,9 @@ trait BaseRepositoryTrait
             $item['t_options']=$ch;
             $arrar[]=$item;
         }*/
-
+   /*   dd($qb->getQuery()->getScalarResult()[0]
+      ,$qb->getQuery()->getResult(Query::HYDRATE_SCALAR)[0]
+      );*/
         return [
             'draw'            => $draw,
             'recordsTotal'    => $recordsTotal,

@@ -70,5 +70,15 @@ export default class UsersEvent{
     permissionsGrantAndRevoke(){
 
     }
+    getRoles(){
+        $("#users_table").on('click', '.roles_user',  (event)=> {
+            event.preventDefault();
+            const user = {
+                'id':event.target.parentElement.getAttribute("data-user"),
+                'email':event.target.parentElement.getAttribute("data-email")
+            }
+            this.usersController.getRoles(user);
+        });
+    }
 
 }

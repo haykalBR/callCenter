@@ -57,7 +57,6 @@ class UsersController extends AbstractController
         $this->rolesRepository = $rolesRepository;
         $this->permissionsRepository = $permissionsRepository;
     }
-
     /**
      * @Route("/", name="users", methods={"GET","POST"})
      */
@@ -185,5 +184,23 @@ class UsersController extends AbstractController
             return $this->json(['grant'=>$permissionsGrant,'revoke'=>$permissionsRevoke],200);
         }
        return $this->json('not found',400);
+    }
+
+    /**
+     * get Roles from user
+     * @Route("/userroles/{id}", name="user_roles", methods={"GET","POST"},options={"expose"=true})
+     */
+    public function getRoles(User $user,UserRepository $userRepository,Request $request){
+        if ($request->isXmlHttpRequest()){
+            $query = $userRepository->createQueryBuilder("u")
+                ->Select('r.name')
+                ->innerJoin("u.accessRoles", "r")
+                ->where('u.id = :user')
+                ->setParameter('user',$user->getId())
+                ->getQuery()
+                ->getScalarResult()
+            ;
+            return $this->json($query,200);
+        }
     }
 }
