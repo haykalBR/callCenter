@@ -66,6 +66,30 @@ class DefaultController extends AbstractController
      */
     public function index(PermissionsRepository $permissionsRepository,RolesRepository $rolesRepository,PublisherInterface $publisher, RouterInterface $router, Request $request, UserRepository $repository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
+
+/*        for ($i=0 ;$i<10 ; $i++){
+            $role =new Roles();
+            $role->setName("test{$i}");
+            $role->setGuardName("test{$i}");
+            $entityManager->persist($role);
+
+        }
+        $entityManager->flush();*/
+        $user=$this->getUser();
+        $q = $userRepository->createQueryBuilder("u")
+         //   ->select(" u.id ,u.email")
+            ->innerJoin("u.accessRoles", "r")
+            ->addSelect('r')
+            ->groupBy('u.id')
+           // ->addSelect("CONCAT(r.id)")
+            ->getQuery()
+            ->getScalarResult()
+        ;
+
+
+        dd($q);
+
+
       //  dd($this->getUser()->getAccessRoles()->toArray());
         $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS);
         dd('GOOD !! ');
