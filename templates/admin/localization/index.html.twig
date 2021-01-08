@@ -22,19 +22,16 @@
             <div class="card-body">
                 {# {{ macro.formsearch(form) }} #}
                 {# <a href="{{ path('admin_new_users') }}" class="btn btn-info"> add user </a> #}
-                <custom-datatable id="users_table">
+                <table is="custom-datatable" id="localization_table">
                     <thead>
                         <tr>
                             <th class="id">ID</th>
-                            <th>Email</th>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>roles</th>
-                            <th>Created At </th>
+                            <th>name</th>
+                            <th>iso Three </th>
                             <th>actions</th>
                         </tr>
                     </thead>
-                </custom-datatable>
+                </table>
             </div>
         </div>
     </div>

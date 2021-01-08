@@ -31,9 +31,10 @@ trait BaseRepositoryTrait
         if (isset($columns)) {
             $column = '';
             foreach ($columns as $colums) {
-                if ('true' === $colums['searchable'] and false === mb_strpos($column, $colums['name'])) {
-                    $column .= $colums['name'].' AS '.$colums['data'].',';
-                }
+                
+                // if ('true' === $colums['searchable'] and false === mb_strpos($column, $colums['name'])) {
+                //     $column .= $colums['name'].' AS '.$colums['data'].',';
+                // }
             }
         } else {
             $column = 't';

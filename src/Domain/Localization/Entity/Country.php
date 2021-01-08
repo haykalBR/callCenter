@@ -25,12 +25,12 @@ class Country
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="string", length=20)
      */
     private $isoTwo;
 
     /**
-     * @ORM\Column(type="string", length=3)
+     * @ORM\Column(type="string", length=30)
      */
     private $isoThree;
 

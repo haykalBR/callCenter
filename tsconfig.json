@@ -1,13 +1,15 @@
 {
     "compilerOptions": {
-    //   "outDir": "./dist",
-    //   "rootDir": "./src", 
-      /* Experimental Options */
       "experimentalDecorators": true, 
       "emitDecoratorMetadata": true, 
-      /* Advanced Options */
       "forceConsistentCasingInFileNames": true,
       "jsx": "react",
-      "module": "CommonJS"
+      "module": "CommonJS",
+      "target": "es6",
+      "lib": ["es5", "dom"],
+      "types": ["reflect-metadata", "node"],
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
     }
   }

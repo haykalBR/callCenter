@@ -1,10 +1,7 @@
-class Datatable extends HTMLElement {
+class Datatable extends HTMLTableElement {
     constructor() {
       super(); 
-      let shadow = this.attachShadow({mode: 'open'});
-      let table = document.createElement('table');
-      table.setAttribute('class', 'table table-striped table-bordered');
-      shadow.appendChild(table);
+      this.setAttribute('class', 'table table-striped table-bordered');
     }
 }
 

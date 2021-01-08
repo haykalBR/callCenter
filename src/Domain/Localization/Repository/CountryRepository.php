@@ -9,9 +9,11 @@
 
 namespace App\Domain\Localization\Repository;
 
+use App\Core\Repository\BaseRepositoryTrait;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Domain\Localization\Entity\Country;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * @method Country|null find($id, $lockMode = null, $lockVersion = null)
@@ -21,9 +23,14 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class CountryRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    use BaseRepositoryTrait;
+
+    private $requestStack;
+
+    public function __construct(ManagerRegistry $registry, RequestStack $requestStack)
     {
         parent::__construct($registry, Country::class);
+        $this->requestStack = $requestStack;
     }
 
     // /**
