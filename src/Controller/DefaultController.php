@@ -76,7 +76,7 @@ class DefaultController extends AbstractController
         }
         $entityManager->flush();*/
         $user=$this->getUser();
-        $q = $userRepository->createQueryBuilder("u")
+/*        $q = $userRepository->createQueryBuilder("u")
          //   ->select(" u.id ,u.email")
             ->innerJoin("u.accessRoles", "r")
             ->addSelect('r')
@@ -84,15 +84,15 @@ class DefaultController extends AbstractController
            // ->addSelect("CONCAT(r.id)")
             ->getQuery()
             ->getScalarResult()
-        ;
+        ;*/
 
 
-        dd($q);
+
 
 
       //  dd($this->getUser()->getAccessRoles()->toArray());
-        $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS);
-        dd('GOOD !! ');
+    //    $this->denyAccessUnlessGranted(PermissionSubscriber::PERRMESTION_ACCESS);
+    //    dd('GOOD !! ');
         /**
          * @var $user User
          */
