@@ -39,3 +39,9 @@ services:
     App\Core\Repository\BaseRepositoryTrait:
         calls:
             - [dataTable, ['@@request'],true]
+    App\Infrastructure\Mercure\Service\CookieGenerator:
+        arguments:
+            $secret: '%env(resolve:MERCURE_SUBSCRIBER_KEY)%'
+    App\Domain\Membre\Subscriber\UserPermissionsSubscriber:
+        tags:
+            - { name: 'doctrine.event_subscriber' }

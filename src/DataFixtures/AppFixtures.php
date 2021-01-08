@@ -9,6 +9,8 @@
 
 namespace App\DataFixtures;
 
+use App\Domain\Membre\Entity\RoleInterface;
+use App\Domain\Membre\Entity\Roles;
 use App\Domain\Membre\Entity\User;
 use App\Domain\Membre\Entity\Profile;
 use Doctrine\Persistence\ObjectManager;
@@ -35,7 +37,12 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 10; $i < 550; ++$i) {
+
+        $role= new Roles();
+        $role->setGuardName(RoleInterface::ROLE_SUPER_ADMIN);
+        $role->setName('ROLE Super Admin');
+        $manager->persist($role);
+        for ($i = 10; $i < 150; ++$i) {
             /**
              * @var $user User
              */
@@ -46,7 +53,11 @@ class AppFixtures extends Fixture
             $user->setPassword(
               $this->userPasswordEncoder->encodePassword($user, 'haikel')
           );
-          //  $user->setGoogleAuthenticatorSecret($this->googleAuthenticator->generateSecret());
+
+            if ($i==10){
+                $user->addAccessRoles($role);
+            }
+            //  $user->setGoogleAuthenticatorSecret($this->googleAuthenticator->generateSecret());
             $manager->persist($user);
             /**
              * @var $profile Profile-

@@ -30,8 +30,13 @@ trait FileUploadTrait
      *
      * @param UploadedFile $file
      */
-    public function setFile(UploadedFile $file = null)
+    public function setFile(UploadedFile $file = null,$removable= false)
     {
+        if ($file == null && !$removable){
+            $this->path=null;
+        }
+
+
         $this->file     = $file;
         $this->updatedAt= new \DateTime();
     }
@@ -58,38 +63,32 @@ trait FileUploadTrait
      */
     public function setPath($path): self
     {
+
         $this->path = $path;
 
         return $this;
     }
-
     public function getRootDir()
     {
         return __DIR__;
     }
-
     public function getWebSubDir()
     {
         return 'uploads';
     }
-
     public function getWebDir()
     {
         return $this->getRootDir().\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR.'public'.\DIRECTORY_SEPARATOR.$this->getWebSubDir();
     }
-
     abstract public function getUploadDir();
-
     public function getRelativePath()
     {
         return $this->getUploadDir().\DIRECTORY_SEPARATOR.$this->path;
     }
-
     public function getRelativeUrl()
     {
         return $this->getWebSubDir().\DIRECTORY_SEPARATOR.$this->getUploadDir().\DIRECTORY_SEPARATOR.$this->path;
     }
-
     public function getAbsolutePath()
     {
         if ($this->path) {
@@ -98,29 +97,21 @@ trait FileUploadTrait
 
         return null;
     }
-
     public function getSizedImageAbsolutePath($size)
     {
         list($name, $extension) = explode('.', $this->path);
 
         return $this->getAbsoluteUploadDir().\DIRECTORY_SEPARATOR.$name.'_'.$size.'.'.$extension;
     }
-
     public function getAbsoluteUploadDir()
     {
         return $this->getWebDir().\DIRECTORY_SEPARATOR.$this->getUploadDir();
-    }
-
-    public function getAllowedTypes()
-    {
-        return ['image/jpeg', 'image/png', 'application/pdf', 'application/word'];
     }
 
     public function getFilters()
     {
         return ['_135x215', '_150x150', '_200x100', '_500x350', '_900x400'];
     }
-
     /**
      * @ORM\PrePersist
      * @ORM\PostUpdate
@@ -144,14 +135,13 @@ trait FileUploadTrait
 
             $this->getFile()->move(
                 $this->getAbsoluteUploadDir(),
-                sprintf('%s.%s', $name, $extension)
+                sprintf('%s.%s', $this->getNamer(), $extension)
             );
 
-            $this->setPath($name.'.'.$extension);
-            $this->setFile(null);
+            $this->setPath($this->getNamer().'.'.$extension);
+            $this->setFile(null,true);
         }
     }
-
     public function recurseRmdir($dir)
     {
         $files = array_diff(scandir($dir), ['.', '..']);
@@ -161,7 +151,6 @@ trait FileUploadTrait
 
         return rmdir($dir);
     }
-
     public function deleteImages()
     {
         if ($this->path) {
@@ -172,7 +161,6 @@ trait FileUploadTrait
             }
         }
     }
-
     protected function getExtension(UploadedFile $file): ?string
     {
         $originalName = $file->getClientOriginalName();
@@ -187,4 +175,6 @@ trait FileUploadTrait
 
         return null;
     }
+    abstract public function getNamer();
+    abstract public function getAllowedTypes();
 }
