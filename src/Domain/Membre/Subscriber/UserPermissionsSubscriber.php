@@ -38,6 +38,9 @@ class UserPermissionsSubscriber implements EventSubscriber
         ];
     }
     public function postPersist(LifecycleEventArgs $args){
+        /**
+         * TODO add condtion from any action Important !!!
+         */
         if ($args->getObject() instanceof User){
             $request=$this->requestStack->getCurrentRequest();
            $this->userPermissionsService->CreateUserPermissions($args->getObject(),$request->request->all()['user']);

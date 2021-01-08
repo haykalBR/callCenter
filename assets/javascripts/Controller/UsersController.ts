@@ -1,7 +1,8 @@
-import * as moment from 'moment'
+import moment from 'moment';
 import 'bootstrap-switch-button';
-const routes = require('../../../public/js/fos_js_routes.json');
-import * as  Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+// const routes = require('../../../public/js/fos_js_routes.json');
+import routes from '../../../public/js/fos_js_routes.json';
+import Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 Routing.setRoutingData(routes);
 import {randomString} from "../functions/Strings";
 import axios from "../Config/axios";

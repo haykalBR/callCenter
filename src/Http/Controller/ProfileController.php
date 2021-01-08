@@ -61,7 +61,7 @@ class ProfileController extends AbstractController
     /**
      * Edit Profile User.
      *
-     * @Route("/edit/{username}", name="profile_edit", methods={"GET","POST"})
+     * @Route("/edit/{username}", name="profile_edit", methods={"GET","POST"},options={"expose"=true})
      * @Security("user == cuurnetUser")
      */
     public function edit(Request $request, User $cuurnetUser): Response

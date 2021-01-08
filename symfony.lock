@@ -149,6 +149,9 @@
     "egulias/email-validator": {
         "version": "2.1.22"
     },
+    "ezyang/htmlpurifier": {
+        "version": "v4.13.0"
+    },
     "felixfbecker/advanced-json-rpc": {
         "version": "v3.1.1"
     },
@@ -169,6 +172,9 @@
         "files": [
             ".php_cs.dist"
         ]
+    },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.2"
     },
     "friendsofsymfony/jsrouting-bundle": {
         "version": "2.3",
@@ -196,6 +202,15 @@
         "files": [
             "config/packages/google_recaptcha.yaml"
         ]
+    },
+    "illuminate/collections": {
+        "version": "v8.21.0"
+    },
+    "illuminate/contracts": {
+        "version": "v8.21.0"
+    },
+    "illuminate/macroable": {
+        "version": "v8.21.0"
     },
     "jms/metadata": {
         "version": "2.3.0"

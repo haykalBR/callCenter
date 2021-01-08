@@ -42,7 +42,7 @@ class AppFixtures extends Fixture
         $role->setGuardName(RoleInterface::ROLE_SUPER_ADMIN);
         $role->setName('ROLE Super Admin');
         $manager->persist($role);
-        for ($i = 10; $i < 150; ++$i) {
+        for ($i = 10; $i < 50; ++$i) {
             /**
              * @var $user User
              */
@@ -51,8 +51,8 @@ class AppFixtures extends Fixture
             $user->setUsername("haikel{$i}");
             $user->setEnabled(true);
             $user->setPassword(
-              $this->userPasswordEncoder->encodePassword($user, 'haikel')
-          );
+                $this->userPasswordEncoder->encodePassword($user, 'haikel')
+            );
 
             if ($i==10){
                 $user->addAccessRoles($role);
