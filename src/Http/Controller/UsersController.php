@@ -58,7 +58,7 @@ class UsersController extends AbstractController
         $this->permissionsRepository = $permissionsRepository;
     }
     /**
-     * @Route("/", name="users", methods={"GET","POST"})
+     * @Route("/", name="users", methods={"GET","POST"},options={"expose"=true})
      */
     public function index(Request $request): Response
     {

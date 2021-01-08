@@ -30,11 +30,11 @@ trait BaseRepositoryTrait
         if (isset($columns)) {
             $column = '';
             foreach ($columns as $colums) {
-           //     if ($colums['data']!="t_options"){
-                    if ('true' === $colums['searchable'] and false === mb_strpos($column, $colums['name'])) {
-                        $column .= $colums['name'].' AS '.$colums['data'].',';
-                    }
-             //   }
+                //     if ($colums['data']!="t_options"){
+                if ('true' === $colums['searchable'] and false === mb_strpos($column, $colums['name'])) {
+                    $column .= $colums['name'].' AS '.$colums['data'].',';
+                }
+                //   }
 
             }
         } else {
@@ -63,19 +63,14 @@ trait BaseRepositoryTrait
             $joins = $request->query->all()['join'];
 
             foreach ($joins as $join) {
-                if ($join['type']!=""){
-                 //   $qb->innerJoin($join['join'], $join['alias']);
-                 /*  $qb ->innerJoin("t.accessRoles", "r")
-                        ->addSelect('r');*/
 
-                }else{
                     $qb->leftJoin($join['join'], $join['alias'], Expr\Join::WITH, $join['condition']);
                     $FilteredTotal->leftJoin($join['join'], $join['alias'], Expr\Join::WITH, $join['condition']);
-                }
+
 
             }
         }
-       // dd($joins,$qb->getQuery()->getDQL());
+        // dd($joins,$qb->getQuery()->getDQL());
 
         /*
          *  Set Start item
@@ -92,11 +87,11 @@ trait BaseRepositoryTrait
         /*
          *  Set Ordred By cloumn
          */
-     /*   if (isset($orders)) {
-            foreach ($orders as $order) {
-                $qb->addOrderBy($columns[$order['column']]['name'], $order['dir']);
-            }
-        }*/
+        /*   if (isset($orders)) {
+               foreach ($orders as $order) {
+                   $qb->addOrderBy($columns[$order['column']]['name'], $order['dir']);
+               }
+           }*/
         /**
          *  Get List of search.
          */
@@ -165,20 +160,19 @@ trait BaseRepositoryTrait
             $recordsFiltered = 0;
         }
 
-  /*      $arrar=[];
-        foreach (as $item){
-            $ch="";
-                     $ch.= '<a data-toggle="tooltip" title="edit user " href=""><i class="fa fa-edit "></i></a> ';
-                     $ch.= '<a data-toggle="tooltip" title="remove user "  class="delete_user"  href=""><i class="fa fa-trash"></i></a> ';
-                     $ch.= '<a data-toggle="tooltip" title="regnreate password "  class="password_user" data-user=""><i class="fa fa-key"></i></a> ';
-                     $ch.='<input type="checkbox"  class="state_user" data-user=""  data-toggle="switchbutton"  href="" checked data-size="xs">';
-
-            $item['t_options']=$ch;
-            $arrar[]=$item;
-        }*/
-   /*   dd($qb->getQuery()->getScalarResult()[0]
-      ,$qb->getQuery()->getResult(Query::HYDRATE_SCALAR)[0]
-      );*/
+        /*      $arrar=[];
+              foreach (as $item){
+                  $ch="";
+                           $ch.= '<a data-toggle="tooltip" title="edit user " href=""><i class="fa fa-edit "></i></a> ';
+                           $ch.= '<a data-toggle="tooltip" title="remove user "  class="delete_user"  href=""><i class="fa fa-trash"></i></a> ';
+                           $ch.= '<a data-toggle="tooltip" title="regnreate password "  class="password_user" data-user=""><i class="fa fa-key"></i></a> ';
+                           $ch.='<input type="checkbox"  class="state_user" data-user=""  data-toggle="switchbutton"  href="" checked data-size="xs">';
+                  $item['t_options']=$ch;
+                  $arrar[]=$item;
+              }*/
+        /*   dd($qb->getQuery()->getScalarResult()[0]
+           ,$qb->getQuery()->getResult(Query::HYDRATE_SCALAR)[0]
+           );*/
         return [
             'draw'            => $draw,
             'recordsTotal'    => $recordsTotal,

@@ -1,7 +1,7 @@
-import * as moment from "moment";
+import  moment from "moment";
 const routes = require('../../../public/js/fos_js_routes.json');
 console.warn(routes);
-import * as  Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+import  Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 import axios from "../Config/axios";
 import toastr from "../Config/toastr";
 Routing.setRoutingData(routes);

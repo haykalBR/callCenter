@@ -40,11 +40,11 @@ colors:
 ###----------------------#
 ##
 install: composer.lock ## Install vendor
-	sudo $(dc)  exec -u www-data php composer install
+	sudo $(dc)  exec -u root php composer install
 update: composer.lock ## Install vendor
-	sudo $(dc)  exec -u www-data php  composer update
+	sudo $(dc)  exec -u root php  composer update
 autoload: ## autoload Composer
-	sudo $(dc)  exec -u www-data php composer dump-autoload
+	sudo $(dc)  exec -u root php composer dump-autoload
 
 ##
 ###----------------------#
@@ -111,13 +111,17 @@ psalm: ## execute psalm analyzer
 ###    Yarn 🐱 / JavaScript
 ###---------------------------#
 ##
+
 encore-dev: up   ##  encore dev
 	$(de)  php yarn encore dev
 encore-prod: up  ##  encore prod
 	$(de) php yarn encore production
 encore-watch: up  ##  encore watch
 	$(de) php yarn encore dev --watch
-
+js-install: ##  install JavaScript dependencies
+	$(de) php yarn install
+js-upgrade: ##  upgrade JavaScript dependencies
+	$(de) php yarn upgrade
 ##
 ###---------------------------#
 ###   🐝 The Next Symfony Makefile 🐝

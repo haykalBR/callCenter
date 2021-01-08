@@ -16,7 +16,6 @@ let profileEvent = new ProfileEvent();
 profileEvent.googleAuthFormStat();
 permissonEvent.refresh();
 permissonEvent.addNewPerlission();
-const $ = require('jquery');
 import 'select2';
 //console.warn(checkPermection('admin_profile_edit'));
 
@@ -25,9 +24,8 @@ url.searchParams.append('topic', '/test');
 const eventSource = new EventSource(url, { withCredentials: true });
 eventSource.onmessage = e => {
     console.log('Nouveau message');
-
 }*/
-$(() => {
+/*$(() => {
     $('#permission_guardName').select2({
         width: 'resolve',
         tags: true
@@ -42,7 +40,7 @@ $(() => {
         width: 'resolve',
     });
 
-});
+});*/
 const url:any = new URL('http://www.mercure.local.com:8001/.well-known/mercure');
 url.searchParams.append('topic', 'csv:123456');
 const eventSource = new EventSource(url);
@@ -58,7 +56,7 @@ eventSource.onmessage = e => {
             return
         }
         let percentage = (payload.data.current / payload.data.total) * 100 ;
-            console.log(percentage,payload.data.current,payload.data.tota);
+        console.log(percentage,payload.data.current,payload.data.tota);
 
 
         progressElt.style = `width: ${percentage}%`;
@@ -69,3 +67,6 @@ eventSource.onmessage = e => {
         messageElt.innerHTML = payload.data;
     }
 };
+import container from './Container';
+import LocalizationEvent from './javascripts/Event/LocalizationEvent';
+container.resolve<LocalizationEvent>(LocalizationEvent)
