@@ -19,8 +19,49 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Http\Controller\Users\RegeneratePasswordAction;
+use App\Http\Controller\Users\ChangeStatusAction;
+use App\Http\Controller\Users\GetPermissionFromRolesAction;
+use App\Http\Controller\Users\GetRolesFromUserAction;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *     collectionOperations={
+ *   "permission-from-roles"={
+ *       "method"="get",
+ *       "path"="/users/permission-from-roles",
+ *       "openapi_context"={"summary"=" Get  permission  from  roles "},
+ *       "controller"=GetPermissionFromRolesAction::class
+ *      }
+ *     },
+ *     itemOperations={
+ *     "delete"={
+ *      "path"="users/delete/{id}",
+ *       "method"="DELETE",
+ *      },
+ *     "regenerate-password"={
+ *       "method"="PUT",
+ *       "path"="/users/regenerate-password/{id}",
+ *       "openapi_context"={"summary"="regenerate password for user "},
+ *       "controller"=RegeneratePasswordAction::class,
+ *       "normalization_context"={"groups"={"write:password"}}
+ *      },
+ *      "change-status"={
+ *       "method"="PUT",
+ *       "path"="/users/change-status/{id}",
+ *       "openapi_context"={"summary"=" Change Status  for user "},
+ *       "controller"=ChangeStatusAction::class
+ *      },
+ *      "roles-from-user"={
+ *       "method"="get",
+ *       "path"="/users/roles-from-user/{id}",
+ *       "openapi_context"={"summary"=" Get  roles for user "},
+ *       "controller"=GetRolesFromUserAction::class
+ *      }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=true)
@@ -38,13 +79,14 @@ class User extends UserInterface implements TwoFactorInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"write:password"})
      */
     private int $id;
-
     /**
      * @Gedmo\Versioned
      * @Assert\NotBlank()
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"write:password"})
      */
     private string $email;
     /**
@@ -63,6 +105,7 @@ class User extends UserInterface implements TwoFactorInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups ({"blog_subresource"})
      */
     private string $password;
     /**

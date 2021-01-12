@@ -33,8 +33,8 @@ class UserPermissionsSubscriber implements EventSubscriber
     public function getSubscribedEvents(): array
     {
         return [
-            Events::postPersist,
-            Events::postUpdate,
+         /*   Events::postPersist,
+            Events::postUpdate,*/
         ];
     }
     public function postPersist(LifecycleEventArgs $args){

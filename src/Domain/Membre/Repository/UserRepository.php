@@ -62,6 +62,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter('status', UserPermission::GRANT)
             ->getQuery()->getResult();
     }
+
     public function getRevokePermissionByUser(UserInterface $user){
         return $this->createQueryBuilder('u')
             ->select('up.id,p.guardName')
@@ -75,4 +76,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()->getResult();
     }
 
+    /**
+     * get roles from user
+     * @param UserInterface $user
+     * @return array|int|string
+     */
+    public function getRolesByUser(UserInterface $user){
+        return $this->createQueryBuilder('u')
+        ->Select('r.name')
+            ->innerJoin("u.accessRoles", "r")
+            ->where('u.id = :user')
+            ->setParameter('user',$user->getId())
+            ->getQuery()
+            ->getScalarResult();
+    }
 }

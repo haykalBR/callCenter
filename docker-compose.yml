@@ -57,10 +57,8 @@ services:
       - web
   mail:
     image: mailhog/mailhog
-  #  ports:
-  #    - 1090:8025
-    volumes:
-      - ./volumes/mailhog/volume:/maildir
+    ports:
+      - 1080:8025
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"

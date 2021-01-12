@@ -57,64 +57,11 @@ class UsersController extends AbstractController
         $this->rolesRepository = $rolesRepository;
         $this->permissionsRepository = $permissionsRepository;
     }
-    /**
-     * @Route("/", name="users", methods={"GET","POST"},options={"expose"=true})
-     */
-    public function index(Request $request): Response
-    {
-
-        $form   = $this->createForm(SearchUsersType::class, null);
-        if ($request->isXmlHttpRequest()) {
-            return $this->json($this->userRepository->datatable(), 200);
-        }
-
-        return $this->render('admin/membre/users/index.html.twig', ['form' => $form->createView()]);
-    }
-
-    /**
-     * @Route("/new", name="new_users", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $user   =new User();
-        $form   = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword(
-                $this->passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                ));
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
-            $this->eventDispatcher->dispatch(new MailAddUserEvent($user, $form->get('plainPassword')->getData()));
-
-            return  $this->redirectToRoute('admin_users');
-        }
-
-        return $this->render('admin/membre/users/new.html.twig', ['form' => $form->createView()]);
-    }
-
-    /**
-     * @Route("/edit/{id}", name="edit_users", methods={"GET","POST"},options={"expose"=true})
-     */
-    public function edit(Request $request, User $user): Response
-    {
-        $form   = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
-
-            return  $this->redirectToRoute('admin_users');
-        }
-
-        return $this->render('admin/membre/users/edit.html.twig', ['form' => $form->createView()]);
-    }
 
     /**
      * @Route("/remove/{id}", name="remove_users", methods={"GET","DELETE"},options={"expose"=true})
      */
-    public function delete(User $user, Request $request): Response
+    /*    public function delete(User $user, Request $request): Response
     {
         //TODO DELETE EXCEPTION
         if ($request->isXmlHttpRequest()) {
@@ -129,8 +76,7 @@ class UsersController extends AbstractController
         }
 
         return  $this->redirectToRoute('admin_users');
-    }
-
+    }*/
     /**
      * @Route("/generate/password/{id}", name="generate_password_users", methods={"GET","POST"},options={"expose"=true})
      */
@@ -154,7 +100,6 @@ class UsersController extends AbstractController
 
         return  $this->redirectToRoute('admin_users');
     }
-
     /**
      * @Route("/state//{id}", name="state_users", methods={"GET","POST"},options={"expose"=true})
      */
@@ -185,7 +130,6 @@ class UsersController extends AbstractController
         }
        return $this->json('not found',400);
     }
-
     /**
      * get Roles from user
      * @Route("/userroles/{id}", name="user_roles", methods={"GET","POST"},options={"expose"=true})

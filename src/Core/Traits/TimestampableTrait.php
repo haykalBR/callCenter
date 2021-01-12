@@ -16,14 +16,14 @@ trait TimestampableTrait
     /**
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    public \DateTime $createdAt;
+    private \DateTime $createdAt;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    public $updatedAt;
+    private $updatedAt;
 
     /**
      * Gets triggered only on insert.
