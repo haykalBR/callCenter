@@ -28,7 +28,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *     collectionOperations={
+ *   collectionOperations={
  *   "permission-from-roles"={
  *       "method"="get",
  *       "path"="/users/permission-from-roles",
