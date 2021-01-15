@@ -1,11 +1,14 @@
-import  moment from "moment";
-const routes = require('../../../public/js/fos_js_routes.json');
-console.warn(routes);
-import  Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
-import axios from "../Config/axios";
-import toastr from "../Config/toastr";
-Routing.setRoutingData(routes);
-export default class PermissonController{
+import moment from '../../Config/moment';
+import axios from '../../Config/axios';
+import Routing from '../../Config/routing';
+import Datatable from "../../Shared/interfaces/datatable";
+import { injectable } from 'inversify';
+
+@injectable()
+export default class PermissionService implements Datatable{
+    
+    constructor(){}
+
     getAjax(){
         return {
             'url': "/admin/permission/",
@@ -15,7 +18,7 @@ export default class PermissonController{
 
         }
     }
-    getDatableColumnDef(){
+    getDatableColumnDef():Array<any>{
         let i =0;
         return [
             {   "targets": i++,'name':'t.id','data':'t_id'},
@@ -23,7 +26,7 @@ export default class PermissonController{
             {   "targets": i++,'name':'t.guardName','data':'t_guardName' },
             {   "targets": i++,'name':'t.createdAt','data':'t_createdAt',
                 "render": function ( data, type, full, meta ) {
-                    return moment(new Date(data)).format("DD/MM/YYYY");
+                    return moment(new Date(data)).format();
                 }
             },
             {
@@ -39,21 +42,11 @@ export default class PermissonController{
 
         ]
     }
-    getfnDrawCallback(){
-        return function () {
 
-            /*  $(".state_user").each((i,element:any) => {
-                  $(element).switchbutton({
-                      onlabel: "Enabled f",
-                      offlabel: "Disabled f"
-                  });
-              });*/
-        }
-    }
     /**
      *  refresh new permission
      */
-    refresh(){
+    refresh():void{
         axios({
             method: 'GET',
             url: Routing.generate('admin_load_route'),
@@ -68,7 +61,7 @@ export default class PermissonController{
             console.error(error);
         });
     }
-    addNewPerlission(){
+    addNewPerlission():void{
         axios({
             method: 'post',
             url: Routing.generate('admin_add_new_permission'),
@@ -78,5 +71,4 @@ export default class PermissonController{
             console.error(error);
         });
     }
-
 }

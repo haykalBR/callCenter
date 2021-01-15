@@ -1,4 +1,3 @@
-/*
 class Datatable extends HTMLTableElement {
     constructor() {
       super(); 
@@ -6,4 +5,4 @@ class Datatable extends HTMLTableElement {
     }
 }
 
-export default Datatable;*/
+export default Datatable;

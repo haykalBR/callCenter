@@ -1,16 +1,12 @@
-import Swal from 'sweetalert2'
-import axios from "../Config/axios";
-import {randomString} from "./Strings";
+import Swal from '../../Config/sweetAlert';
+import axios from "../../Config/axios";
+import {randomString} from "./strings";
 
-export function deleterecord( email:string  , route:string ) {
+export function deleterecord( email:string  , route:string ):void {
     Swal.fire({
         title: 'Are you sure?'+email,
         text: "You won't be able to revert this!",
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!',
-        showLoaderOnConfirm: true,
         preConfirm: () => {
             axios({
                 method: 'DELETE',
@@ -20,19 +16,14 @@ export function deleterecord( email:string  , route:string ) {
             }, (error) => {
                 Swal.fire(error.data);
             });
-        },
-        allowOutsideClick: () => !Swal.isLoading()
+        }
     })
 }
-export function userpassword( email:string , route:string) {
+export function userpassword( email:string , route:string):void {
     Swal.fire({
         title: 'Are you sure?'+email,
         text: "You won't be able to genereate new password  this!",
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, genreate password it!',
-        showLoaderOnConfirm: true,
         preConfirm: () => {
             axios({
                 method: 'post',
@@ -45,7 +36,6 @@ export function userpassword( email:string , route:string) {
             }, (error) => {
                 Swal.fire(error.data);
             });
-        },
-        allowOutsideClick: () => !Swal.isLoading()
+        }
     })
 }

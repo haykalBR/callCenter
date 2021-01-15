@@ -1,26 +1,20 @@
-import moment from 'moment';
-import 'bootstrap-switch-button';
-// const routes = require('../../../public/js/fos_js_routes.json');
-import routes from '../../../public/js/fos_js_routes.json';
-import Routing from '../../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
-Routing.setRoutingData(routes);
-import {randomString} from "../functions/Strings";
-import axios from "../Config/axios";
-import toastr from "../Config/toastr";
-import 'select2';
-import datatable from "../Config/datatable";
-import Swal from "sweetalert2";
+import moment from '../../Config/moment';
+import Routing from '../../Config/routing';
+import {randomString} from "../../Shared/helper/strings";
+import axios from "../../Config/axios";
+import Swal from "../../Config/sweetAlert";
+import { injectable } from 'inversify';
+import DataTable from '../../Shared/interfaces/datatable';
+import {deleterecord, userpassword} from "../../Shared/helper/sweetalert2";
 
-export default class UsersController{
+@injectable()
+export default class UsersService implements DataTable{
     getAjax(){
         return {
-            'url': "/admin/users/",
+            'url': Routing.generate('admin_users'),
             data: function(data) {
-
                 data.join = [
                     {   "join": "App\\Domain\\Membre\\Entity\\Profile","alias": 'p',"condition": "t.id = p.user","type":""},
-                   // {   "join": "t.accessRoles","alias": 'r',"condition": " ","type":"many"}
-                  //  {   "join": "App\\Domain\\Membre\\Entity\\UserPermission","alias": 'r',"condition": "t.id = r.user","type":""}
                 ];
                 data.hiddenColumn= [
                     {   name: 'p.mobile',data: 'p_mobile'}
@@ -37,7 +31,7 @@ export default class UsersController{
 
         }
     }
-    getDatableColumnDef(){
+    getDatableColumnDef():Array<any>{
         let i =0;
         return [
             {   "targets": i++,'name':'t.id','data':'t_id'},
@@ -51,7 +45,7 @@ export default class UsersController{
             },
             {   "targets": i++,'name':'t.createdAt','data':'t_createdAt',
                 "render": function ( data, type, full, meta ) {
-                    return moment(new Date(data)).format("DD/MM/YYYY");
+                    return moment(new Date(data)).format();
                 }
             },
             {
@@ -72,30 +66,18 @@ export default class UsersController{
 
         ]
     }
-    getfnDrawCallback(){
-        return function () {
 
-          /*  $(".state_user").each((i,element:any) => {
-                $(element).switchbutton({
-                    onlabel: "Enabled f",
-                    offlabel: "Disabled f"
-                });
-            });*/
-        }
-    }
     /**
      * genrete random password
      */
-    randompaasword(){
+    randompaasword():void{
        let password =randomString(10,20);
        $('#user_plainPassword_first').val(password);
        $('#user_plainPassword_second').val(password);
     }
-    changeState(url,state){
-        console.log('haikel');
 
-    }
-    reloadPermissions(roles){
+    reloadPermissions():void{
+        let roles=$('#user_accessRoles').select2('data').map(o => parseInt(o['id']))
         axios({
             method: 'post',
             url: Routing.generate('admin_permissions_roles'),
@@ -108,7 +90,12 @@ export default class UsersController{
             console.error(error)
         });
     }
-    getRoles( user ){
+    getRoles( event:JQuery.ClickEvent ):void{
+        event.preventDefault();
+        const user = {
+            'id':event.target.parentElement.getAttribute("data-user"),
+            'email':event.target.parentElement.getAttribute("data-email")
+        }
         Swal.fire({
             title: "<span id='save-popup-title' style='text-overflow: ellipsis;max-width: 100%'>List Role "+user.email+"</span>",
             html: "<div id='save-popup-icon'></div>",
@@ -132,18 +119,33 @@ export default class UsersController{
         });
 
     }
-    private addPermissionToSelect(routes){
+
+    deleteUser(event:JQuery.ClickEvent):void{
+        event.preventDefault();
+        const email = $(this).attr('data-user');
+        const url = event.target.parentElement.href;
+        deleterecord(email,url);
+    }
+
+    passwordUser(event:JQuery.ClickEvent):void{
+        event.preventDefault();
+        const email = $(this).attr('data-user');
+        const url = event.target.parentElement.href;
+        userpassword(email,url);
+    }
+
+    private addPermissionToSelect(routes:Array<any>):void{
         this.addGrantPermissionToSelect(routes[0])
         this.addRevokePermissionToSelect(routes[1])
     }
-    private addGrantPermissionToSelect(routes){
+    private addGrantPermissionToSelect(routes:Array<any>):void{
         var grantPermission = $("#user_grantPermission");
         grantPermission.html('');
         routes.forEach(function(route) {
             grantPermission.append('<option value="' + route.id + '">' + route.guardName+ '</option>');
         });
     }
-    private addRevokePermissionToSelect(routes){
+    private addRevokePermissionToSelect(routes:Array<any>):void{
         var revokePermission = $("#user_revokePermission");
         revokePermission.html('');
         routes.forEach(function(route) {
