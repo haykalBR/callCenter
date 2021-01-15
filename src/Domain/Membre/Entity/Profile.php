@@ -18,7 +18,7 @@ use App\Core\Traits\TimestampableTrait;
 use App\Domain\Membre\Repository\ProfileRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Http\Controller\Profile\GoogleAuthenticationAction;
+use App\Http\Api\Profile\GoogleAuthenticationAction;
 
 /**
  * @ApiResource(

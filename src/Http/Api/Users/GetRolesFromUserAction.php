@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controller\Users;
+namespace App\Http\Api\Users;
 
 
 use App\Domain\Membre\Entity\User;

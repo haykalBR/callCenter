@@ -11,8 +11,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Http\Controller\Permissions\GetNewGuardAction;
-use App\Http\Controller\Permissions\CreateNewGuardAction;
+use App\Http\Api\Permissions\GetNewGuardAction;
+use App\Http\Api\Permissions\CreateNewGuardAction;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**

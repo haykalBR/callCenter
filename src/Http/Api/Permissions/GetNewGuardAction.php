@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controller\Permissions;
+namespace App\Http\Api\Permissions;
 
 
 use App\Core\Services\PermessionService;

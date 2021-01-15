@@ -33,7 +33,9 @@ services:
     App\Http\Controller\:
         resource: '../src/Http/Controller'
         tags: ['controller.service_arguments']
-
+    App\Http\Api\:
+        resource: '../src/Http/Api'
+        tags: ['controller.service_arguments']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     App\Core\Services\CaptchaValidator:

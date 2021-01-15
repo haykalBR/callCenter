@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controller\Profile;
+namespace App\Http\Api\Profile;
 
 
 use App\Domain\Membre\Entity\Profile;
