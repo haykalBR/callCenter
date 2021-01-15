@@ -4,3 +4,6 @@ admin_2fa_login:
 
 2fa_login_check:
   path: /2fa_check
+api_login_check:
+  path: /api/login_check
+  methods: [ POST ]
