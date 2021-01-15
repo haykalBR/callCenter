@@ -42,6 +42,7 @@ class QrCodeExtension extends AbstractExtension
      */
     public function qrCode(): string
     {
+        /**** FAUT DANS ENV  */
         $url = 'http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=';
         /** @var User $user */
         $user=$this->token->getToken()->getUser();

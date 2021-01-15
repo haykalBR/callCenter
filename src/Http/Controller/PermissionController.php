@@ -44,47 +44,7 @@ class PermissionController extends AbstractController
         $this->permessionService=$permessionService;
     }
 
-    /**
-     * Get All item in DataBase Permission
-     * @Route("/", name="permission", methods={"GET","POST"})
-     */
-    public function index(Request $request): Response
-    {
-        if ($request->isXmlHttpRequest()) {
-            return $this->json($this->permissionsRepository->dataTable(), 200);
-        }
-        return $this->render('admin/membre/permission/index.html.twig');
-    }
-    /**
-     * Creation Permission
-     * @Route("/new", name="new_permission", methods={"GET","POST"})
-     */
-    public function new (Request  $request):Response
-    {
-        $permission= new Permissions();
-        $form   = $this->createForm(PermissionType::class, $permission);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-          $this->entityManager->persist($permission);
-          $this->entityManager->flush();
-          return $this->redirectToRoute('admin_permission');
-        }
-        return $this->render('admin/membre/permission/new.html.twig', ['form' => $form->createView()]);
-    }
-    /**
-     * Edit Permission
-     * @Route("/edit/{id}", name="edit_permission", methods={"GET","POST"},options={"expose"=true})
-     */
-    public function edit (Request  $request,Permissions $permission):Response
-    {
-        $form   = $this->createForm(PermissionType::class, $permission);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
-            return $this->redirectToRoute('admin_permission');
-        }
-        return $this->render('admin/membre/permission/edit.html.twig', ['form' => $form->createView()]);
-    }
+
     /**
      * Get New Guard Add in app
      * @Route("/loadroute", name="load_route", methods={"GET","POST"},options={"expose"=true})

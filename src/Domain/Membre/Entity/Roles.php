@@ -7,8 +7,11 @@ use App\Domain\Membre\Repository\RolesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+
  * @ORM\Entity(repositoryClass=RolesRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */

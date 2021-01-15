@@ -9,10 +9,35 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Http\Api\Permissions\GetNewGuardAction;
+use App\Http\Api\Permissions\CreateNewGuardAction;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *  collectionOperations={
+ *       "refresh-guard-route"={
+ *       "method"="get",
+ *       "path"="/permission/refresh-guard-route",
+ *       "openapi_context"={"summary"="get new  guard route "},
+ *       "controller"=GetNewGuardAction::class,
+ *      },
+ *       "add-guard-route"={
+ *       "method"="post",
+ *       "path"="/permission/add-guard-route",
+ *       "openapi_context"={"summary"="add  new  guard route "},
+ *       "controller"=CreateNewGuardAction::class,
+ *       "denormalization_context"={"groups"={"write:newpermission"}}
+ *      }
+ *     },
+ *  itemOperations={}
+ * )
+ *
  * @ORM\Entity(repositoryClass=PermissionsRepository::class)
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=true)
  */
 class Permissions
 {
@@ -25,10 +50,12 @@ class Permissions
     private $id;
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"write"})
      */
     private $name;
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"write"})
      */
     private $guardName;
 

@@ -28,9 +28,9 @@ trait FileUploadTrait
     /**
      * Sets file.
      *
-     * @param UploadedFile $file
+     * @param  $file
      */
-    public function setFile(UploadedFile $file = null,$removable= false)
+    public function setFile( $file = null,$removable= false)
     {
         if ($file == null && !$removable){
             $this->path=null;
@@ -44,7 +44,7 @@ trait FileUploadTrait
     /**
      * Get file.
      *
-     * @return UploadedFile
+     * @return
      */
     public function getFile()
     {
@@ -161,7 +161,7 @@ trait FileUploadTrait
             }
         }
     }
-    protected function getExtension(UploadedFile $file): ?string
+    protected function getExtension( $file): ?string
     {
         $originalName = $file->getClientOriginalName();
 

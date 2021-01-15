@@ -17,14 +17,28 @@ use App\Core\Traits\FileUploadTrait;
 use App\Core\Traits\TimestampableTrait;
 use App\Domain\Membre\Repository\ProfileRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Http\Api\Profile\GoogleAuthenticationAction;
 
 /**
+ * @ApiResource(
+ *  collectionOperations={},
+ *  itemOperations={
+ *   "google-authentication"={
+ *       "method"="PUT",
+ *       "path"="/profile/google-authentication/{id}",
+ *       "openapi_context"={"summary"="active and desative google auth for user"},
+ *       "controller"=GoogleAuthenticationAction::class
+ *      }
+ *  }
+ *  )
  * @ORM\Entity(repositoryClass=ProfileRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */
 class Profile implements \Serializable
 {
-    use FileUploadTrait,TimestampableTrait;
+   use FileUploadTrait;
+  use  TimestampableTrait;
 
     /**
      * @ORM\Id
