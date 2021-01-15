@@ -4,7 +4,6 @@ import "datatables.net-dt";
 import "datatables.net-bs4";
 import "datatables.net-scroller";
 import "datatables.net-buttons";
-import {func} from "prop-types";
 
 export default {    
     "dom": 'Bfrtip',

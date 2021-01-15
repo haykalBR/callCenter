@@ -24,9 +24,11 @@ Encore
  * Each entry will result in one JavaScript file (e.g. app.js)
  * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
  */
-.addEntry('app', './assets/main.ts')
-//.addEntry('page1', './assets/page1.js')
-//.addEntry('page2', './assets/page2.js')
+.addEntry('app', './assets/javascripts/main.ts')
+.addEntry('user', './assets/javascripts/Domain/user/index.ts')
+.addEntry('profile', './assets/javascripts/Domain/profile/index.ts')
+.addEntry('permission', './assets/javascripts/Domain/permission/index.ts')
+.addEntry('localization', './assets/javascripts/Domain/localization/index.ts')
 
 .addStyleEntry('custom', './assets/styles/app.scss')
 
@@ -60,6 +62,7 @@ Encore
         }
 
         options['process.env'].ELEMENT_PREFIX = JSON.stringify(env.parsed.ELEMENT_PREFIX);
+        options['process.env'].MERCURE_URL = JSON.stringify(env.parsed.MERCURE_URL);
     })
 
 // enables @babel/preset-env polyfills
@@ -89,9 +92,7 @@ Encore
 })
 
 .autoProvideVariables({
-    $: 'jquery',
-    React: 'react',
-    ReactDOM: 'react-dom'
+    $: 'jquery'
 })
 
 // enables Sass/SCSS support
