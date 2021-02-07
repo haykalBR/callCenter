@@ -10,7 +10,18 @@ RUN apt-get install -y \
         libonig-dev \
     && docker-php-ext-install iconv mbstring
 RUN apt-get update -y && apt-get install -y sendmail libpng-dev
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        imagemagick
+RUN apt-get update && apt-get install -y \
+libfreetype6-dev libjpeg62-turbo-dev \
+libgd-dev
+RUN docker-php-ext-configure gd \
+--with-freetype=/usr/include/ \
+--with-jpeg=/usr/include/
 RUN docker-php-ext-install gd
+RUN docker-php-ext-install exif
+RUN docker-php-ext-configure exif \
+            --enable-exif
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y nodejs
