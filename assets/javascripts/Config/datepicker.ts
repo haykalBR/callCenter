@@ -1,5 +1,5 @@
 import 'bootstrap-datepicker';
 
 export default {
-    format: 'dd/mm/yyyy'    
+    dateFormat: 'dd/mm/yyyy'    
 };

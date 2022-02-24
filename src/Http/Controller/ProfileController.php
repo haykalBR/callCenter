@@ -58,50 +58,9 @@ class ProfileController extends AbstractController
         $this->session                    = $session;
     }
 
-    /**
-     * Edit Profile User.
-     *
-     * @Route("/edit/{username}", name="profile_edit", methods={"GET","POST"})
-     * @Security("user == cuurnetUser")
-     */
-    public function edit(Request $request, User $cuurnetUser): Response
-    {
-        // TODO Separee Image in table and date picker in Extension
-        $profile= $cuurnetUser->getProfile() ?? new Profile();
-        $form   = $this->createForm(ProfileType::class, $profile);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $profile->setFile($form->getData()->getFile());
-            $profile->setUser($cuurnetUser);
-            if (!$cuurnetUser->getProfile()) {
-                $this->entityManager->persist($profile);
-            }
-            $this->entityManager->flush();
 
-            return  $this->redirectToRoute('admin_profile_edit', ['username'=>$cuurnetUser->getUsername()]);
-        }
 
-        return $this->render('admin/membre/profile/edit.html.twig', [
-            'user' => $cuurnetUser->getProfile(),
-            'form' => $form->createView(),
-        ]);
-    }
 
-    /**
-     *  Retunn Page Profile.
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("", name="profile")
-     */
-    public function profile()
-    {
-        $form = $this->createForm(GoogleAuthenticationFormType::class, null);
-
-        return $this->render('admin/membre/profile/profile.html.twig', [
-            'user' => $this->getUser(),
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * Active and Desactive google Auth.

@@ -7,8 +7,12 @@ yarn-error.log
 /var
 /vendor
 /public/uploads/
+/public/uploads/*
 /tools/docker/nginx/log/
+/tools/docker/nginx/log/*
 .env
+/vendor/*
+/.idea/*
 
 ###< symfony/webpack-encore-bundle ###
 
@@ -21,3 +25,7 @@ yarn-error.log
 /.php_cs
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

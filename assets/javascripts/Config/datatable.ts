@@ -4,12 +4,8 @@ import "datatables.net-dt";
 import "datatables.net-bs4";
 import "datatables.net-scroller";
 import "datatables.net-buttons";
-import 'bootstrap-switch-button';
 
-var groupColumn = 2;
-
-export default {
-    
+export default {    
     "dom": 'Bfrtip',
     "buttons": [
         'copy', 'csv', 'excel', 'pdf'
@@ -25,7 +21,7 @@ export default {
     "pageLength": 50,
     "length": 40,
     "deferRender": true,
-    "scrollY": 500,
+    "scrollY": "600px",
     "scrollCollapse": true,
     "scrollX":     false,
     "scroller": {
@@ -54,14 +50,7 @@ export default {
             }
         } );
     }*/
-    "fnDrawCallback": function() {
- /*       $(".faiez").each((i,element) => {
-            element.switchButton({
-                onlabel: "Enabled f",
-                offlabel: "Disabled f"
-            });
-        });
-        */
+    "fnDrawCallback": function () {
 
-    },
+    }
 }

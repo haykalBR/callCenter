@@ -9,20 +9,62 @@
 
 namespace App\Domain\Membre\Entity;
 
-use App\Core\Traits\SoftDeleteTrait;
-use App\Core\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Core\Traits\SoftDeleteTrait;
+use Gedmo\Mapping\Annotation as Gedmo;
+use App\Core\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\Collection;
 use App\Domain\Membre\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Http\Api\Users\RegeneratePasswordAction;
+use App\Http\Api\Users\ChangeStatusAction;
+use App\Http\Api\Users\GetPermissionFromRolesAction;
+use App\Http\Api\Users\GetRolesFromUserAction;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *   collectionOperations={
+ *   "permission-from-roles"={
+ *       "method"="get",
+ *       "path"="/users/permission-from-roles",
+ *       "openapi_context"={"summary"=" Get  permission  from  roles "},
+ *       "controller"=GetPermissionFromRolesAction::class,
+ *       "normalization_context"={"groups"={"read:permission:roles"}},
+ *       "denormalization_context"={"groups"={"read:permission:roles"}},
+ *      }
+ *     },
+ *     itemOperations={
+ *     "delete"={
+ *      "path"="users/delete/{id}",
+ *       "method"="DELETE",
+ *      },
+ *     "regenerate-password"={
+ *       "method"="PUT",
+ *       "path"="/users/regenerate-password/{id}",
+ *       "openapi_context"={"summary"="regenerate user password  "},
+ *       "controller"=RegeneratePasswordAction::class,
+ *       "normalization_context"={"groups"={"read:password"}},
+ *       "denormalization_context"={"groups"={"write:password"}},
+ *      },
+ *      "change-status"={
+ *       "method"="PUT",
+ *       "path"="/users/change-status/{id}",
+ *       "openapi_context"={"summary"=" Change Status  for user "},
+ *       "controller"=ChangeStatusAction::class
+ *      },
+ *      "roles-from-user"={
+ *       "method"="get",
+ *       "path"="/users/roles-from-user/{id}",
+ *       "openapi_context"={"summary"=" Get  roles from user "},
+ *       "controller"=GetRolesFromUserAction::class
+ *      }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=true)
@@ -31,17 +73,18 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"username"}, message="Cet utilisateur existe déjà")
  * @UniqueEntity(fields={"email"}, message="Cette addresse mail déjà existe")
  */
-class User implements UserInterface, TwoFactorInterface
+class User extends UserInterface implements TwoFactorInterface
 {
-    use  TimestampableTrait;
+    use TimestampableTrait;
     use SoftDeleteTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"read:password"})
      */
     private int $id;
-
     /**
      * @Gedmo\Versioned
      * @Assert\NotBlank()
@@ -62,13 +105,9 @@ class User implements UserInterface, TwoFactorInterface
     private bool  $enabled;
 
     /**
-     * @ORM\Column(type="json")
-     */
-    private array $roles = [];
-
-    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups ({"write:password"})
      */
     private string $password;
     /**
@@ -87,10 +126,28 @@ class User implements UserInterface, TwoFactorInterface
      * @ORM\OneToMany(targetEntity=LoginAttempt::class, mappedBy="user")
      */
     private Collection $loginAttempts;
+    /**
+     * @ORM\OneToMany(targetEntity=UserPermission::class, mappedBy="user")
+     */
+    private Collection $userPermissions;
+    /**
+     * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="users",cascade={"persist"})
+     * @Assert\Count(min="1")
+     */
+    private $accessRoles;
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    private $grantPermission;
+    private $revokePermission;
 
     public function __construct()
     {
-        $this->loginAttempts = new ArrayCollection();
+        $this->loginAttempts  = new ArrayCollection();
+        $this->accessRoles    = new ArrayCollection();
+        $this->userPermissions= new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -123,25 +180,6 @@ class User implements UserInterface, TwoFactorInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
 
         return $this;
     }
@@ -275,6 +313,184 @@ class User implements UserInterface, TwoFactorInterface
             // set the owning side to null (unless already changed)
             if ($loginAttempt->getUser() === $this) {
                 $loginAttempt->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Roles[]
+     */
+    public function getAccessRoles(): Collection
+    {
+        return $this->accessRoles;
+    }
+
+    public function addAccessRoles(Roles $accessRoles): self
+    {
+        if (!$this->accessRoles->contains($accessRoles)) {
+            $this->accessRoles[] = $accessRoles;
+            $accessRoles->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccessRoles(Roles $accessRoles): self
+    {
+        if ($this->accessRoles->contains($accessRoles)) {
+            $this->accessRoles->removeElement($accessRoles);
+            $accessRoles->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roleNames = [];
+        $roles     = $this->getAccessRoles();
+
+        foreach ($roles as $role) {
+            $roleNames[] = $role->getGuardName();
+        }
+
+        return array_unique($roleNames);
+    }
+
+    public function setAccessRoles(Collection $roles)
+    {
+        $this->accessRoles=$roles;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        foreach ($roles as $role) {
+            $this->addAccessRoles($role);
+        }
+    }
+
+    public function hasPermission($permissionName): bool
+    {
+        $hasPermission = false;
+        $collection    = collect($this->getUserPermissions()->toArray());
+        foreach ($this->getAccessRoles() as $role) {
+            if ($role->hasPermission($permissionName)) {
+                $hasPermission= true;
+            }
+        }
+
+        /*
+         * if user has custom permission
+         */
+        if ($collection->count() > 0) {
+            $grantPermission = $collection->filter(function ($item) {
+                return UserPermission::GRANT == $item->getStatus();
+            });
+            /*
+             * if user has grant permission
+             */
+            if ($grantPermission->count() > 0) {
+                $grantPermissionArrayCollection=new ArrayCollection($grantPermission->toArray());
+                $isGrantPermission             = $grantPermissionArrayCollection->map(function ($value) use ($permissionName,$hasPermission) {
+                    if ($value->hasPermission($permissionName)) {
+                        return $value;
+                    }
+                });
+
+                if (null !== $isGrantPermission->current()) {
+                    $hasPermission=true;
+                }
+            }
+            $revokePermission = $collection->filter(function ($item) {
+                return UserPermission::REVOKE == $item->getStatus();
+            });
+
+            /*
+             * if user has revoke permission
+             */
+            if ($revokePermission->count() > 0) {
+                $grantPermissionArrayCollection=new ArrayCollection($revokePermission->toArray());
+                $isRevokePermission            = $grantPermissionArrayCollection->map(function ($value) use ($permissionName,$hasPermission) {
+                    if ($value->hasPermission($permissionName)) {
+                        return $value;
+                    }
+                });
+                if (null !== $isRevokePermission->current()) {
+                    $hasPermission=false;
+                }
+            }
+        }
+
+        return $hasPermission;
+    }
+
+    public function isSuperAdmin()
+    {
+        $isSuperAdmin = false;
+        foreach ($this->getAccessRoles() as $role) {
+            if ($role->isSuperAdmin()) {
+                return true;
+            }
+        }
+
+        return $isSuperAdmin;
+    }
+
+    public function hasRole(RoleInterface $role)
+    {
+        return $this->getAccessRoles()->contains($role);
+    }
+
+    public function getGrantPermission()
+    {
+        return $this->grantPermission;
+    }
+
+    public function setGrantPermission($grantPermission): void
+    {
+        $this->grantPermission = $grantPermission;
+    }
+
+    public function getRevokePermission()
+    {
+        return $this->revokePermission;
+    }
+
+    public function setRevokePermission($revokePermission): void
+    {
+        $this->revokePermission = $revokePermission;
+    }
+
+    /**
+     * @return Collection|UserPermission[]
+     */
+    public function getUserPermissions(): Collection
+    {
+        return $this->userPermissions;
+    }
+
+    public function addUserPermission(UserPermission $userPermission): self
+    {
+        if (!$this->userPermissions->contains($userPermission)) {
+            $this->userPermissions[] = $userPermission;
+            $userPermission->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserPermission(UserPermission $userPermission): self
+    {
+        if ($this->userPermissions->contains($userPermission)) {
+            $this->userPermissions->removeElement($userPermission);
+            // set the owning side to null (unless already changed)
+            if ($userPermission->getUser() === $this) {
+                $userPermission->setUser(null);
             }
         }
 
